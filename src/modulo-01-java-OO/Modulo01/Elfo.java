@@ -9,8 +9,7 @@ public class Elfo {
         
     }
     public Elfo(String n){
-        nome=n;
-        flechas=42;
+        this(n,42);
     }
     
     public void atirarFlecha(){
