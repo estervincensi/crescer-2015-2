@@ -17,4 +17,18 @@ public class Elfo {
         experiencia++;
         flechas--;
     }
+    
+    public atirarFlechaRefactory(){
+        flechas--;
+    if(acertar() == true){
+        experiencia++;
+    }
+    
+    public boolean acertar(){
+        Random gerador = new Random();
+        boolean resultado = gerador.nextBoolean();
+        return resultado;
+    
+    }
+}
 }
