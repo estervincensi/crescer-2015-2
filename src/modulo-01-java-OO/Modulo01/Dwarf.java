@@ -4,14 +4,17 @@ public class Dwarf
     private int vida;
     private String nome;
 
-    public Dwarf(String nome)
+    public Dwarf()
     {
-        this.nome=nome;
         this.vida=110;
     }
 
     public void recebeFlechada(){
-        vida=vida-10;
+        this.vida-= 10;
+    }
+    
+    public int getVida(){
+        return this.vida;
     }
 
 }
