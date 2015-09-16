@@ -17,10 +17,11 @@ public class Elfo {
         flechas--;
     }
     
-    public atirarFlechaRefactory(){
+    public void atirarFlechaRefactory(){
         flechas--;
-    if(acertar() == true){
-        experiencia++;
+        if(acertar() == true){
+            experiencia++;
+        }
     }
     
     public boolean acertar(){
@@ -29,5 +30,5 @@ public class Elfo {
         return resultado;
     
     }
-}
+
 }
