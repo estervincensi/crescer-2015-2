@@ -18,9 +18,10 @@ public class Elfo {
         return this.nome;
     }
 
+    /*
     public void setNome(String nome){
         this.nome=nome;
-    }
+    }*/
 
     public int getFlechas(){
         return this.flechas;
@@ -31,11 +32,13 @@ public class Elfo {
             this.flechas=flechas;
     }*/
 
-    public void atirarFlecha(){
+    public void atirarFlecha(Dwarf d){
         experiencia++;
         flechas--;
+        d.recebeFlechada();
     }
 
+    /*
     public void atirarFlechaRefactory(){
         flechas--;
         if(acertar()){
@@ -49,5 +52,6 @@ public class Elfo {
         return resultado;
 
     }
+    */
 
 }
