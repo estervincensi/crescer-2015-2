@@ -1,19 +1,20 @@
 public class Elfo {
     private String nome;
-    private Integer flechas;
+    private int flechas;
     private int experiencia;
     
-    public Elfo(String n, Integer flech) {
+    public Elfo(String n, int flech) {
         nome = n;
-        if(flech==null){
-            flechas=42;
-        }else{
-            flechas = flech;
-        }
+        flechas=flech;
         
+    }
+    public Elfo(String n){
+        nome=n;
+        flechas=42;
     }
     
     public void atirarFlecha(){
         experiencia++;
+        flechas--;
     }
 }
