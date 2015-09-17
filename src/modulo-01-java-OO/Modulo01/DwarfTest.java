@@ -58,4 +58,13 @@ public class DwarfTest
         }
         assertEquals(40,d.getVida());
     }
+    
+    @Test
+    public void dwarfNaoTemVidaNegativa(){
+        Dwarf d = new Dwarf ("Teste");
+        for(int i=0; i<12; i++){
+            d.recebeFlechada();
+        }
+        assertEquals(0,d.getVida());
+    }
 }
