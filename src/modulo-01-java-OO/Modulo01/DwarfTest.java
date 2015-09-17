@@ -11,4 +11,11 @@ public class DwarfTest
         Dwarf d = new Dwarf();
         assertEquals(110,d.getVida()); //verifica se a vida é igual a 110
     }
+    
+    @Test
+    public void DwarfRecebeFlechadaEPerde10DeVida(){
+        Dwarf d = new Dwarf();
+        d.recebeFlechada();
+        assertEquals(100,d.getVida());
+    }
 }
