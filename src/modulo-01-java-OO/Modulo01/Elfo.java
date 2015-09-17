@@ -1,4 +1,4 @@
-import java.util.Random;
+
 public class Elfo {
     private String nome;
     private int flechas;
