@@ -64,8 +64,22 @@ public class ElfoTest
     @Test
     public void toStringRetornaNomeMaisNumeroDeFlechasEExperiencia(){
         Elfo elfo = new Elfo("Teste",100);
-        String teste = elfo.toString();
-        assertEquals("Teste possui 100 flechas e 0 niveis de experiencia.",teste);
+        assertEquals("Teste possui 100 flechas e 0 niveis de experiencia.",elfo.toString());
+    }
+    
+    @Test
+    public void elfoComUmaFlechaInformadaToString(){
+        Elfo e = new Elfo("Teste",1);
+        assertEquals("Teste possui 1 flecha e 0 niveis de experiencia.",e.toString());
+        
+    }
+    
+    @Test
+    public void elfoComUmDeExperienciaToString(){
+        Elfo elfo = new Elfo(null);
+        elfo.atirarFlecha(new Dwarf());
+        String textoEsperado = "null possui 41 flechas e 1 nivel de experiencia.";
+        assertEquals(textoEsperado,elfo.toString());
     }
 
     @Test
