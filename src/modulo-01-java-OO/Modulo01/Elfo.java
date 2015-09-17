@@ -3,10 +3,12 @@ public class Elfo {
     private String nome;
     private int flechas;
     private int experiencia;
+    private Status status;
 
     public Elfo(String n, int flech) {
         nome = n;
         flechas=flech;
+        this.status = Status.VIVO;
 
     }
 
@@ -40,6 +42,10 @@ public class Elfo {
 
     public int getExperiencia(){
         return this.experiencia;
+    }
+    
+    public Status getStatus(){
+        return this.status;
     }
 
     public String toString(){

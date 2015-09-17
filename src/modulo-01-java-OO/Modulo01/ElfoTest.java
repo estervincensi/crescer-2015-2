@@ -10,6 +10,12 @@ public class ElfoTest
         Elfo elfo = new Elfo("Teste");
         assertEquals(42,elfo.getFlechas());
     }
+    
+    @Test
+    public void elfoCriadoComStatusVivo(){
+        Elfo e = new Elfo("Teste");
+        assertEquals(Status.VIVO,e.getStatus());
+    }
 
     @Test
     public void elfoCriadoComNomeEMuitasFlechas(){
