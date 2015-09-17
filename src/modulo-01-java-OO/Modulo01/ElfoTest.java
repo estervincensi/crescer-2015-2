@@ -59,7 +59,7 @@ public class ElfoTest
     @Test
     public void elfoAtiraFlechaEmDwarf(){
         Elfo elfo = new Elfo("Teste");
-        Dwarf dwarf = new Dwarf();
+        Dwarf dwarf = new Dwarf("Teste");
         elfo.atirarFlecha(dwarf);
         assertEquals(1,elfo.getExperiencia());
         assertEquals(41,elfo.getFlechas());
@@ -83,7 +83,7 @@ public class ElfoTest
     @Test
     public void elfoComUmDeExperienciaToString(){
         Elfo elfo = new Elfo(null);
-        elfo.atirarFlecha(new Dwarf());
+        elfo.atirarFlecha(new Dwarf("Teste"));
         String textoEsperado = "null possui 41 flechas e 1 nivel de experiencia.";
         assertEquals(textoEsperado,elfo.toString());
     }
@@ -91,8 +91,8 @@ public class ElfoTest
     @Test
     public void umElfoAtiraEmDoisDwarves(){
         Elfo elfo = new Elfo("Teste");
-        Dwarf dwarf1 = new Dwarf();
-        Dwarf dwarf2 = new Dwarf();
+        Dwarf dwarf1 = new Dwarf("Teste");
+        Dwarf dwarf2 = new Dwarf("Teste1");
 
         elfo.atirarFlecha(dwarf1);
         elfo.atirarFlecha(dwarf2);
@@ -108,7 +108,7 @@ public class ElfoTest
     public void doisElfosAtiramNoMesmoDwarf(){
         Elfo elfo1 = new Elfo("Teste");
         Elfo elfo2 = new Elfo("Teste2");
-        Dwarf dwarf = new Dwarf();
+        Dwarf dwarf = new Dwarf("Teste3");
 
         elfo1.atirarFlecha(dwarf);
         elfo2.atirarFlecha(dwarf);
@@ -125,8 +125,8 @@ public class ElfoTest
     public void doisElfosAtiramEmDoisDwarves(){
         Elfo e1 = new Elfo ("Teste");
         Elfo e2 = new Elfo ("Teste1");
-        Dwarf d1 = new Dwarf();
-        Dwarf d2 = new Dwarf();
+        Dwarf d1 = new Dwarf("Teste2");
+        Dwarf d2 = new Dwarf("Teste3");
 
         e1.atirarFlecha(d1);
         e1.atirarFlecha(d2);
