@@ -11,12 +11,24 @@ public class ElfoTest
         assertEquals(42,elfo.getFlechas());
         assertEquals("Teste",elfo.getNome());
     }
-    
+   
     @Test
     public void ElfoNasceComUmNomeEQuantidadeInformadaDeFlechas(){
         Elfo elfo = new Elfo("Teste",100);
         assertEquals(100,elfo.getFlechas());
         assertEquals("Teste",elfo.getNome());
+    }
+    
+    @Test
+    public void ElfoPodeNascerComNomeNull(){
+        Elfo elfo = new Elfo(null);
+        assertNull(elfo.getNome());
+    }
+    
+    @Test
+    public void ElfoNasceComZeroDeExperiencia(){
+        Elfo elfo = new Elfo("Teste");
+        assertEquals(0,elfo.getExperiencia());
     }
     
     @Test
