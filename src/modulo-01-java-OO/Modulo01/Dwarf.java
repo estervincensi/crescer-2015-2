@@ -23,6 +23,10 @@ public class Dwarf
                 this.status = Status.MORTO;
         }
     }
+    
+    public dataTerceiraEra getDataNascimento(){
+        return this.dataNascimento;
+    }
 
     public String getNome(){
         return this.nome;
