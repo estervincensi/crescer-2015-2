@@ -4,7 +4,7 @@ public class Dwarf
     private int vida=110;
     private String nome;
     private Status status = Status.VIVO;
-    private int experiencia=0;
+    private int experiencia;
     private dataTerceiraEra dataNascimento;
 
     public Dwarf(String nome){
@@ -23,8 +23,9 @@ public class Dwarf
             }
             else if(getNumeroSorte()>100){
                 this.vida-= 10;
-                if(this.vida==0)
+                if(this.vida==0){
                     this.status = Status.MORTO;
+                }
             }
         }
     }
