@@ -39,5 +39,16 @@ public class Dwarf
     public Status getStatus(){
         return this.status;
     }
+    
+    public double getNumeroSorte(){
+        double retorno = 101.;
+        if(this.dataNascimento.ehBissexto()&& this.vida>=80 && this.vida<=90){
+            retorno = retorno*-33;
+        }
+        else if(!this.dataNascimento.ehBissexto()&& (this.nome=="Seixas" || this.nome=="Meireles")){
+            retorno = (retorno*33)%100;
+        }
+        return retorno;
+    }
 
 }

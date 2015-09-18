@@ -87,4 +87,77 @@ public class DwarfTest
         }
         assertEquals(0,d.getVida());
     }
+
+    @Test
+    public void DwarfNasceEmAnoBissextoETemVidaIgual90GetNumeroSorte(){
+        Dwarf d = new Dwarf("Teste",new dataTerceiraEra(1,1,2016));
+        d.recebeFlechada();
+        d.recebeFlechada();
+        assertEquals(-3333.0,d.getNumeroSorte(),0);
+    }
+
+    @Test
+    public void DwarfNasceEmAnoBissextoETemVidaIgual110GetNumeroSorte(){
+        Dwarf d = new Dwarf("Teste",new dataTerceiraEra(1,1,2016));
+        assertEquals(101.0,d.getNumeroSorte(),0);
+    }
+
+    @Test
+    public void DwarfNasceEmAnoBissextoETemVidaIgual10GetNumeroSorte(){
+        Dwarf d = new Dwarf("Teste",new dataTerceiraEra(1,1,2016));
+        for(int i=0; i<10;i++){
+            d.recebeFlechada();
+        }
+        assertEquals(101.0,d.getNumeroSorte(),0);
+    }
+
+    @Test
+    public void DwarfNAoNasceEmAnoBissextoETemVidaIgual90GetNumeroSorte(){
+        Dwarf d = new Dwarf("Teste",new dataTerceiraEra(1,1,2015));
+        d.recebeFlechada();
+        d.recebeFlechada();
+        assertEquals(101.0,d.getNumeroSorte(),0);
+    }
+
+    @Test
+    public void DwarfNAoNasceEmAnoBissextoESeChamaMeirelesGetNumeroSorte(){
+        Dwarf d = new Dwarf("Meireles",new dataTerceiraEra(1,1,2015));
+
+        assertEquals(33.0,d.getNumeroSorte(),0);
+    }
+    
+    @Test
+    public void DwarfNAoNasceEmAnoBissextoESeChamaSeixasGetNumeroSorte(){
+        Dwarf d = new Dwarf("Seixas",new dataTerceiraEra(1,1,2015));
+
+        assertEquals(33.0,d.getNumeroSorte(),0);
+    }
+    
+    @Test
+    public void DwarfNasceEmAnoBissextoESeChamaMeirelesGetNumeroSorte(){
+        Dwarf d = new Dwarf("Meireles",new dataTerceiraEra(1,1,2016));
+
+        assertEquals(101.0,d.getNumeroSorte(),0);
+    }
+    
+    @Test
+    public void DwarfNasceEmAnoBissextoESeChamaSeixasGetNumeroSorte(){
+        Dwarf d = new Dwarf("Seixas",new dataTerceiraEra(1,1,2016));
+
+        assertEquals(101.0,d.getNumeroSorte(),0);
+    }
+    
+    @Test
+    public void DwarfNAoNasceEmAnoBissextoESeChamaFulanoGetNumeroSorte(){
+        Dwarf d = new Dwarf("Fulano",new dataTerceiraEra(1,1,2015));
+
+        assertEquals(101.0,d.getNumeroSorte(),0);
+    }
+    
+    @Test
+    public void DwarfNAoNasceEmAnoBissextoETemNomeNullGetNumeroSorte(){
+        Dwarf d = new Dwarf(null,new dataTerceiraEra(1,1,2015));
+
+        assertEquals(101.0,d.getNumeroSorte(),0);
+    }    
 }
