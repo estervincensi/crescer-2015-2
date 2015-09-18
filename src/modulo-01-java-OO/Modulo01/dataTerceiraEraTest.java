@@ -21,5 +21,6 @@ public class dataTerceiraEraTest
     @Test
     public void ano3600ehBissexto(){
         dataTerceiraEra d = new dataTerceiraEra (1,1,3600);
+        assertTrue(d.ehBissexto());
     }
 }
