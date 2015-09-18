@@ -14,10 +14,8 @@ public class DwarfTest
 
     @Test
     public void dwarfNaceNoDia1do1do1PorPadrao(){
-        Dwarf d = new Dwarf ("Teste");
-        
+        Dwarf d = new Dwarf ("Teste");        
         assertEquals(new dataTerceiraEra(1,1,1),d.getDataNascimento());
-
     }
 
     @Test
@@ -31,7 +29,7 @@ public class DwarfTest
         Dwarf d = new Dwarf("Teste");
         assertEquals("Teste",d.getNome());
     }
-    
+
     @Test
     public void dwarfNasceComNomeNull(){
         Dwarf d = new Dwarf (null);

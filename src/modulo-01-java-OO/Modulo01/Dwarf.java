@@ -51,7 +51,8 @@ public class Dwarf
         if(this.dataNascimento.ehBissexto()&& this.vida>=80 && this.vida<=90){
             retorno = retorno*-33;
         }
-        else if(!this.dataNascimento.ehBissexto()&& (this.nome=="Seixas" || this.nome=="Meireles")){
+        
+        if(!this.dataNascimento.ehBissexto()&& this.nome!=null &&(this.nome.equals("Seixas") || this.nome.equals("Meireles"))){
             retorno = (retorno*33)%100;
         }
         return retorno;
