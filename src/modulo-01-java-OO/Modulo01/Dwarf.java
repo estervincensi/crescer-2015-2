@@ -17,7 +17,7 @@ public class Dwarf
     }
 
     public void recebeFlechada(){
-        if(this.status == Status.VIVO){
+        if(this.status != Status.MORTO){
             if(getNumeroSorte()<0){
                 this.experiencia+=2;
             }

@@ -6,6 +6,14 @@ import org.junit.Test;
 
 public class dataTerceiraEraTest
 {
+    @Test
+    public void dataTerceiraEraECriadaComDiaMesEAno(){
+        dataTerceiraEra d = new dataTerceiraEra(1,1,1);
+        assertEquals(1,d.getDia());
+        assertEquals(1,d.getMes());
+        assertEquals(1,d.getAno());
+    }
+
     @Test 
     public void ano2000EhBissexto(){
         dataTerceiraEra d = new dataTerceiraEra(1,1,2000);
@@ -17,7 +25,7 @@ public class dataTerceiraEraTest
         dataTerceiraEra d = new dataTerceiraEra(1,1,1);
         assertFalse(d.ehBissexto());
     }
-    
+
     @Test
     public void ano3600ehBissexto(){
         dataTerceiraEra d = new dataTerceiraEra (1,1,3600);

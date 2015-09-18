@@ -15,27 +15,27 @@ public class DwarfTest
     @Test
     public void dwarfNaceNoDia1do1do1PorPadrao(){
         Dwarf d = new Dwarf ("Teste");
-        dataTerceiraEra dt = d.getDataNascimento();
-        assertEquals(1,dt.getDia());
-        assertEquals(1,dt.getMes());
-        assertEquals(1,dt.getAno());
+        
+        assertEquals(new dataTerceiraEra(1,1,1),d.getDataNascimento());
 
     }
 
     @Test
     public void dwarfNasceNoDia28De2De1993(){
         Dwarf d = new Dwarf ("Teste",new dataTerceiraEra(28,02,1993));
-        dataTerceiraEra dt = d.getDataNascimento();
-        assertEquals(28,dt.getDia());
-        assertEquals(2,dt.getMes());
-        assertEquals(1993,dt.getAno());
-
+        assertEquals(new dataTerceiraEra(28,02,1993),d.getDataNascimento());
     }
 
     @Test
     public void dwarfNasceComUmNome(){
         Dwarf d = new Dwarf("Teste");
         assertEquals("Teste",d.getNome());
+    }
+    
+    @Test
+    public void dwarfNasceComNomeNull(){
+        Dwarf d = new Dwarf (null);
+        assertEquals(null,d.getNome());
     }
 
     @Test
@@ -71,12 +71,13 @@ public class DwarfTest
     }
 
     @Test
-    public void dwarfRecebe7FlechasEVidaVira40(){
+    public void dwarfRecebe7FlechasVidaVira40EStatusEVivo(){
         Dwarf d = new Dwarf("Teste");
         for(int i=0; i<7; i++){
             d.recebeFlechada();
         }
         assertEquals(40,d.getVida());
+        assertEquals(Status.VIVO, d.getStatus());
     }
 
     @Test
