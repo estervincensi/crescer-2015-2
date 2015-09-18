@@ -1,5 +1,5 @@
 
-public class dataTerceiraEra
+public class DataTerceiraEra
 {
     private int dia, mes, ano;
 
@@ -15,7 +15,7 @@ public class dataTerceiraEra
         return this.mes;
     }
 
-    public dataTerceiraEra(int dia, int mes, int ano){
+    public DataTerceiraEra(int dia, int mes, int ano){
         this.dia = dia;
         this.mes = mes;
         this.ano = ano;
@@ -26,7 +26,7 @@ public class dataTerceiraEra
     }
     
     public boolean equals(Object obj){
-        dataTerceiraEra dt = (dataTerceiraEra)obj;
+        DataTerceiraEra dt = (DataTerceiraEra)obj;
         return this.dia==dt.getDia() && this.mes==dt.getMes() && this.ano==dt.getAno();
     }
 }

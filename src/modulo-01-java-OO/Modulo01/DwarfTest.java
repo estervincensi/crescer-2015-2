@@ -15,13 +15,13 @@ public class DwarfTest
     @Test
     public void dwarfNaceNoDia1do1do1PorPadrao(){
         Dwarf d = new Dwarf ("Teste");        
-        assertEquals(new dataTerceiraEra(1,1,1),d.getDataNascimento());
+        assertEquals(new DataTerceiraEra(1,1,1),d.getDataNascimento());
     }
 
     @Test
     public void dwarfNasceNoDia28De2De1993(){
-        Dwarf d = new Dwarf ("Teste",new dataTerceiraEra(28,02,1993));
-        assertEquals(new dataTerceiraEra(28,02,1993),d.getDataNascimento());
+        Dwarf d = new Dwarf ("Teste",new DataTerceiraEra(28,02,1993));
+        assertEquals(new DataTerceiraEra(28,02,1993),d.getDataNascimento());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class DwarfTest
 
     @Test
     public void dwarfNasceEmAnoBissextoETemVidaIgual90GetNumeroSorte(){
-        Dwarf d = new Dwarf("Teste",new dataTerceiraEra(1,1,2016));
+        Dwarf d = new Dwarf("Teste",new DataTerceiraEra(1,1,2016));
         d.recebeFlechada();
         d.recebeFlechada();
         assertEquals(-3333.0,d.getNumeroSorte(),0);
@@ -97,13 +97,13 @@ public class DwarfTest
 
     @Test
     public void dwarfNasceEmAnoBissextoETemVidaIgual110GetNumeroSorte(){
-        Dwarf d = new Dwarf("Teste",new dataTerceiraEra(1,1,2016));
+        Dwarf d = new Dwarf("Teste",new DataTerceiraEra(1,1,2016));
         assertEquals(101.0,d.getNumeroSorte(),0);
     }
 
     @Test
     public void dwarfNAoNasceEmAnoBissextoETemVidaIgual90GetNumeroSorte(){
-        Dwarf d = new Dwarf("Teste",new dataTerceiraEra(1,1,2015));
+        Dwarf d = new Dwarf("Teste",new DataTerceiraEra(1,1,2015));
         d.recebeFlechada();
         d.recebeFlechada();
         assertEquals(101.0,d.getNumeroSorte(),0);
@@ -111,49 +111,49 @@ public class DwarfTest
 
     @Test
     public void dwarfNAoNasceEmAnoBissextoESeChamaMeirelesGetNumeroSorte(){
-        Dwarf d = new Dwarf("Meireles",new dataTerceiraEra(1,1,2015));
+        Dwarf d = new Dwarf("Meireles",new DataTerceiraEra(1,1,2015));
 
         assertEquals(33.0,d.getNumeroSorte(),0);
     }
 
     @Test
     public void dwarfNAoNasceEmAnoBissextoESeChamaSeixasGetNumeroSorte(){
-        Dwarf d = new Dwarf("Seixas",new dataTerceiraEra(1,1,2015));
+        Dwarf d = new Dwarf("Seixas",new DataTerceiraEra(1,1,2015));
 
         assertEquals(33.0,d.getNumeroSorte(),0);
     }
 
     @Test
     public void dwarfNasceEmAnoBissextoESeChamaMeirelesGetNumeroSorte(){
-        Dwarf d = new Dwarf("Meireles",new dataTerceiraEra(1,1,2016));
+        Dwarf d = new Dwarf("Meireles",new DataTerceiraEra(1,1,2016));
 
         assertEquals(101.0,d.getNumeroSorte(),0);
     }
 
     @Test
     public void dwarfNasceEmAnoBissextoESeChamaSeixasGetNumeroSorte(){
-        Dwarf d = new Dwarf("Seixas",new dataTerceiraEra(1,1,2016));
+        Dwarf d = new Dwarf("Seixas",new DataTerceiraEra(1,1,2016));
 
         assertEquals(101.0,d.getNumeroSorte(),0);
     }
 
     @Test
     public void dwarfNAoNasceEmAnoBissextoESeChamaFulanoGetNumeroSorte(){
-        Dwarf d = new Dwarf("Fulano",new dataTerceiraEra(1,1,2015));
+        Dwarf d = new Dwarf("Fulano",new DataTerceiraEra(1,1,2015));
 
         assertEquals(101.0,d.getNumeroSorte(),0);
     }
 
     @Test
     public void dwarfNAoNasceEmAnoBissextoETemNomeNullGetNumeroSorte(){
-        Dwarf d = new Dwarf(null,new dataTerceiraEra(1,1,2015));
+        Dwarf d = new Dwarf(null,new DataTerceiraEra(1,1,2015));
 
         assertEquals(101.0,d.getNumeroSorte(),0);
     }    
 
     @Test
     public void dwarfComNumeroDaSorteMenorQueZeroNaoRecebeFlechadaEGanhaPontoDeExperiencia(){
-        Dwarf d = new Dwarf("Teste", new dataTerceiraEra(1,1,2016)); //para elfo ter xp negativo tem q ter nascido em ano bissexto
+        Dwarf d = new Dwarf("Teste", new DataTerceiraEra(1,1,2016)); //para elfo ter xp negativo tem q ter nascido em ano bissexto
         d.recebeFlechada();//para ficar numero da sorte negativo, deve receber duas flechadas, pois a vida deve ser entre 80 e 90
         d.recebeFlechada();        
         d.recebeFlechada(); //ao receber a terceira flechada não será descontada vida e serão incrementados 2 pontos de experiência
@@ -165,7 +165,7 @@ public class DwarfTest
 
     @Test
     public void dwarfComNumeroDaSorteMaiorQue100RecebeFlechadaENaoRecebeExperienca(){
-        Dwarf d = new Dwarf("Teste", new dataTerceiraEra(1,1,2015));
+        Dwarf d = new Dwarf("Teste", new DataTerceiraEra(1,1,2015));
         d.recebeFlechada();
 
         assertEquals(100,d.getVida());
@@ -175,10 +175,11 @@ public class DwarfTest
 
     @Test
     public void dwarfComNumeroDaSorteEntre0E100NaoRecebeFlechasENemExperiencia(){
-        Dwarf d = new Dwarf ("Seixas", new dataTerceiraEra(1,1,2015));
+        Dwarf d = new Dwarf ("Seixas", new DataTerceiraEra(1,1,2015));
         d.recebeFlechada();
         assertEquals(110,d.getVida());
         assertEquals(0,d.getExperiencia());
 
     }
+    
 }

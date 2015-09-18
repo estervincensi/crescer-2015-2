@@ -8,7 +8,7 @@ public class dataTerceiraEraTest
 {
     @Test
     public void dataTerceiraEraECriadaComDiaMesEAno(){
-        dataTerceiraEra d = new dataTerceiraEra(1,1,1);
+        DataTerceiraEra d = new DataTerceiraEra(1,1,1);
         assertEquals(1,d.getDia());
         assertEquals(1,d.getMes());
         assertEquals(1,d.getAno());
@@ -16,19 +16,19 @@ public class dataTerceiraEraTest
 
     @Test 
     public void ano2000EhBissexto(){
-        dataTerceiraEra d = new dataTerceiraEra(1,1,2000);
+        DataTerceiraEra d = new DataTerceiraEra(1,1,2000);
         assertTrue(d.ehBissexto());
     }
 
     @Test
     public void ano1NaoEhBissexto(){
-        dataTerceiraEra d = new dataTerceiraEra(1,1,1);
+        DataTerceiraEra d = new DataTerceiraEra(1,1,1);
         assertFalse(d.ehBissexto());
     }
 
     @Test
     public void ano3600ehBissexto(){
-        dataTerceiraEra d = new dataTerceiraEra (1,1,3600);
+        DataTerceiraEra d = new DataTerceiraEra (1,1,3600);
         assertTrue(d.ehBissexto());
     }
 }
