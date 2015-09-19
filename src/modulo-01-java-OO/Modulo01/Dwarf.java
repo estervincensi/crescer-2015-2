@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 public class Dwarf
 {
     private int vida=110;
@@ -6,6 +6,7 @@ public class Dwarf
     private Status status = Status.VIVO;
     private int experiencia;
     private DataTerceiraEra dataNascimento;
+    private Inventario inventario;
 
     public Dwarf(String nome){
         this(nome, new DataTerceiraEra(1,1,1));
@@ -14,6 +15,7 @@ public class Dwarf
     public Dwarf(String nome, DataTerceiraEra dataNasc){
         this.nome=nome;
         this.dataNascimento = dataNasc;
+        this.inventario=new Inventario();
     }
 
     public void recebeFlechada(){
@@ -61,5 +63,6 @@ public class Dwarf
     public int getExperiencia(){
         return this.experiencia;
     }
+    
 
 }

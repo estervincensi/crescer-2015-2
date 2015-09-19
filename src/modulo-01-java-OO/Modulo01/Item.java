@@ -16,4 +16,9 @@ public class Item
     public int getQuantidade(){
         return this.quantidade;
     }
+    
+    public boolean equals(Object obj){
+        Item i = (Item)obj;
+        return this.descricao.equals(i.getDescricao())&& this.quantidade==i.getQuantidade();
+    }
 }
