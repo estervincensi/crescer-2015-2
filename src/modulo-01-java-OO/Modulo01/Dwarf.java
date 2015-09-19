@@ -64,5 +64,18 @@ public class Dwarf
         return this.experiencia;
     }
     
+    public void tentarSorte(){
+        double numeroSorte = getNumeroSorte();
+        
+        if(numeroSorte==-3333.0){
+            for(int i=0; i<inventario.getItens().size();i++){
+                inventario.getItens().get(i).aumenta1000Unidades();
+            }
+        }
+    }
+    
+    public Inventario getInventario(){
+        return this.inventario;
+    }
 
 }

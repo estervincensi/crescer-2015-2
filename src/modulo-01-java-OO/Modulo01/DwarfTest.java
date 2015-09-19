@@ -182,4 +182,24 @@ public class DwarfTest
 
     }
     
+    @Test
+    public void dwarfSortudoGanha1000UnidadesDeCadaItem(){
+        Dwarf d = new Dwarf("Teste",new DataTerceiraEra(1,1,2016));
+        d.recebeFlechada();
+        d.recebeFlechada();
+        
+        d.getInventario().ganharItens(new Item("Arma",1));
+        d.getInventario().ganharItens(new Item("Flecha",2));
+        d.getInventario().ganharItens(new Item("Escudo",3));
+        
+        d.tentarSorte();
+        
+        assertEquals(new Item("Arma",1001),d.getInventario().getItens().get(0));
+        assertEquals(new Item("Flecha",1002),d.getInventario().getItens().get(1));
+        assertEquals(new Item("Escudo",1003),d.getInventario().getItens().get(2));
+        
+        
+        
+    }
+    
 }
