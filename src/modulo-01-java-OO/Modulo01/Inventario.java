@@ -38,11 +38,13 @@ public class Inventario
 
     public void ordenarItens(){
         Item aux;
-        for(int i=0; i<itens.size()-1; i++){
-            if(itens.get(i).getQuantidade()>itens.get(i+1).getQuantidade()){
-                aux = itens.get(i);
-                itens.set(i, itens.get(i+1));
-                itens.set(i+1, aux);
+        for(int j=0;  j<itens.size(); j++){
+            for(int i=0; i<itens.size()-1; i++){
+                if(itens.get(i).getQuantidade()>itens.get(i+1).getQuantidade()){
+                    aux = itens.get(i);
+                    itens.set(i, itens.get(i+1));
+                    itens.set(i+1, aux);
+                }
             }
         }
     }
