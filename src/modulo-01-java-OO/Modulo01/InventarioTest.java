@@ -35,4 +35,16 @@ public class InventarioTest
         assertEquals(new Item("Arma",1),i.getItens().get(0));
     }
     
+    @Test
+    public void recebeDescricoesDeFlechaArmaEPocao(){
+        Inventario i = new Inventario();
+        i.ganharItens(new Item("Flecha",1));
+        i.ganharItens(new Item("Arma",1));
+        i.ganharItens(new Item("Pocao",1));
+        
+        String resposta = i.getDescricoesItens();
+        
+        assertEquals("Flecha,Arma,Pocao",resposta);
+    }
+    
 }
