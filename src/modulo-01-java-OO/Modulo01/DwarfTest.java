@@ -198,8 +198,6 @@ public class DwarfTest
         assertEquals(new Item("Flecha",1002),d.getInventario().getItens().get(1));
         assertEquals(new Item("Escudo",1003),d.getInventario().getItens().get(2));
         
-        
-        
     }
     
 }

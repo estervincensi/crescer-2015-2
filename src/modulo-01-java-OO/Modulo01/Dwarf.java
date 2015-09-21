@@ -53,27 +53,24 @@ public class Dwarf
         if(this.dataNascimento.ehBissexto()&& this.vida>=80 && this.vida<=90){
             retorno = retorno*-33;
         }
-        
+
         if(!this.dataNascimento.ehBissexto()&& this.nome!=null &&(this.nome.equals("Seixas") || this.nome.equals("Meireles"))){
             retorno = (retorno*33)%100;
         }
         return retorno;
     }
-    
+
     public int getExperiencia(){
         return this.experiencia;
     }
-    
+
     public void tentarSorte(){
         double numeroSorte = getNumeroSorte();
-        
         if(numeroSorte==-3333.0){
-            for(int i=0; i<inventario.getItens().size();i++){
-                inventario.getItens().get(i).aumenta1000Unidades();
-            }
+            inventario.aumentar1000UnidadesEmCadaItem();
         }
     }
-    
+
     public Inventario getInventario(){
         return this.inventario;
     }

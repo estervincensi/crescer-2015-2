@@ -17,13 +17,19 @@ public class Inventario
 
     public String getDescricoesItens(){
         String descricao="";
-        for(int i=0; i<itens.size(); i++){
+        //for normal
+        /*for(int i=0; i<itens.size(); i++){
             descricao+= itens.get(i).getDescricao();
             if(i!=itens.size()-1){
                 descricao+=",";
             }
         }
-        return descricao;
+        return descricao;*/
+        //foreach
+        for(Item item : this.itens){
+            descricao += item.getDescricao() + ",";
+        }
+        return descricao.substring(0,descricao.length()-1);
     }
 
     public Item getItemComMaiorQuantidade(){
@@ -37,6 +43,7 @@ public class Inventario
     }
 
     public void ordenarItens(){
+        //Bubble Sort
         Item aux;
         for(int j=0;  j<itens.size(); j++){
             for(int i=0; i<itens.size()-1; i++){
@@ -46,6 +53,12 @@ public class Inventario
                     itens.set(i+1, aux);
                 }
             }
+        }
+    }
+    
+    public void aumentar1000UnidadesEmCadaItem(){
+        for(Item item : this.itens){
+            item.aumenta1000Unidades();
         }
     }
 }
