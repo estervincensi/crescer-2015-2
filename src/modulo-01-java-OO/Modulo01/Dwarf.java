@@ -1,21 +1,28 @@
 import java.util.ArrayList;
 public class Dwarf
 {
-    private int vida=110;
-    private String nome;
-    private Status status = Status.VIVO;
-    private int experiencia;
-    private DataTerceiraEra dataNascimento;
-    private Inventario inventario;
-
-    public Dwarf(String nome){
-        this(nome, new DataTerceiraEra(1,1,1));
+    protected int vida=110;
+    protected String nome;
+    protected Status status = Status.VIVO;
+    protected int experiencia;
+    protected DataTerceiraEra dataNascimento;
+    protected Inventario inventario;
+    
+    public Dwarf() {
+        this.vida = 110;
+        this.status = Status.VIVO;
+        this.dataNascimento = new DataTerceiraEra(1,1,1);
+        this.inventario = new Inventario();
     }
 
-    public Dwarf(String nome, DataTerceiraEra dataNasc){
-        this.nome=nome;
-        this.dataNascimento = dataNasc;
-        this.inventario=new Inventario();
+    public Dwarf(String nome) {
+        this();
+        this.nome = nome;
+    }
+
+    public Dwarf(String nome, DataTerceiraEra dataNascimento) {
+        this(nome);
+        this.dataNascimento = dataNascimento;
     }
 
     public void recebeFlechada(){
