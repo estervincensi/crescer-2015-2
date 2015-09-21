@@ -61,4 +61,15 @@ public class Inventario
             item.aumenta1000Unidades();
         }
     }
+    
+    public void aumentar1000VezesQuantidade(){
+        for(Item item : this.itens){
+            item.aumenta1000VezesQuantidade();
+        }
+    }
+    
+    public boolean equals(Object obj) {
+        Inventario outroInventario = (Inventario)obj;
+        return this.itens.equals(outroInventario.getItens());
+    }
 }

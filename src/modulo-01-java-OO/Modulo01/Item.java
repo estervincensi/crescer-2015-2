@@ -21,8 +21,14 @@ public class Item
         quantidade+=1000;
     }
     
+    
     public boolean equals(Object obj){
         Item i = (Item)obj;
         return this.descricao.equals(i.getDescricao())&& this.quantidade==i.getQuantidade();
+    }
+    
+    public void aumenta1000VezesQuantidade(){
+        int pa= this.quantidade*(this.quantidade+1)/2;
+        this.quantidade+=1000*pa;        
     }
 }
