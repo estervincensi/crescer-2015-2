@@ -96,7 +96,7 @@ public class Inventario
         return retorno;
     }
 
-   /*public int verificaArmas(){
+   public int verificaArmas(){
         int retorno = 0;
         if(verificaEspada()){
             retorno = 12;
@@ -127,5 +127,5 @@ public class Inventario
             }
         }
         return espada;
-    }*/
+    }
 }

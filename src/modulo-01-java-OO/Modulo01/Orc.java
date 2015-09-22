@@ -1,4 +1,4 @@
-import java.util.Random;
+
 public class Orc
 {
     // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
@@ -22,25 +22,26 @@ public class Orc
 
     public void recebeFlechaDeElfo(Elfo elfo) {
         if(this.status!=Status.MORTO){
-            this.vida-=8;
+            perderVida(8);
         }
-        verificaStatus();
     }
 
     public void receberFlechaDeAnao(Dwarf anao) {
         if(this.status!=Status.MORTO){
             if(inventario.verificaEscudoUrukHai()) {
-                this.vida -=5;
+                perderVida(5);
             }else{
-                this.vida -=10;
+                perderVida(10);
             }
         }
-        verificaStatus();
     }
 
-    public void verificaStatus(){
+    public void perderVida(int dano){
+        this.vida-=dano;
         if(this.vida<=0){
             this.vida=0;
+            this.status=Status.MORTO;
+        }else{
             this.status=Status.MORTO;
         }
     }
@@ -62,11 +63,27 @@ public class Orc
     }*/
 
     public void atacarAlvo(Dwarf anao){
-        this.status = Status.FUGINDO;
+        int dano = inventario.verificaArmas(); 
+        if(dano!=0){
+            anao.recebeDanoDeOrc(dano);
+            if(dano==8){
+                inventario.perderItens(new Item ("Flecha",1));
+            }
+        }else{
+            this.status = Status.FUGINDO;
+        }
     }
 
     public void atacarAlvo(Elfo elfo){
-        this.status = Status.FUGINDO;
+        int dano = inventario.verificaArmas(); 
+        if(dano!=0){
+            elfo.recebeDanoDeOrc(dano);
+            if(dano==8){
+                inventario.perderItens(new Item ("Flecha",1));
+            }
+        }else{
+            this.status = Status.FUGINDO;
+        }
 
     }
 }
