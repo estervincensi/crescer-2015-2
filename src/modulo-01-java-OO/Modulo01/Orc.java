@@ -1,15 +1,15 @@
 
 
-public class Orc
+public class Orc 
 {
     private int vida;
-    private Inventario inventario;
     private Status status;
     private TipoOrc tipoOrc;
+    private Inventario inventario;
 
     public Orc(TipoOrc tipoOrc)
     {
-        this.inventario = new Inventario();
+        inventario = new Inventario();
         this.tipoOrc = tipoOrc;
         gerarVidaInicial();
         gerarInventario();
@@ -24,6 +24,10 @@ public class Orc
         else {
             perderVida(5);
         }
+    }
+    
+    public Inventario getInventario(){
+        return this.inventario;
     }
     
     public void levarAtaqueDeElfo() {
@@ -70,10 +74,6 @@ public class Orc
     
     public int getVida(){
         return this.vida;
-    }
-    
-    public Inventario getInventario(){
-        return this.inventario;
     }
     
     public Status getStatus(){

@@ -1,10 +1,9 @@
+
+
 /**
  * Representa objetos do tipo Elfo.
  */
-public class Elfo {
-    private String nome;
-    private int flechas, experiencia, vida;
-    private Status status;
+public class Elfo extends Personagem {
 
     /* Type initializer
      * Executa antes de cada construtor
@@ -12,11 +11,14 @@ public class Elfo {
     flechas = 42;
     }
      */
+    protected int flechas;
+    
     public Elfo(String nome, int flechas) {
         this.nome = nome;
-        this.flechas = flechas;
         this.status = Status.VIVO;
         this.vida = 80;
+        this. flechas = flechas;
+
     }
 
     /* Apenas para elucidar as diferenças entre int X Integer, esta duplicação não faz sentido.
@@ -46,18 +48,11 @@ public class Elfo {
         //experiencia = experiencia + 1;
     }
 
-    public void receberAtaqueDoOrc(Orc orc){
-        int dano = orc.getDanoDeAtaque();
-        this.vida -= dano;
-    }
-    
-    public void atacarOrc(Orc orc){
-        orc.levarAtaqueDeElfo();
-    }
-    
+   
     public int getVida(){
         return this.vida;
     }
+
     
     /*
      * ANTES:
@@ -107,20 +102,20 @@ public class Elfo {
 
     public String toString() {
 
-        boolean flechaNoSingular = Math.abs(this.flechas) == 1;
-        boolean nivelNoSingular = Math.abs(this.experiencia) == 1;
-        
-        // Ruby ou CoffeeScript:
-        //"#{nome} possui #{flechas} #{textoFlechas} e #{experiencia} #{textoNiveis} de experiência."
-        
-        // C# 6:
-        //"\{nome} possui \{flechas} \{textoFlechas} e \{experiencia} \{textoNiveis} de experiência."
-        
-        return String.format("%s possui %d %s e %d %s de experiência.",
-            this.nome,
-            this.flechas,
-            flechaNoSingular ? "flecha" : "flechas",
-            this.experiencia,
-            nivelNoSingular ? "nível" : "níveis");
+    boolean flechaNoSingular = Math.abs(this.getFlechas()) == 1;
+    boolean nivelNoSingular = Math.abs(this.experiencia) == 1;
+
+    // Ruby ou CoffeeScript:
+    //"#{nome} possui #{flechas} #{textoFlechas} e #{experiencia} #{textoNiveis} de experiência."
+
+    // C# 6:
+    //"\{nome} possui \{flechas} \{textoFlechas} e \{experiencia} \{textoNiveis} de experiência."
+
+    return String.format("%s possui %d %s e %d %s de experiência.",
+    this.nome,
+    this.getFlechas(),
+    flechaNoSingular ? "flecha" : "flechas",
+    this.experiencia,
+    nivelNoSingular ? "nível" : "níveis");
     }
 }
