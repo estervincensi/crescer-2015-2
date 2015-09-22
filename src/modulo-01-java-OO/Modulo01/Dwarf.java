@@ -12,6 +12,10 @@ public class Dwarf extends Personagem {
         this();
         this.nome = nome;
     }
+    
+    public void atacarOrc(Orc orc){
+        orc.levarAtaqueDeAnao();
+    }
 
     public Dwarf(String nome, DataTerceiraEra dataNascimento) {
         this(nome);

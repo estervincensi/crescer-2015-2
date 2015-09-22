@@ -6,9 +6,7 @@ public class Personagem
    protected String nome;
    protected Status status;
    protected Inventario inventario = new Inventario();
-   public void atacarOrc(Orc orc){
-        orc.levarAtaqueDeAnao();
-    }
+   
     
     public void receberAtaqueDoOrc(Orc orc){
         int danoCausado = orc.getDanoDeAtaque();

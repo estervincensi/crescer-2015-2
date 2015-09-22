@@ -20,6 +20,10 @@ public class Elfo extends Personagem {
         this. flechas = flechas;
 
     }
+    
+    public void atacarOrc(Orc orc){
+        orc.levarAtaqueDeElfo();
+    }
 
     /* Apenas para elucidar as diferenças entre int X Integer, esta duplicação não faz sentido.
     public Elfo(String nome, Integer flechas) {
