@@ -7,7 +7,7 @@ public class Dwarf
     protected int experiencia;
     protected DataTerceiraEra dataNascimento;
     protected Inventario inventario;
-    
+
     public Dwarf() {
         this.vida = 110;
         this.status = Status.VIVO;
@@ -82,4 +82,13 @@ public class Dwarf
         return this.inventario;
     }
 
+    public void recebeDanoDeOrc(int dano){
+        if(this.status!=Status.MORTO){
+            this.vida-=dano;
+        }
+        if(this.vida<=0){
+            this.vida=0;
+            this.status = Status.MORTO;
+        }
+    }
 }

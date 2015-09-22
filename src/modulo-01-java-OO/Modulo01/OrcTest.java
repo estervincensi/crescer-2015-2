@@ -15,7 +15,7 @@ public class OrcTest
 {
     @Test
     public void orcComEscudoRecebeFlechaDeAnao(){
-        Orc o = new UrukHai();
+        Orc o = new Orc(new Item("Escudo Uruk Hai",1),new Item("Espada",1),150);
         o.getInventario().ganharItens(new Item("Escudo Uruk Hai",1));
         Dwarf d = new Dwarf("Teste");
         
@@ -25,32 +25,37 @@ public class OrcTest
         
     }
     
-    /*@Test
+    @Test
     public void orcSemEscudoRecebeFlechaDeAnao(){
-        Orc o = new Orc();
-        o.gerarVida();
-        int vidaEsperada = o.getVida()-10;
+        Orc o = new Orc(new Item("Arco",1),new Item("Flecha",2),70);
         o.getInventario().ganharItens(new Item("Escudo Chinelão",1));
         Dwarf d = new Dwarf("Teste");
         
         o.receberFlechaDeAnao(d);
         
-        assertEquals(vidaEsperada,o.getVida());
+        assertEquals(60,o.getVida());
         
     }
     
     @Test
-    public void orcAtacaAnaoUmaVezEPerdeUmaFlecha(){
-        Orc o = new Orc();
-        Dwarf anao = new Dwarf();
-        o.getInventario().ganharItens(new Item("Flecha",3));
-        o.getInventario().ganharItens(new Item("Arco",1));
+    public void orcAtacaElfoSemFlechaESemEspadaEFoge(){
+        Orc o = new Orc(new Item("Marreta",1),new Item("Martelo",1),50);
+        Elfo e = new Elfo("Teste");
         
-        Inventario esperado = new Inventario();
-        esperado.ganharItens(new Item("Flecha",2));
-        esperado.ganharItens(new Item("Arco",1));
-        o.atacarAnao(anao);
+        o.atacarAlvo(e);
         
-        assertEquals(esperado,o.getInventario());
-    }*/
+        assertEquals(Status.FUGINDO,o.getStatus());
+        
+    }
+    
+    @Test
+    public void orcAtacaAnaoSemFlechaESemEspadaEFoge(){
+        Orc o = new Orc(new Item("Marreta",1),new Item("Martelo",1),50);
+        Dwarf d = new Dwarf();
+        
+        o.atacarAlvo(d);
+        
+        assertEquals(Status.FUGINDO,o.getStatus());
+        
+    }
 }

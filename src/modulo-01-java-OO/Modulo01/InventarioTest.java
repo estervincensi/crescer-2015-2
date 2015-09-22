@@ -140,20 +140,4 @@ public class InventarioTest
         assertEquals(new Item("Flecha",97),i.getItens().get(9));
     }
 
-    @Test
-    public void verificaEscudoUrukHaiRetornaTrue(){
-        Inventario i = new Inventario();
-        i.ganharItens(new Item("Escudo Uruk Hai", 3));
-
-        assertTrue(i.verificaEscudoUrukHai());
-    }
-
-    @Test
-    public void verificaArcoEFlechaRetornaTrue(){
-        Inventario i = new Inventario();
-        i.ganharItens(new Item ("Arco",1));
-        i.ganharItens(new Item ("Flecha",1));
-        
-        assertTrue(i.verificaArcoEFlecha());
-    }
 }

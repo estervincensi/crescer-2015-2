@@ -10,11 +10,15 @@ public class Inventario
     public void removerItens(Item item){
         this.itens.remove(item);
     }
-    
+
     public void perderItens(Item item2){
         for(Item item : this.itens){
             if(item.getDescricao().equals(item2.getDescricao())){
-                item.diminui1Unidade();
+                if(item.getQuantidade()>=1){
+                    item.diminui1Unidade();
+                }else{
+                    removerItens(item);
+                }
             }
         }
     }
@@ -87,11 +91,21 @@ public class Inventario
             if(item.getDescricao().equals("Escudo Uruk Hai")){
                 retorno = true;
             }
-            
+
         }
         return retorno;
     }
-    
+
+   /*public int verificaArmas(){
+        int retorno = 0;
+        if(verificaEspada()){
+            retorno = 12;
+        }else if(verificaArcoEFlecha()){
+            retorno = 8;
+        }
+        return retorno;
+    }
+
     public boolean verificaArcoEFlecha(){
         boolean arco=false,flecha=false;
         for(Item item : this.itens){
@@ -104,4 +118,14 @@ public class Inventario
         }
         return arco&&flecha;
     }
+
+    public boolean verificaEspada(){
+        boolean espada=false;
+        for(Item item : this.itens){
+            if(item.getDescricao().equals("Espada")){
+                espada = true;
+            }
+        }
+        return espada;
+    }*/
 }

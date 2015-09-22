@@ -4,12 +4,17 @@ public class Elfo {
     private int flechas;
     private int experiencia;
     private Status status;
+    protected int vida =80;
 
     public Elfo(String n, int flech) {
         nome = n;
         flechas=flech;
         this.status = Status.VIVO;
 
+    }
+
+    public int getVida(){
+        return this.vida;
     }
 
     public Elfo(String n){
@@ -43,7 +48,7 @@ public class Elfo {
     public int getExperiencia(){
         return this.experiencia;
     }
-    
+
     public Status getStatus(){
         return this.status;
     }
@@ -63,6 +68,16 @@ public class Elfo {
 
         return String.format("%s possui %d %s e %d %s de experiencia.",this.nome,this.flechas,flechaSingular ? "flecha" : "flechas",this.experiencia, nivelSingular ? "nivel" : "niveis");
         //return this.nome+" possui "+this.flechas+" "+textoFlechas+" e "+this.experiencia+" "+textoNiveis+" de experiencia.";
+    }
+
+    public void recebeDanoDeOrc(int dano){
+        if(this.status!=Status.MORTO){
+            this.vida-=dano;
+        }
+        if(this.vida<=0){
+            this.vida=0;
+            this.status = Status.MORTO;
+        }
     }
     /*
     public void atirarFlechaRefactory(){
