@@ -1,89 +1,146 @@
 
+
 public class Orc
 {
-    // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
-    protected int vida;
-    protected Inventario inventario = new Inventario();
-    protected Status status;
+    private int vida;
+    private Inventario inventario;
+    private Status status;
+    private TipoOrc tipoOrc;
 
-    /**
-     * COnstrutor para objetos da classe orc
-     */
-    public Orc(Item item1, Item item2,int vida){
-        this.inventario.ganharItens(item1);
-        this.inventario.ganharItens(item2);
-        this.vida = vida;
-        status=Status.VIVO;
+    public Orc(TipoOrc tipoOrc)
+    {
+        this.inventario = new Inventario();
+        this.tipoOrc = tipoOrc;
+        gerarVidaInicial();
+        gerarInventario();
+        this.status = Status.VIVO;
     }
-
-    public Status getStatus(){
-        return this.status;
-    }
-
-    public void recebeFlechaDeElfo(Elfo elfo) {
-        if(this.status!=Status.MORTO){
-            perderVida(8);
+    
+    public void levarAtaqueDeAnao() {
+        
+        if(getItem("Escudo Uruk-Hai") == null){
+            perderVida(10);
+        }
+        else {
+            perderVida(5);
         }
     }
-
-    public void receberFlechaDeAnao(Dwarf anao) {
-        if(this.status!=Status.MORTO){
-            if(inventario.verificaEscudoUrukHai()) {
-                perderVida(5);
-            }else{
-                perderVida(10);
-            }
+    
+    public void levarAtaqueDeElfo() {
+        perderVida(8);
+    }
+    
+    public void atacarAnao(Dwarf anao){
+        if(podeAtacarComEspada()){
+            anao.receberAtaqueDoOrc(this);
+        }
+        else if(podeAtacarComArco()) {
+            anao.receberAtaqueDoOrc(this);
+            debitarFlecha();
+        }
+        else {
+            this.status = Status.FUGINDO;
         }
     }
-
-    public void perderVida(int dano){
-        this.vida-=dano;
-        if(this.vida<=0){
-            this.vida=0;
-            this.status=Status.MORTO;
-        }else{
-            this.status=Status.MORTO;
+    
+    public void atacarElfo(Elfo elfo){
+        if(podeAtacarComEspada()){
+            elfo.receberAtaqueDoOrc(this);
+        }
+        else if(podeAtacarComArco()) {
+            elfo.receberAtaqueDoOrc(this);
+            debitarFlecha();
+        }
+        else {
+            this.status = Status.FUGINDO;
         }
     }
-
+    
+    public int getDanoDeAtaque(){
+        if(podeAtacarComEspada()){
+            return 12;
+        }
+        
+        if(podeAtacarComArco()){
+            return 8;
+        }
+        
+        return 0;
+    }
+    
     public int getVida(){
         return this.vida;
     }
-
+    
     public Inventario getInventario(){
         return this.inventario;
     }
-
-    /*public void atacarAnao(Dwarf anao) {
-    if(inventario.verificaArcoEFlecha()){
-    anao.recebeFlechada();
-    inventario.perderItens(new Item ("Flecha",1));
+    
+    public Status getStatus(){
+        return this.status;
     }
-
-    }*/
-
-    public void atacarAlvo(Dwarf anao){
-        int dano = inventario.verificaArmas(); 
-        if(dano!=0){
-            anao.recebeDanoDeOrc(dano);
-            if(dano==8){
-                inventario.perderItens(new Item ("Flecha",1));
-            }
-        }else{
-            this.status = Status.FUGINDO;
+    
+    private void debitarFlecha() {
+        Item flecha = getItem("Flecha");
+        
+        if(flecha.getQuantidade() == 1){
+            this.inventario.perderItem(flecha);
+        }
+        else {
+            flecha.debitarUmaUnidade();
         }
     }
-
-    public void atacarAlvo(Elfo elfo){
-        int dano = inventario.verificaArmas(); 
-        if(dano!=0){
-            elfo.recebeDanoDeOrc(dano);
-            if(dano==8){
-                inventario.perderItens(new Item ("Flecha",1));
-            }
-        }else{
-            this.status = Status.FUGINDO;
-        }
-
+    
+    private boolean podeAtacarComEspada() {
+        return getItem("Espada") != null;
     }
+    
+    private boolean podeAtacarComArco(){
+        boolean temArco = getItem("Arco") != null;
+        Item flecha = getItem("Flecha");
+        boolean temFlechaProArco = flecha != null && flecha.getQuantidade() > 0;
+        
+        return temArco && temFlechaProArco;
+    }
+    
+    private void perderVida(int qtdVidaPerdida) {
+        this.vida -= qtdVidaPerdida;
+        
+        if(vida <= 0){
+            vida = 0;
+            this.status = Status.MORTO;
+        }
+        else {
+            this.status = Status.FERIDO;
+        }
+    }
+    
+    private Item getItem(String descricao){
+        return this.inventario.getItemPorDescricao(descricao);
+    }
+    
+    private void gerarInventario() {
+        if(this.tipoOrc == TipoOrc.URUKHAI) {
+            Item escudoUrukHai = new Item(1, "Escudo Uruk-Hai");
+            Item espada = new Item(1, "Espada");
+            this.inventario.adicionarItem(escudoUrukHai);
+            this.inventario.adicionarItem(espada);
+        }
+        else if(this.tipoOrc == TipoOrc.SNAGA){
+            Item arco = new Item(1, "Arco");
+            Item flechas = new Item(5, "Flecha");
+            this.inventario.adicionarItem(arco);
+            this.inventario.adicionarItem(flechas);
+        }
+    }
+    
+    private void gerarVidaInicial() {
+        if(this.tipoOrc == TipoOrc.URUKHAI) {
+            this.vida = 150;
+        }
+        else if(this.tipoOrc == TipoOrc.SNAGA){
+            this.vida = 70;
+        }
+    }
+    
 }

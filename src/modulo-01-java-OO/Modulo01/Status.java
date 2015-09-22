@@ -1,6 +1,6 @@
 public enum Status
 {
-    VIVO, 
+    VIVO,
     MORTO,
     FERIDO,
     CAÇANDO,

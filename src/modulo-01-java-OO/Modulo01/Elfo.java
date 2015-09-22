@@ -1,98 +1,126 @@
-
+/**
+ * Representa objetos do tipo Elfo.
+ */
 public class Elfo {
     private String nome;
-    private int flechas;
-    private int experiencia;
+    private int flechas, experiencia, vida;
     private Status status;
-    protected int vida =80;
 
-    public Elfo(String n, int flech) {
-        nome = n;
-        flechas=flech;
+    /* Type initializer
+     * Executa antes de cada construtor
+    {
+    flechas = 42;
+    }
+     */
+    public Elfo(String nome, int flechas) {
+        this.nome = nome;
+        this.flechas = flechas;
         this.status = Status.VIVO;
-
+        this.vida = 80;
     }
 
-    public int getVida(){
-        return this.vida;
+    /* Apenas para elucidar as diferenças entre int X Integer, esta duplicação não faz sentido.
+    public Elfo(String nome, Integer flechas) {
+    this(nome);
+    if (flechas != null) {
+    this.flechas = flechas;
     }
-
-    public Elfo(String n){
-        this(n,42);
-    }
-
-    public String getNome(){
-        return this.nome;
-    }
-
-    /*
-    public void setNome(String nome){
-    this.nome=nome;
-    }*/
-
-    public int getFlechas(){
-        return this.flechas;
-    }
-
-    /*public void setFlechas(int flechas){
-    if(flechas> this.flechas)
-    this.flechas=flechas;
-    }*/
-
-    public void atirarFlecha(Dwarf d){
-        experiencia++;
-        flechas--;
-        d.recebeFlechada();
-    }
-
-    public int getExperiencia(){
-        return this.experiencia;
-    }
-
-    public Status getStatus(){
-        return this.status;
-    }
-
-    public String toString(){
-        boolean flechaSingular = Math.abs(this.flechas)==1;
-        /*String textoFlechas = "flechas";
-        if(flechaSingular){
-        textoFlechas= "flecha";
-        }*/
-
-        boolean nivelSingular = Math.abs(this.experiencia)==1;
-        /*String textoNiveis = "niveis";
-        if(nivelSingular){
-        textoNiveis = "nivel";
-        }*/
-
-        return String.format("%s possui %d %s e %d %s de experiencia.",this.nome,this.flechas,flechaSingular ? "flecha" : "flechas",this.experiencia, nivelSingular ? "nivel" : "niveis");
-        //return this.nome+" possui "+this.flechas+" "+textoFlechas+" e "+this.experiencia+" "+textoNiveis+" de experiencia.";
-    }
-
-    public void recebeDanoDeOrc(int dano){
-        if(this.status!=Status.MORTO){
-            this.vida-=dano;
-        }
-        if(this.vida<=0){
-            this.vida=0;
-            this.status = Status.MORTO;
-        }
-    }
-    /*
-    public void atirarFlechaRefactory(){
-    flechas--;
-    if(acertar()){
-    experiencia++;
-    }
-    }
-
-    public boolean acertar(){
-    Random gerador = new Random();
-    boolean resultado = gerador.nextBoolean();
-    return resultado;
-
     }
      */
 
+    public Elfo(String nome) {
+        this(nome, 42);
+    }
+
+    /* PascalCase (C#, VB.NET)
+     *      public void AtirarFlechaDeFogo
+     * camelCase (Java, JavaScript)
+     *      public void atirarFlechaDeFogo
+     */
+
+    public void atirarFlecha(Dwarf dwarf) {
+        flechas--;
+        experiencia++;
+        dwarf.receberFlechada();
+        //experiencia += 1;
+        //experiencia = experiencia + 1;
+    }
+
+    public void receberAtaqueDoOrc(Orc orc){
+        int dano = orc.getDanoDeAtaque();
+        this.vida -= dano;
+    }
+    
+    public void atacarOrc(Orc orc){
+        orc.levarAtaqueDeElfo();
+    }
+    
+    public int getVida(){
+        return this.vida;
+    }
+    
+    /*
+     * ANTES:
+     * public atirarFlechaRefactory(this.flechas, this.experiencia){
+     *     if(boolean acertar == true){
+     *         flechas--;
+     *         experiencia++;
+     *      }else{
+     *          flechas--;
+     *      }
+     *  }
+
+     *  DEPOIS:
+
+    public void atirarFlechaRefactory(){
+    boolean acertar = true;
+    if (acertar) {
+    experiencia++;
+    }
+    flechas--;
+    }
+
+     */
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getFlechas() {
+        return this.flechas;
+    }
+
+    public int getExperiencia() {
+        return this.experiencia;
+    }
+    
+    public Status getStatus() {
+        return this.status;
+    }
+
+    /* 
+    public void setFlechas(int flechas) {
+    if (flechas > this.flechas)
+    this.flechas = flechas;
+    }
+     */
+
+    public String toString() {
+
+        boolean flechaNoSingular = Math.abs(this.flechas) == 1;
+        boolean nivelNoSingular = Math.abs(this.experiencia) == 1;
+        
+        // Ruby ou CoffeeScript:
+        //"#{nome} possui #{flechas} #{textoFlechas} e #{experiencia} #{textoNiveis} de experiência."
+        
+        // C# 6:
+        //"\{nome} possui \{flechas} \{textoFlechas} e \{experiencia} \{textoNiveis} de experiência."
+        
+        return String.format("%s possui %d %s e %d %s de experiência.",
+            this.nome,
+            this.flechas,
+            flechaNoSingular ? "flecha" : "flechas",
+            this.experiencia,
+            nivelNoSingular ? "nível" : "níveis");
+    }
 }
