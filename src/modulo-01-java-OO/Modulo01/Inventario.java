@@ -10,6 +10,14 @@ public class Inventario
     public void removerItens(Item item){
         this.itens.remove(item);
     }
+    
+    public void perderItens(Item item2){
+        for(Item item : this.itens){
+            if(item.getDescricao().equals(item2.getDescricao())){
+                item.diminui1Unidade();
+            }
+        }
+    }
 
     public ArrayList <Item> getItens(){
         return this.itens;
@@ -19,10 +27,10 @@ public class Inventario
         String descricao="";
         //for normal
         /*for(int i=0; i<itens.size(); i++){
-            descricao+= itens.get(i).getDescricao();
-            if(i!=itens.size()-1){
-                descricao+=",";
-            }
+        descricao+= itens.get(i).getDescricao();
+        if(i!=itens.size()-1){
+        descricao+=",";
+        }
         }
         return descricao;*/
         //foreach
@@ -55,21 +63,45 @@ public class Inventario
             }
         }
     }
-    
+
     public void aumentar1000UnidadesEmCadaItem(){
         for(Item item : this.itens){
             item.aumenta1000Unidades();
         }
     }
-    
+
     public void aumentar1000VezesQuantidade(){
         for(Item item : this.itens){
             item.aumenta1000VezesQuantidade();
         }
     }
-    
+
     public boolean equals(Object obj) {
         Inventario outroInventario = (Inventario)obj;
         return this.itens.equals(outroInventario.getItens());
+    }
+
+    public boolean verificaEscudoUrukHai(){
+        boolean retorno = false;
+        for(Item item : this.itens){
+            if(item.getDescricao().equals("Escudo Uruk Hai")){
+                retorno = true;
+            }
+            
+        }
+        return retorno;
+    }
+    
+    public boolean verificaArcoEFlecha(){
+        boolean arco=false,flecha=false;
+        for(Item item : this.itens){
+            if(item.getDescricao().equals("Arco")){
+                arco=true;
+            }
+            if(item.getDescricao().equals("Flecha")&&item.getQuantidade()>=1){
+                flecha=true;
+            }
+        }
+        return arco&&flecha;
     }
 }

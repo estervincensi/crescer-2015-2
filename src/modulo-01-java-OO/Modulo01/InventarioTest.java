@@ -110,7 +110,7 @@ public class InventarioTest
         assertEquals(new Item("Flecha",307),i.getItens().get(9));
 
     }
-    
+
     @Test
     public void OrdenarItensComQuantidadeNegativa(){
         Inventario i = new Inventario();
@@ -138,5 +138,22 @@ public class InventarioTest
         assertEquals(new Item("Flecha",20),i.getItens().get(7));
         assertEquals(new Item("Flecha",64),i.getItens().get(8));
         assertEquals(new Item("Flecha",97),i.getItens().get(9));
+    }
+
+    @Test
+    public void verificaEscudoUrukHaiRetornaTrue(){
+        Inventario i = new Inventario();
+        i.ganharItens(new Item("Escudo Uruk Hai", 3));
+
+        assertTrue(i.verificaEscudoUrukHai());
+    }
+
+    @Test
+    public void verificaArcoEFlechaRetornaTrue(){
+        Inventario i = new Inventario();
+        i.ganharItens(new Item ("Arco",1));
+        i.ganharItens(new Item ("Flecha",1));
+        
+        assertTrue(i.verificaArcoEFlecha());
     }
 }

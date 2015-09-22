@@ -30,6 +30,10 @@ public class Item
         int pa= this.quantidade*(this.quantidade+1)/2;
         this.quantidade+=1000*pa;        
     }
+    
+    public void diminui1Unidade(){
+        quantidade--;
+    }
 
     /*exercicio corrigir a pa.
      * public void shimbalaie() {
