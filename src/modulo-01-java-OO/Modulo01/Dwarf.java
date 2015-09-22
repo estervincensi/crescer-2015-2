@@ -14,7 +14,7 @@ public class Dwarf extends Personagem {
     }
     
     public void atacarOrc(Orc orc){
-        orc.levarAtaqueDeAnao();
+        orc.levarAtaque();
     }
 
     public Dwarf(String nome, DataTerceiraEra dataNascimento) {

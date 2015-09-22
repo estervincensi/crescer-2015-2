@@ -22,7 +22,7 @@ public class Elfo extends Personagem {
     }
     
     public void atacarOrc(Orc orc){
-        orc.levarAtaqueDeElfo();
+        orc.levarAtaque();
     }
 
     /* Apenas para elucidar as diferenças entre int X Integer, esta duplicação não faz sentido.

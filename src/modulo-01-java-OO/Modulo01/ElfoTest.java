@@ -140,20 +140,20 @@ public class ElfoTest
     
     @Test
     public void elfoRecebeEspadadaDoOrcUrukHai(){
-        Orc orc = new Orc(TipoOrc.URUKHAI);
+        Orc orc = new UrukHai();
         Elfo elfo = new Elfo(null);
         
-        orc.atacarElfo(elfo);
+        orc.atacarPersonagem(elfo);
         
         assertEquals(68, elfo.getVida());
     }
     
     @Test
     public void elfoRecebeFlechadaDoOrcSnaga(){
-        Orc orc = new Orc(TipoOrc.SNAGA);
+        Orc orc = new Snaga();
         Elfo elfo = new Elfo(null);
         
-        orc.atacarElfo(elfo);
+        orc.atacarPersonagem(elfo);
         
         assertEquals(72, elfo.getVida());
     }
