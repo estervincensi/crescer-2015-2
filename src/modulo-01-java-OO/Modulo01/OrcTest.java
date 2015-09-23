@@ -10,7 +10,9 @@ public class OrcTest
     
     @Test
     public void orcComEscudoUrukHaiRecebeDano(){
-        Orc orc = new Orc(new Item(1,"Espada"),new Item(1,"Escudo Uruk-Hai"),150);
+        Orc orc = new Orc();
+        orc.vida=150;
+        orc.adicionarItem(new Item(1,"Escudo Uruk-Hai"));
         
         orc.levarAtaque();
         
@@ -19,8 +21,9 @@ public class OrcTest
     
     @Test
     public void orcSemEscudoUrukHaiRecebeDano(){
-        Orc orc = new Orc(new Item(1,"Espada"),new Item(1,"Flecha"),70);
-        
+        Orc orc = new Orc();
+        orc.vida=70;
+        orc.adicionarItem(new Item(1,"Espada"));
         orc.levarAtaque();
         
         assertEquals(60, orc.getVida());
@@ -50,6 +53,16 @@ public class OrcTest
         
         assertEquals(4, qtdFlechas);
         
+    }
+    
+    @Test
+    public void orcAtacaOrc(){
+        Orc orc = new Snaga();
+        Orc orc1 = new UrukHai();
+        
+        orc.atacarPersonagem(orc1);
+        
+        assertEquals(144,orc1.getVida());
     }
     
 }

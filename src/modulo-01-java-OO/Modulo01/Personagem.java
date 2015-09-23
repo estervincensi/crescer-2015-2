@@ -4,7 +4,7 @@ public class Personagem
    
    protected int vida, experiencia;
    protected String nome;
-   protected Status status;
+   protected Status status = Status.VIVO;
    protected Inventario inventario = new Inventario();
    
     
