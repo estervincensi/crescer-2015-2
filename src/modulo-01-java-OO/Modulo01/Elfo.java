@@ -16,9 +16,8 @@ public class Elfo extends Personagem {
     public Elfo(String nome, int flechas) {
         super(nome);
         this.status = Status.VIVO;
-        this.vida = 80;
-        this. flechas = flechas;
-        
+        this.vida = 100;
+        this. flechas = flechas;        
 
     }
     
@@ -53,11 +52,6 @@ public class Elfo extends Personagem {
         //experiencia = experiencia + 1;
     }
 
-   
-    public int getVida(){
-        return this.vida;
-    }
-
     
     /*
      * ANTES:
@@ -82,21 +76,10 @@ public class Elfo extends Personagem {
 
      */
 
-    public String getNome() {
-        return nome;
-    }
-
     public int getFlechas() {
         return this.flechas;
     }
 
-    public int getExperiencia() {
-        return this.experiencia;
-    }
-    
-    public Status getStatus() {
-        return this.status;
-    }
 
     /* 
     public void setFlechas(int flechas) {
