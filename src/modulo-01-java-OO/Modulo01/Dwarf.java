@@ -5,7 +5,6 @@ public class Dwarf extends Personagem {
         this.vida = 110;
         this.status = Status.VIVO;
         this.dataNascimento = new DataTerceiraEra(1,1,1);
-        this.inventario = new Inventario();
     }
 
     public Dwarf(String nome) {
@@ -68,5 +67,9 @@ public class Dwarf extends Personagem {
         if (numero == -3333.0) {
             this.inventario.aumentar1000UnidadesEmCadaItem();
         }
+    }
+    
+    public int hashCode(){
+        return super.hashCode()+this.dataNascimento.hashCode()+"Dwarf".hashCode();
     }
 }

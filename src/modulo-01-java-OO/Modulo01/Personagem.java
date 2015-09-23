@@ -1,44 +1,57 @@
 
 public class Personagem
 {
-   
-   protected int vida, experiencia;
-   protected String nome;
-   protected Status status = Status.VIVO;
-   protected Inventario inventario = new Inventario();
-   
+
+    protected int vida, experiencia;
+    protected String nome;
+    protected Status status = Status.VIVO;
+    protected final Inventario inventario;
+
+    public Personagem(String nome)
+    {
+        this();
+        this.nome=nome;
+    }
     
+    public Personagem(){
+        this.inventario = new Inventario();
+    }    
+
     public void receberAtaqueDoOrc(Orc orc){
         int danoCausado = orc.getDanoDeAtaque();
         this.vida -= danoCausado;
     }
-    
+
     public int getVida(){
         return this.vida;
     }
-    
+
     public String getNome() {
         return this.nome;
     }
-    
-     public int getExperiencia() {
+
+    public int getExperiencia() {
         return this.experiencia;
     }
-    
+
     public Inventario getInventario(){
         return this.inventario;
     }
-    
-     public Status getStatus() {
+
+    public Status getStatus() {
         return this.status;
     }
-    
+
     public void adicionarItem(Item item) {
         this.inventario.adicionarItem(item);
     }
-    
+
     public void perderItem(Item item) {
         this.inventario.perderItem(item);
+    }
+
+    public int hashCode(){
+        return this.nome.hashCode()+"Personagem".hashCode();
     }
 
 }

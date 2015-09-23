@@ -50,4 +50,5 @@ public class Item
         Item outro = (Item)obj;
         return this.descricao.equals(outro.getDescricao()) && this.quantidade == outro.getQuantidade();
     }
+    
 }

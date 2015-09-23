@@ -14,10 +14,11 @@ public class Elfo extends Personagem {
     protected int flechas;
     
     public Elfo(String nome, int flechas) {
-        this.nome = nome;
+        super(nome);
         this.status = Status.VIVO;
         this.vida = 80;
         this. flechas = flechas;
+        
 
     }
     
