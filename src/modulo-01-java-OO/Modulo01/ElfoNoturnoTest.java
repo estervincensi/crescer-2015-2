@@ -62,16 +62,4 @@ public class ElfoNoturnoTest
         
         assertEquals(Status.MORTO,e.getStatus());
     }
-    
-    @Test
-    public void elfoNoturnoMorreAoAtirar45Flechas(){
-        ElfoNoturno e = new ElfoNoturno("Teste", 10);
-        Dwarf d = new Dwarf();
-        
-        for(int i =0; i<45; i++){
-            e.atirarFlecha(d);
-        }
-        
-        assertEquals(Status.MORTO,e.getStatus());
-    }
 }
