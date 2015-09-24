@@ -24,7 +24,7 @@ public class ElfoNoturnoTest
         
         e.atirarFlecha(d);
         
-        assertEquals(95,e.getVida());
+        assertEquals(95,e.getVida(),0);
     }
     
     @Test 
@@ -35,7 +35,7 @@ public class ElfoNoturnoTest
         e.atirarFlecha(d);
         e.atirarFlecha(d);
         
-        assertEquals(90,e.getVida());
+        assertEquals(90.25,e.getVida(),0);
     }
     
     @Test 
@@ -48,15 +48,15 @@ public class ElfoNoturnoTest
         e.atirarFlecha(d);
         e.atirarFlecha(d);
         
-        assertEquals(80,e.getVida());
+        assertEquals(81.45,e.getVida(),0.001);
     }
     
     @Test
-    public void elfoNoturnoMorreAoAtirar45Flechas(){
+    public void elfoNoturnoMorreAoAtirar91Flechas(){
         ElfoNoturno e = new ElfoNoturno("Teste", 10);
         Dwarf d = new Dwarf();
         
-        for(int i =0; i<45; i++){
+        for(int i =0; i<2000; i++){
             e.atirarFlecha(d);
         }
         

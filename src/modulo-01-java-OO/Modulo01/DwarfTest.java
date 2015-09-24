@@ -8,7 +8,7 @@ public class DwarfTest
     @Test
     public void dwarfNasceCom110DeVida() {
         Dwarf gimli = new Dwarf();
-        assertEquals(110, gimli.getVida());
+        assertEquals(110, gimli.getVida(),0);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class DwarfTest
         // Act
         gimli.receberFlechada();
         // Assert
-        assertEquals(vidaEsperada, gimli.getVida());
+        assertEquals(vidaEsperada, gimli.getVida(),0);
     }
 
     @Test
@@ -74,7 +74,7 @@ public class DwarfTest
         gimli.receberFlechada();
         gimli.receberFlechada();
         // Assert
-        assertEquals(vidaEsperada, gimli.getVida());
+        assertEquals(vidaEsperada, gimli.getVida(),0);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class DwarfTest
         gimli.receberFlechada();
         gimli.receberFlechada();
         // Assert
-        assertEquals(vidaEsperada, gimli.getVida());
+        assertEquals(vidaEsperada, gimli.getVida(),0);
     }
 
     @Test
@@ -144,7 +144,7 @@ public class DwarfTest
         gimli.receberFlechada();
         gimli.receberFlechada();
         // Assert
-        assertEquals(0, gimli.getVida());
+        assertEquals(0, gimli.getVida(),0);
     }
 
     @Test
@@ -190,7 +190,7 @@ public class DwarfTest
         dwarf.receberFlechada();
         // Assert
         assertEquals(2, dwarf.getExperiencia());
-        assertEquals(90, dwarf.getVida());   
+        assertEquals(90, dwarf.getVida(),0);   
     }
 
     @Test
@@ -198,14 +198,14 @@ public class DwarfTest
         Dwarf meireles = new Dwarf("Meireles", new DataTerceiraEra(2, 3, 2015));
         meireles.receberFlechada();
         assertEquals(0, meireles.getExperiencia());
-        assertEquals(110, meireles.getVida());
+        assertEquals(110, meireles.getVida(),0);
     }
 
     @Test
     public void dwarfReceberFlechadaNormal(){
         Dwarf dwarf = new Dwarf();
         dwarf.receberFlechada();
-        assertEquals(100, dwarf.getVida());
+        assertEquals(100, dwarf.getVida(),0);
         assertEquals(0, dwarf.getExperiencia());
     }
 
@@ -248,7 +248,7 @@ public class DwarfTest
         
         orc.atacarPersonagem(dwarf);
         
-        assertEquals(98, dwarf.getVida());
+        assertEquals(98, dwarf.getVida(),0);
     }
     
     @Test
@@ -258,7 +258,7 @@ public class DwarfTest
         
         orc.atacarPersonagem(dwarf);
         
-        assertEquals(102, dwarf.getVida());
+        assertEquals(102, dwarf.getVida(),0);
     }
     
     @Test

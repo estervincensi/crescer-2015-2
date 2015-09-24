@@ -1,10 +1,10 @@
 import java.util.*;
 public class Exercito
 {
-    HashMap <String,Elfo> exercito;
-    HashMap<Status,ArrayList<Elfo>> status;
-    ArrayList<Elfo>vivos=new ArrayList<>();
-    ArrayList<Elfo>mortos=new ArrayList<>();
+    private HashMap <String,Elfo> exercito;
+    private HashMap<Status,ArrayList<Elfo>> status;
+    private ArrayList<Elfo>vivos=new ArrayList<>();
+    private ArrayList<Elfo>mortos=new ArrayList<>();
     public Exercito(){
         this.exercito = new HashMap<>();
         this.status = new HashMap<>();
@@ -29,6 +29,8 @@ public class Exercito
     }
 
     public void agruparPorStatus(){
+        status.clear();
+        
         for(Map.Entry<String,Elfo> entry:this.exercito.entrySet()){
             Elfo elfo = entry.getValue();
             Status status = elfo.getStatus();            

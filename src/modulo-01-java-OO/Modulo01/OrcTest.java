@@ -16,7 +16,7 @@ public class OrcTest
         
         orc.levarAtaque();
         
-        assertEquals(144, orc.getVida());
+        assertEquals(144, orc.getVida(),0);
     }
     
     @Test
@@ -26,7 +26,7 @@ public class OrcTest
         orc.adicionarItem(new Item(1,"Espada"));
         orc.levarAtaque();
         
-        assertEquals(60, orc.getVida());
+        assertEquals(60, orc.getVida(),0);
     }
     
     @Test
@@ -62,7 +62,7 @@ public class OrcTest
         
         orc.atacarPersonagem(orc1);
         
-        assertEquals(144,orc1.getVida());
+        assertEquals(144,orc1.getVida(),0);
     }
     
 }

@@ -16,7 +16,7 @@ public class UrukHaiTest
         inventarioEsperado.adicionarItem(new Item(1, "Espada"));
         inventarioEsperado.adicionarItem(new Item(1, "Escudo Uruk-Hai"));
         
-        assertEquals(vidaEsperada, orc.getVida());
+        assertEquals(vidaEsperada, orc.getVida(),0);
         assertEquals(inventarioEsperado, orc.getInventario());
     }
 }

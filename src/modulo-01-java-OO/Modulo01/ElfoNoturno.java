@@ -6,21 +6,18 @@ public class ElfoNoturno extends Elfo
     }
     
     public void atirarFlecha(Dwarf dwarf) {
-        super.flechas--;
-        super.experiencia+=3;
-        super.vida -=(vida*0.05);
-        dwarf.receberFlechada();
-        verificaStatus();
+        super.atirarFlecha(dwarf);
+        this.experiencia += 2;
+        double qtdVidaAPerder = this.vida * 0.05;
+        //double qtdVidaAPerder = this.vida * 5/100;
+        this.vida -= qtdVidaAPerder;
+        this.status = (int)this.vida == 0 ? 
+            Status.MORTO : this.status;
+        
     }
     
     /*
        Exercicio 02 - Elfo Noturno não ficava morto pois não tinha código implementado
        */
-    
-    public void verificaStatus(){
-        if(vida==0){
-            super.status = Status.MORTO;
-        }
-    }
    
 }

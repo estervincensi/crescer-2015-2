@@ -47,7 +47,7 @@ public class ExercitoTest
     }
 
     @Test
-    public void buscarElfoVerdePorNome(){
+    public void buscarElfoAlistado(){
         Exercito ex = new Exercito();
         ElfoVerde ev = new ElfoVerde("Verde",10);
         ElfoNoturno en = new ElfoNoturno("Noturno",10);
@@ -55,6 +55,15 @@ public class ExercitoTest
         ex.alistarElfo(en);
 
         assertEquals(ev,ex.buscarElfoPorNome("Verde"));
+    }
+    
+    @Test
+    public void buscarElfoNãoAlistado(){
+        Exercito ex = new Exercito();
+        Elfo e = new Elfo("Teste");
+        ex.alistarElfo(e);
+
+        assertEquals(null,ex.buscarElfoPorNome("Teste"));
     }
 
     @Test

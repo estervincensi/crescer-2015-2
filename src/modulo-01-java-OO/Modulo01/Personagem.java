@@ -2,7 +2,8 @@
 public class Personagem
 {
 
-    protected int vida, experiencia;
+    protected double vida;
+    int experiencia;
     protected String nome;
     protected Status status = Status.VIVO;
     protected final Inventario inventario;
@@ -22,7 +23,7 @@ public class Personagem
         this.vida -= danoCausado;
     }
 
-    public int getVida(){
+    public double getVida(){
         return this.vida;
     }
 

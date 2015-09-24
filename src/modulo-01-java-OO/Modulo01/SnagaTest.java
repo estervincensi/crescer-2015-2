@@ -16,7 +16,7 @@ public class SnagaTest
         inventarioEsperado.adicionarItem(new Item(1, "Arco"));
         inventarioEsperado.adicionarItem(new Item(5, "Flecha"));
         
-        assertEquals(vidaEsperada, orc.getVida());
+        assertEquals(vidaEsperada, orc.getVida(),0);
         assertEquals(inventarioEsperado, orc.getInventario());
     }
 }
