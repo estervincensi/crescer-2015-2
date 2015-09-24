@@ -64,6 +64,7 @@ public class ExercitoTest
         Elfo e2 = new ElfoVerde("Verde 2");
         Elfo e3 = new ElfoNoturno("Noturno 1",10);
         Elfo e4 = new ElfoNoturno("Noturno 2",10);
+        int vivo=0,morto=0;
 
         for(int i=0; i<100; i++){
             e3.atirarFlecha(new Dwarf());
@@ -72,12 +73,24 @@ public class ExercitoTest
         exercito.alistarElfo(e1);
         exercito.alistarElfo(e2);
         exercito.alistarElfo(e3);
-        exercito.alistarElfo(e4);
-        
+        exercito.alistarElfo(e4);        
 
         exercito.agruparPorStatus();
+        
+        ArrayList <Elfo> vivos = exercito.buscar(Status.VIVO);
+        ArrayList <Elfo> mortos = exercito.buscar(Status.MORTO);
+            
+        for(Elfo elfo:vivos){
+            assertEquals(Status.VIVO, elfo.getStatus());
+            vivo++;
+        }
+        
+        for(Elfo elfo:mortos){
+            assertEquals(Status.MORTO, elfo.getStatus());
+            morto++;
+        }
 
-        assertEquals(e1,exercito.buscar(Status.VIVO).get(0));
-        assertEquals(e3,exercito.buscar(Status.MORTO).get(0));
+        assertEquals(2,vivo);
+        assertEquals(2,morto);
     }
 }

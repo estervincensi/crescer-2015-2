@@ -40,7 +40,7 @@ public class Exercito
         }
     }
 
-    public ArrayList buscar(Status status){
+    public ArrayList<Elfo> buscar(Status status){
         return this.status.get(status);
     }
 }

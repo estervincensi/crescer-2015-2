@@ -31,4 +31,9 @@ public class DataTerceiraEra {
             this.mes == outraData.getMes() &&
             this.ano == outraData.getAno();
     }
+    
+    public int hashCode(){
+        return (new Integer(this.dia).toString() + new Integer(this.mes).toString() + 
+        new Integer(this.ano).toString()).hashCode()+"Data Terceira Era".hashCode();
+    }
 }
