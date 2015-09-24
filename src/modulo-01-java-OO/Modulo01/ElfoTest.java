@@ -145,7 +145,7 @@ public class ElfoTest
         
         orc.atacarPersonagem(elfo);
         
-        assertEquals(68, elfo.getVida());
+        assertEquals(88, elfo.getVida());
     }
     
     @Test
@@ -155,7 +155,7 @@ public class ElfoTest
         
         orc.atacarPersonagem(elfo);
         
-        assertEquals(72, elfo.getVida());
+        assertEquals(92, elfo.getVida());
     }
     
     
