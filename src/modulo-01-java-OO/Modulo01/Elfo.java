@@ -1,5 +1,4 @@
 
-
 /**
  * Representa objetos do tipo Elfo.
  */
@@ -12,15 +11,20 @@ public class Elfo extends Personagem {
     }
      */
     protected int flechas;
-    
+    private static int contador;
+
     public Elfo(String nome, int flechas) {
         super(nome);
         this.status = Status.VIVO;
         this.vida = 100;
         this. flechas = flechas;        
-
+        this.contador ++;
     }
     
+    public static int getContador(){
+        return contador;
+    }
+
     public void atacarOrc(Orc orc){
         orc.levarAtaque();
     }
@@ -52,7 +56,6 @@ public class Elfo extends Personagem {
         //experiencia = experiencia + 1;
     }
 
-    
     /*
      * ANTES:
      * public atirarFlechaRefactory(this.flechas, this.experiencia){
@@ -80,7 +83,6 @@ public class Elfo extends Personagem {
         return this.flechas;
     }
 
-
     /* 
     public void setFlechas(int flechas) {
     if (flechas > this.flechas)
@@ -90,20 +92,20 @@ public class Elfo extends Personagem {
 
     public String toString() {
 
-    boolean flechaNoSingular = Math.abs(this.getFlechas()) == 1;
-    boolean nivelNoSingular = Math.abs(this.experiencia) == 1;
+        boolean flechaNoSingular = Math.abs(this.getFlechas()) == 1;
+        boolean nivelNoSingular = Math.abs(this.experiencia) == 1;
 
-    // Ruby ou CoffeeScript:
-    //"#{nome} possui #{flechas} #{textoFlechas} e #{experiencia} #{textoNiveis} de experiência."
+        // Ruby ou CoffeeScript:
+        //"#{nome} possui #{flechas} #{textoFlechas} e #{experiencia} #{textoNiveis} de experiência."
 
-    // C# 6:
-    //"\{nome} possui \{flechas} \{textoFlechas} e \{experiencia} \{textoNiveis} de experiência."
+        // C# 6:
+        //"\{nome} possui \{flechas} \{textoFlechas} e \{experiencia} \{textoNiveis} de experiência."
 
-    return String.format("%s possui %d %s e %d %s de experiência.",
-    this.nome,
-    this.getFlechas(),
-    flechaNoSingular ? "flecha" : "flechas",
-    this.experiencia,
-    nivelNoSingular ? "nível" : "níveis");
+        return String.format("%s possui %d %s e %d %s de experiência.",
+            this.nome,
+            this.getFlechas(),
+            flechaNoSingular ? "flecha" : "flechas",
+            this.experiencia,
+            nivelNoSingular ? "nível" : "níveis");
     }
 }

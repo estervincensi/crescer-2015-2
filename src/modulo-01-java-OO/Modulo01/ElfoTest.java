@@ -158,8 +158,15 @@ public class ElfoTest
         assertEquals(92, elfo.getVida(),0);
     }
     
-    
-    
+    @Test
+    public void TresElfosSaoCriadosEContadorRetorna3(){
+        int elfos = Elfo.getContador();
+        Elfo e1=new Elfo("Teste");
+        Elfo e2=new Elfo("Teste");
+        Elfo e3=new Elfo("Teste");
+        
+        assertEquals(elfos+3,Elfo.getContador());
+    }
     
     
 }
