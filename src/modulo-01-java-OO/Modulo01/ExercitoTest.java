@@ -53,67 +53,31 @@ public class ExercitoTest
         ElfoNoturno en = new ElfoNoturno("Noturno",10);
         ex.alistarElfo(ev);
         ex.alistarElfo(en);
-        
+
         assertEquals(ev,ex.buscarElfoPorNome("Verde"));
     }
-    
+
     @Test
-    public void obterElfosMortos(){
+    public void elfosSaoAgrupadosPorStatus(){
         Exercito exercito = new Exercito();
-        ElfoVerde ev= new ElfoVerde("v");        
-        ElfoNoturno n1 = new ElfoNoturno("noturno1",10);
-        ElfoNoturno n2 = new ElfoNoturno("noturno2",10);
-        ElfoNoturno n3 = new ElfoNoturno("noturno3",10);        
-        
-       // for(int i=0; i<100; i++){
-       while(n1.getStatus() != Status.MORTO && n2.getStatus() != Status.MORTO && n3.getStatus() != Status.MORTO ){
-            n1.atirarFlecha(new Dwarf());
-            n2.atirarFlecha(new Dwarf());
-            n3.atirarFlecha(new Dwarf());
+        Elfo e1 = new ElfoVerde("Verde 1");
+        Elfo e2 = new ElfoVerde("Verde 2");
+        Elfo e3 = new ElfoNoturno("Noturno 1",10);
+        Elfo e4 = new ElfoNoturno("Noturno 2",10);
+
+        for(int i=0; i<100; i++){
+            e3.atirarFlecha(new Dwarf());
+            e4.atirarFlecha(new Dwarf());
         }
+        exercito.alistarElfo(e1);
+        exercito.alistarElfo(e2);
+        exercito.alistarElfo(e3);
+        exercito.alistarElfo(e4);
         
-        
-        exercito.alistarElfo(n1);
-        exercito.alistarElfo(n2);
-        exercito.alistarElfo(n3);
-        
-        ArrayList<Elfo> mortos = new ArrayList<>();        
-        mortos.add(n1);
-        mortos.add(n2);
-        mortos.add(n3);
-        
+
         exercito.agruparPorStatus();
-        
-        assertEquals(mortos, exercito.buscar(Status.MORTO));
-    }
-    
-     @Test
-    public void obterElfosMortos1(){
-        Exercito exercito = new Exercito();
-        ElfoVerde e = new ElfoVerde("v1");
-        exercito.alistarElfo(e);        
-        ElfoNoturno morto1 = new ElfoNoturno("n1",10);
-        ElfoNoturno morto2 = new ElfoNoturno("n2",10);
-        ElfoNoturno morto3 = new ElfoNoturno("n3",10);
-        
-        while(morto1.getStatus() != Status.MORTO && morto2.getStatus() != Status.MORTO && morto3.getStatus() != Status.MORTO ){
-            morto1.atirarFlecha(new Dwarf());
-            morto2.atirarFlecha(new Dwarf());
-            morto3.atirarFlecha(new Dwarf());
-        }
-        
-        exercito.alistarElfo(morto1);
-        exercito.alistarElfo(morto2);
-        exercito.alistarElfo(morto3);
-      
-        ArrayList<Elfo> mortos = new ArrayList<>();
-        
-        mortos.add(morto1);
-        mortos.add(morto2);
-        mortos.add(morto3);
-        
-        exercito.agruparPorStatus();
-        
-        assertEquals(mortos, exercito.buscar(Status.MORTO));
+
+        assertEquals(e1,exercito.buscar(Status.VIVO).get(0));
+        assertEquals(e3,exercito.buscar(Status.MORTO).get(0));
     }
 }

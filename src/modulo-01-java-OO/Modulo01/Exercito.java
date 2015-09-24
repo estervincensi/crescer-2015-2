@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.*;
 public class Exercito
 {
     HashMap <String,Elfo> exercito;
@@ -20,7 +19,7 @@ public class Exercito
     public HashMap getExercito(){
         return this.exercito;
     }
-    
+
     public HashMap getExercitoPorStatus(){
         return this.status;
     }
@@ -30,25 +29,19 @@ public class Exercito
     }
 
     public void agruparPorStatus(){
-        for(Elfo elfo:this.exercito.values()){
-            if(elfo.getStatus()==Status.VIVO){
-                vivos.add(elfo);
-            }else if(elfo.getStatus()==Status.MORTO){
-                mortos.add(elfo);
+        for(Map.Entry<String,Elfo> entry:this.exercito.entrySet()){
+            Elfo elfo = entry.getValue();
+            Status status = elfo.getStatus();            
+            if(this.status.containsKey(status)){
+                this.status.get(status).add(elfo);
+            }else{
+                this.status.put(status,new ArrayList<Elfo>(Arrays.asList(elfo)));
             }
         }
-        status.put(Status.VIVO,this.vivos);
-        status.put(Status.MORTO,this.mortos);
     }
-    
+
     public ArrayList buscar(Status status){
         return this.status.get(status);
-    }
-    
-   
-    public boolean equals(Object obj){
-        Exercito e = (Exercito) obj;
-        return this.exercito.equals(e.getExercito());
     }
 }
 
