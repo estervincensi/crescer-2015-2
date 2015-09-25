@@ -3,17 +3,26 @@ public class Exercito
 {
     private HashMap <String,Elfo> exercito;
     private HashMap<Status,ArrayList<Elfo>> status;
-    private ArrayList<Elfo>vivos=new ArrayList<>();
-    private ArrayList<Elfo>mortos=new ArrayList<>();
+    private EstrategiadeAtaque estrategia= new EstrategiaAArteDaGuerra();
     public Exercito(){
         this.exercito = new HashMap<>();
         this.status = new HashMap<>();
+    }
+
+    public void mudarEstrategia(EstrategiadeAtaque estrategia) {
+        this.estrategia = estrategia;
     }
 
     public void alistarElfo(Elfo e){
         if(e.getNome()!=null && e instanceof ElfoVerde || e instanceof ElfoNoturno){
             exercito.put(e.getNome(),e);
         }
+    }
+
+    public void atacar (ArrayList<Dwarf> dwarves){
+        this.agruparPorStatus();
+        ArrayList<Elfo> elfosVivos = this.buscar(Status.VIVO);
+        estrategia.atacar(elfosVivos,dwarves);
     }
 
     public HashMap getExercito(){
@@ -24,13 +33,17 @@ public class Exercito
         return this.status;
     }
 
+    public ArrayList<Elfo> getOrdemDoUltimoAtaque() {
+        return this.estrategia.getOrdemDoUltimoAtaque();
+    }
+
     public Elfo buscarElfoPorNome(String nome){
         return exercito.get(nome);
     }
 
     public void agruparPorStatus(){
         status.clear();
-        
+
         for(Map.Entry<String,Elfo> entry:this.exercito.entrySet()){
             Elfo elfo = entry.getValue();
             Status status = elfo.getStatus();            
