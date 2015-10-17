@@ -23,3 +23,14 @@ function maiorTexto(array){
   }
   return maior;
 }
+
+//Exercicio 03
+function imprime(array, func){
+  if (typeof func === 'function') {
+    for(prop in array){
+      func(array[prop]);
+    }
+  }else{
+    console.log('Erro! Segundo parametro não é função!');
+  }
+}
