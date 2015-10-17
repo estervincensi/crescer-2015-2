@@ -9,3 +9,17 @@ function daisyGame(numero){
     }
   }
 }
+
+//Exercicio 02
+
+function maiorTexto(array){
+  var maior='';
+  for(prop in array){
+    if (typeof array[prop]==='string') {
+      if(array[prop].length>maior.length){
+        maior=array[prop];
+      }
+    }
+  }
+  return maior;
+}
