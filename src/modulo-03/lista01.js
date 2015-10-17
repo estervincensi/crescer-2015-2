@@ -34,3 +34,18 @@ function imprime(array, func){
     console.log('Erro! Segundo parametro não é função!');
   }
 }
+
+//Exercicio 04
+function fiboSum(numero){
+  if(!isNaN(numero)){
+    var fib=0, ant=0, prox=1;
+    for(var i=0; i<=numero; i++){
+      fib=prox+ant;
+      ant=prox;
+      prox=fib;
+    }
+    return fib-1;
+  }else{
+    return 'favor digitar um numero de verdade!'
+  }
+}
