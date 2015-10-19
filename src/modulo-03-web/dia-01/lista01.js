@@ -49,3 +49,18 @@ function fiboSum(numero){
     return 'favor digitar um numero de verdade!'
   }
 }
+
+//Exercicio 05
+function excellis(texto){
+  if(typeof texto === 'string'){
+    var soma=0;
+    for(var i=0; i<texto.length; i++){
+      soma = texto.charCodeAt(0)-64+ soma*26;
+    }
+    return soma;
+  }
+  else
+  {
+    return 'isto não é uma posição válida!';
+  }
+}
