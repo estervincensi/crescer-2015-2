@@ -77,16 +77,10 @@ function excellis(texto){
 
 //Exercicio 06
 function queroCafe(mascada, precos){
-  var retorno = "";
-  if(typeof mascada === 'number' && precos.constructor==Array){
-      precos.sort();
-    for(var i=0; i<precos.length; i++){
-      if(precos[i]<=mascada){
-        retorno+=precos[i]+" ";
-      }
-    }
-    return retorno;
-  }else{
-    return "valores inválidos!"
-  }
+  return precos.filter(function (elem){
+    return elem <=mascada;
+  })
+  .sort(function(elem1,elem2){
+    return elem1>elem2;
+  }).join();
 }
