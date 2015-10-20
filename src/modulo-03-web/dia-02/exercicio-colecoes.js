@@ -2,17 +2,17 @@
 
 //Exercicio 01.a
 function ordenaPorNacionais(array){
-  array.sort(function(a,b){return a.titulos[0].qtd<b.titulos[0].qtd;});
+  return array.sort(function(a,b){return a.titulos[0].qtd<b.titulos[0].qtd;});
 };
 
 //Exercicio 01.b
 function ordenaPorContinental(array){
-  array.sort(function(a,b){return a.titulos[1].qtd<b.titulos[1].qtd;});
+  return array.sort(function(a,b){return a.titulos[1].qtd<b.titulos[1].qtd;});
 };
 
 //Exercicio 01.c
 function ordenaPorMundial(array){
-  array.sort(function(a,b){return a.titulos[2].qtd<b.titulos[2].qtd;});
+  return array.sort(function(a,b){return a.titulos[2].qtd<b.titulos[2].qtd;});
 };
 
 //Exercicio 02
