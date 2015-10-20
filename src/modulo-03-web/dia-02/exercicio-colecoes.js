@@ -50,6 +50,6 @@ function soma(tipo,array){
 //Exercicio 03
 function apenasOsMelhores(array){
   return array.filter(function(elem){
-    return elem.titulos[0].qtd>=18;
+    return elem.titulos[0].qtd>18;
   })
 };
