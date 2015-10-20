@@ -53,3 +53,15 @@ function apenasOsMelhores(array){
     return elem.titulos[0].qtd>18;
   })
 };
+
+//Exercicio 04
+function calcularIdadeMedia(array){
+  var soma = array
+  .map(function(elem){
+    return new Date().getFullYear()-elem.fundacao.getFullYear();
+  })
+  .reduce(function(acumulador, elem){
+    return acumulador + elem;
+  },0);
+  return soma/clubes.length;
+}
