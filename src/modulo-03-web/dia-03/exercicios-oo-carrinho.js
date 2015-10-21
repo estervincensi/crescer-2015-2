@@ -1,11 +1,11 @@
-function carrinhoDeCompras(){
+function CarrinhoDeCompras(){
    this.itens = [];
 }
-carrinhoDeCompras.prototype.adicionarItem= function (item){
+CarrinhoDeCompras.prototype.adicionarItem= function (item){
   this.itens.push(item);
 };
 
-carrinhoDeCompras.prototype.removerItens = function(sku){
+CarrinhoDeCompras.prototype.removerItens = function(sku){
   for(var i=0, len=this.itens.length; i<len; i++){
     if(this.itens[i].sku===sku){
       this.itens.splice(i,1);
@@ -13,7 +13,7 @@ carrinhoDeCompras.prototype.removerItens = function(sku){
   }
 };
 
-carrinhoDeCompras.prototype.atualizar = function(sku,qtd){
+CarrinhoDeCompras.prototype.atualizar = function(sku,qtd){
   this.itens.map(function(elem){
     if(elem.sku===sku){
       return elem.quantidade=qtd;
@@ -21,19 +21,19 @@ carrinhoDeCompras.prototype.atualizar = function(sku,qtd){
   });
 };
 
-carrinhoDeCompras.prototype.valorTotal = function(){
+CarrinhoDeCompras.prototype.valorTotal = function(){
   var valorTotal = this.itens.map(function(elem){
     return elem.subTotal();
   }).reduce(function(acumulador,elem){
     return acumulador+elem;
   },0);
-  if(this.sortear){
-    return valorTotal - (valorTotal*0.1);
+  if(this.sortear()){
+    return "R$:" + (valorTotal - (valorTotal*0.1)).toFixed(2);
   }else{
-    return valorTotal;
+    return "R$" + valorTotal.toFixed(2);
   }
 }
 
-carrinhoDeCompras.prototype.sortear = function(){
+CarrinhoDeCompras.prototype.sortear = function(){
   return Math.random()<0.4;
 }
