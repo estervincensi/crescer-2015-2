@@ -7,3 +7,7 @@ soma.call(this,1,2); //primeiro parametro é se quiser informar escopo extra par
 soma.apply(this,[1,2])
 
 soma(1,2)
+/*-----------------------------------------------------------------------*/
+String.prototype.comecaComB = function(){
+  return this.toUpperCase()[0]==='B';
+};
