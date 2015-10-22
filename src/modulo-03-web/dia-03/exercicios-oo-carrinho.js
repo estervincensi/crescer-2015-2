@@ -1,5 +1,5 @@
-function CarrinhoDeCompras(){
-   this.itens = [];
+function CarrinhoDeCompras(itens){
+   this.itens = itens || [];
 }
 CarrinhoDeCompras.prototype.adicionarItem= function (item){
   this.itens.push(item);
@@ -37,19 +37,3 @@ CarrinhoDeCompras.prototype.valorTotal = function(){
 CarrinhoDeCompras.prototype.sortear = function(){
   return Math.random()<0.4;
 }
-
-CarrinhoDeCompras.prototype.forcarCompra = function(){
-  if(!this.intervalo){
-    var self = this;
-    this.intervalo = setInterval(function(){
-      self.itens.forEach(function(elem){ //this em execução assincrona (setInterval, setTimeOut) morre.
-        elem.valorUnitario += elem.valorUnitario*0.1;
-      });
-    },5000);
-  }
-};
-
-CarrinhoDeCompras.prototype.concluirPedido = function(){
-  clearInterval(this.intervalo);
-  delete this.intervalo;
-};
