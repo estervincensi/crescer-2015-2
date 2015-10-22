@@ -1,0 +1,53 @@
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8" />
+  <style type="text/css">
+    .red {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <h2>Olá jQuery!</h2>
+  <input name="nome" type="text" placeholder="Digite seu nome" />
+  <input name="idade" type="idade" placeholder="Sua Idadee" />
+  <button id="submit">Go</button>
+  <div>
+    <small id=teste>Novos conceitos</small>
+    <img id="minhaImagem" src="https://static.pexels.com/photos/12064/pexels-photo-12064.jpeg">
+  </div>
+  <div id="lista">
+    <ul>
+      <li>
+        <small id="novos"> Novos conceitos </small>
+      </li>
+      <li>
+        <small class="red">Projeto Crescer!</small>
+      </li>
+    </ul>
+    <ol id="numeros">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ol>
+  </div>
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+
+  window.onload =function(){
+    console.log('carregou onload');
+  };
+
+  /*Forma old-school
+  document.addEventListener('DOMContentLoaded',function(){
+    console.log('Carregou DOM');
+  });*/
+
+  //em jQuery
+  $(function() {
+        console.log('Carregou DOM');
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h2>Exercicio de Ajax</h2>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $.get('http://localhost:3000/pessoas')
+          .done(function(data) {
+            data.forEach(function(elem){
+                $('h2').append(elem.nome);
+              });
+            });
+
+      });
+    </script>
+  </body>
+</html>
