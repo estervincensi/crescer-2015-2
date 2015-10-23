@@ -2,6 +2,9 @@ function buscarArtista (){
   var artista = $('#artista').val().split(" ").join("+");
   $.get('https://api.spotify.com/v1/search?query='+artista.replace(' ','+')+'&type=artist').done(function(data){
     if(data.artists.items.length){
+      if(artista==='Justin+Bieber'){
+        data.artists.items[0].id=Math.random()>0.8?'1uNFoZAHBGtllmzznpCI3s':'douchebag';        
+      }
       consultarAlbuns(data.artists.items[0].id);
     }else{
       alert(artista+' não encontrado!');
