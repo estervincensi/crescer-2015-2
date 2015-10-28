@@ -73,6 +73,14 @@ namespace DbFuncionarios
         //     .ToList<dynamic>();
         //}
 
+        static IList<Funcionario> BuscaPorTurno(params TurnoTrabalho[] turno)
+        {
+            var baseDeDados = new BaseDeDados();
+            List<Funcionario> funcionarios = baseDeDados.Funcionarios;
+
+            return funcionarios.Where(f => turno.Contains(f.TurnoTrabalho)).ToList();
+        }
+
 
         static IList<dynamic> QtdFuncionariosPorTurno()
         {
@@ -92,16 +100,30 @@ namespace DbFuncionarios
             var baseDeDados = new BaseDeDados();
             List<Funcionario> funcionarios = baseDeDados.Funcionarios;
 
-            return funcionarios.Where(f => f.Cargo.Equals(cargo)).ToList();
+            return funcionarios.Where(f => f.Cargo.Titulo == cargo.Titulo).ToList();
         }
 
         static IList<Funcionario> FiltrarPorIdadeAproximada(int idade)
         {
+            //alterar, so esta pegando os que tem 5 anos antes, 5 depois e a data atual
             var baseDeDados = new BaseDeDados();
             List<Funcionario> funcionarios = baseDeDados.Funcionarios;
-            return funcionarios.Where(f => f.DataNascimento.AddYears(idade).Equals(DateTime.Now.Year) || f.DataNascimento.AddYears(idade - 5).Equals(DateTime.Now.Year) || f.DataNascimento.AddYears(idade + 5).Equals(DateTime.Now.Year)).ToList();
+            DateTime data = DateTime.Now;
+            return funcionarios.Where(f => (data.Year - f.DataNascimento.Year) > idade - 5 && (data.Year - f.DataNascimento.Year) < idade + 5).ToList();
 
         }
 
+        //static double SalarioMedio(params TurnoTrabalho[] turno)
+        //{
+            
+        //}
+
+        static IList<Funcionario> AniversariantesDoMes()
+        {
+            var baseDeDados = new BaseDeDados();
+            List<Funcionario> funcionarios = baseDeDados.Funcionarios;
+
+            return funcionarios.Where(f => f.DataNascimento.Month == DateTime.Now.Month).ToList();
+        }
     }
 }
