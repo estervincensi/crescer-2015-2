@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DbFuncionarios
@@ -30,56 +31,166 @@ namespace DbFuncionarios
             lucasLeal.Cargo = desenvolvedor;
             lucasLeal.TurnoTrabalho = TurnoTrabalho.Manha;
             Funcionarios.Add(lucasLeal);
-
+            
             Funcionario jeanPinzon = new Funcionario(2, "Jean Pinzon", new DateTime(1991, 04, 25));
             jeanPinzon.Cargo = desenvolvedor;
             jeanPinzon.TurnoTrabalho = TurnoTrabalho.Tarde;
             Funcionarios.Add(jeanPinzon);
-
+            
             Funcionario rafaelBenetti = new Funcionario(3, "Rafael Benetti", new DateTime(1991, 08, 15));
             rafaelBenetti.Cargo = desenvolvedor;
             rafaelBenetti.TurnoTrabalho = TurnoTrabalho.Noite;
             Funcionarios.Add(rafaelBenetti);
-
+            
             Funcionario mauricioBorges = new Funcionario(4, "Maurício Borges", new DateTime(1996, 11, 30));
             mauricioBorges.Cargo = desenvolvedor;
             mauricioBorges.TurnoTrabalho = TurnoTrabalho.Manha;
             Funcionarios.Add(mauricioBorges);
-
+            
             Funcionario leandroAndreolli = new Funcionario(5, "Leandro Andreolli", new DateTime(1990, 03, 07));
             leandroAndreolli.Cargo = desenvolvedor;
             leandroAndreolli.TurnoTrabalho = TurnoTrabalho.Manha;
             Funcionarios.Add(leandroAndreolli);
-
+            
             Funcionario felipeNervo = new Funcionario(6, "Felipe Nervo", new DateTime(1994, 01, 12));
             felipeNervo.Cargo = desenvolvedor;
             felipeNervo.TurnoTrabalho = TurnoTrabalho.Tarde;
             Funcionarios.Add(felipeNervo);
-
+            
             Funcionario lucasKauer = new Funcionario(7, "Lucas Kauer", new DateTime(1997, 05, 10));
             lucasKauer.Cargo = desenvolvedor;
             lucasKauer.TurnoTrabalho = TurnoTrabalho.Noite;
             Funcionarios.Add(lucasKauer);
-
+            
             Funcionario eduardoArnold = new Funcionario(8, "Eduardo Arnold", new DateTime(1989, 09, 16));
             eduardoArnold.Cargo = desenvolvedor;
             eduardoArnold.TurnoTrabalho = TurnoTrabalho.Tarde;
             Funcionarios.Add(eduardoArnold);
-
+            
             Funcionario gabrielAlboy = new Funcionario(9, "Gabriel Alboy", new DateTime(1990, 02, 25));
             gabrielAlboy.Cargo = analista;
             gabrielAlboy.TurnoTrabalho = TurnoTrabalho.Manha;
             Funcionarios.Add(gabrielAlboy);
-
+            
             Funcionario carlosHenrique = new Funcionario(10, "Carlos Henrique", new DateTime(1965, 12, 02));
             carlosHenrique.Cargo = analista;
             carlosHenrique.TurnoTrabalho = TurnoTrabalho.Tarde;
             Funcionarios.Add(carlosHenrique);
-
+            
             Funcionario margareteRicardo = new Funcionario(11, "Margarete Ricardo", new DateTime(1980, 10, 10));
             margareteRicardo.Cargo = gerente;
             margareteRicardo.TurnoTrabalho = TurnoTrabalho.Manha;
             Funcionarios.Add(margareteRicardo);
+        }
+        
+        //Exercicio A
+        public IList<Funcionario> OrdenadosPorCargo()
+        {
+            return Funcionarios.OrderBy(f => f.Cargo.Titulo).ToList();
+        }
+
+        //Exercicio B
+        public IList<Funcionario> BuscarPorNome(string nome)
+        {
+
+            var query = from f in Funcionarios
+                        where f.Nome.Contains(nome)
+                        select f;
+            return query.OrderBy(f => f.Nome).ToList();
+            //return Funcionarios.Where(f => f.Nome.Contains(nome)).OrderBy(f=>f.Nome).ToList(); 
+
+        }
+
+        //Exercicio C
+        public IList<dynamic> BuscaRapida()
+        {
+            var query = from f in Funcionarios
+                        select new
+                        {
+                            Nome = f.Nome,
+                            TituloCargo = f.Cargo.Titulo
+                        };
+
+            return query.ToList<dynamic>();
+        }
+
+        //public IList<dynamic> BuscaRapida()
+        //{
+        //    var baseDeDados = new BaseDeDados();
+        //    return baseDeDados.Funcionarios
+        //     .Select(x => new { Nome = x.Nome, TituloCargo = x.Cargo.Titulo })
+        //     .ToList<dynamic>();
+        //}
+
+        // Exercicio D
+        public IList<Funcionario> BuscaPorTurno(params TurnoTrabalho[] turno)
+        {
+            return Funcionarios.Where(f => turno.Contains(f.TurnoTrabalho)).ToList();
+        }
+
+        //Exercicio E
+        public IList<dynamic> QtdFuncionariosPorTurno()
+        {
+            return Funcionarios.GroupBy(f => f.TurnoTrabalho).Select(f => new
+            {
+                turno = f.Key,
+                count = f.Count()
+            }).ToList<dynamic>();
+
+        }
+
+        //Exercicio F
+        public IList<Funcionario> BuscarPorCargo(Cargo cargo)
+        {
+            return Funcionarios.Where(f => f.Cargo.Titulo == cargo.Titulo).ToList();
+        }
+
+        //Exercicio G
+        public IList<Funcionario> FiltrarPorIdadeAproximada(int idade)
+        {
+            DateTime data = DateTime.Now;
+            return Funcionarios.Where(f => (data.Year - f.DataNascimento.Year) > idade - 5 && (data.Year - f.DataNascimento.Year) < idade + 5).ToList();
+        }
+
+        // Exercicio H
+        public double salariomedio(TurnoTrabalho? turno)
+        {
+            TurnoTrabalho[] turnosDeTrabalho = { TurnoTrabalho.Manha, TurnoTrabalho.Tarde, TurnoTrabalho.Noite };
+            IList<Funcionario> funcio;
+            if (turno.HasValue)
+            {
+                funcio = BuscaPorTurno(turno.Value);
+            }
+            else
+            {
+                funcio = BuscaPorTurno(turnosDeTrabalho);
+            }
+            return funcio.Average(f => f.Cargo.Salario);
+        }
+
+        // Exercicio I
+        public IList<Funcionario> AniversariantesDoMes()
+        {
+            return Funcionarios.Where(f => f.DataNascimento.Month == DateTime.Now.Month).ToList();
+        }
+
+        //Exercicio J
+        public dynamic FuncionarioMaisComplexo()
+        {
+            string padrao = "[b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z]";
+            int maiorIncidenciaDeConasoantes = Funcionarios.Max(funcionario => Regex.Matches(funcionario.Nome, padrao).Count);
+
+            Funcionario funcionarioComplexo = Funcionarios.First(funcionario => Regex
+            .Matches(funcionario.Nome, padrao)
+            .Count == maiorIncidenciaDeConasoantes);
+
+            double salario = funcionarioComplexo.Cargo.Salario;
+            return new
+            {
+                Nome = funcionarioComplexo.Nome,
+                SalarioRS = "R$" + String.Format("{0:0.00}", salario),
+                SalarioUS = "U$" + String.Format("{0:0.00}", salario)
+            };
         }
     }
 }
