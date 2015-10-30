@@ -11,10 +11,10 @@ namespace Locadora.UI
     {
         static void Main(string[] args)
         {
-            Jogo j = new Jogo("Mario",25.00,Categoria.AVENTURA);
-            j.Id = 21;
+            
             Banco b = new Banco();
-            b.CadastrarNovoJogo(j);
+
+            b.ExportarRelatorio();
 
             Console.ReadLine();
         }

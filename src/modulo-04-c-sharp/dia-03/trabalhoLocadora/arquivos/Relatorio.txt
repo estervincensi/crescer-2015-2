@@ -1,0 +1,31 @@
+                              LOCADORA NUNES GAMES
+29/10/2015                                                         23:59:13
+                                Relatório de Jogos
+
+===========================================================================
+ID      NOME                                         CATEGORIA         PRECO
+001     Chrono Trigger                               RPG                 R$60                  
+002     Top Gear                                     CORRIDA             R$20                  
+003     Megaman X                                    AVENTURA            R$40                  
+004     Super Metroid                                AVENTURA            R$35                  
+005     Donkey Kong Country                          AVENTURA            R$25                  
+006     Super Mario Kart                             CORRIDA             R$40                  
+007     Super Street Fighter                         LUTA                R$25                  
+008     Mortal Kombat 2                              LUTA                R$37                  
+009     Killer Instinct                              LUTA                R$18                  
+010     Final Fight                                  AVENTURA            R$12                  
+011     Super Mario RPG                              RPG                 R$70                  
+012     Aladdin                                      AVENTURA            R$16                  
+013     Rock 'n Roll Racing                          CORRIDA             R$22                  
+014     Zelda: A link to the past                    AVENTURA            R$110                 
+015     Final Fantasy VI                             RPG                 R$305                 
+016     International Super Star Soccer Deluxe       ESPORTE             R$45                  
+017     Contra III                                   AVENTURA            R$28                  
+018     Sunset Riders                                AVENTURA            R$379                 
+019     Goof Troop                                   AVENTURA            R$419                 
+020     Mickey to Donald: Magical Adventure 3        AVENTURA            R$329                 
+021     Mario                                        AVENTURA            R$25                  
+---------------------------------------------------------------------------
+Quantidade total de jogos: 21
+Valor médio por jogo: R$98,10
+===========================================================================
