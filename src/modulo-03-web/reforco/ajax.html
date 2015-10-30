@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>aula de reforço</title
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+    var oQueExecutarSeTiverSucesso = function(res, textStatus,jqXHR){
+      console.log(res);
+      console.log(textStatus);
+      console.log(jqXHR);
+    };
+    $(function(){
+      var promessa = $.get('http://localhost:3000/usuarios/');
+      promessa.done(oQueExecutarSeTiverSucesso);
+      promessa.fail(function(xhr,textStatus,error){
+        console.error(xhr);
+        console.error(textStatus);
+        console.error(error);
+      });
+      promessa.always(function(){
+        console.log("terminou requisição!");
+      });
+    });
+    //outra forma de fazer
+    $.ajax({
+      url:'http://localhost:3000/usuarios/',
+      type: 'GET',
+      success: oQueExecutarSeTiverSucesso,
+      error: function(xhr,status,error){
+        console.log(xhr);
+        console.log(status);
+        console.log(error);
+      },
+      complete: function(){
+        console.log("terminou requisição! 2");
+      }
+    });
+    </script>
+
+  </body>
+</html>

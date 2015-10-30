@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>aula de reforço</title
+  </head>
+  <body>
+    <button id="btn-navegar">botao</button>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+    //atualiza o objeto inteiro
+    /*$.ajax({
+        url: 'http://localhost:3000/usuarios/2',
+        type: 'PUT',
+        data: {nome: 'Mary', pontos:42}
+      });*/
+
+    //atualiza o campo que foi passado
+    $.ajax({
+      url: 'http://localhost:3000/usuarios/2',
+      type: 'PATCH',
+      data: {pontos:59}
+    });
+    $("#btn-navegar").click(function(){
+      window.location.href = 'querystring.html?username=ester&nivel=bh';
+      localStorage.setItem('params',JSON.stringify({nome: 'ester', nivel: 'bh'}));
+    });
+    </script>
+
+  </body>
+</html>
