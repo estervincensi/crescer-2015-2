@@ -2,107 +2,117 @@
 <jogos>
   <jogo id="1">
     <nome>Chrono Trigger</nome>
-    <preco>60</preco>
+    <preco>60.00</preco>
     <categoria>RPG</categoria>
   </jogo>
   <jogo id="2">
     <nome>Top Gear</nome>
-    <preco>20</preco>
+    <preco>20.00</preco>
     <categoria>CORRIDA</categoria>
   </jogo>
   <jogo id="3">
     <nome>Megaman X</nome>
-    <preco>40</preco>
+    <preco>40.00</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
   <jogo id="4">
     <nome>Super Metroid</nome>
-    <preco>35</preco>
+    <preco>35.00</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
   <jogo id="5">
     <nome>Donkey Kong Country</nome>
-    <preco>25</preco>
+    <preco>25.00</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
   <jogo id="6">
     <nome>Super Mario Kart</nome>
-    <preco>40</preco>
+    <preco>40.00</preco>
     <categoria>CORRIDA</categoria>
   </jogo>
   <jogo id="7">
     <nome>Super Street Fighter</nome>
-    <preco>25</preco>
+    <preco>25.00</preco>
     <categoria>LUTA</categoria>
   </jogo>
   <jogo id="8">
     <nome>Mortal Kombat 2</nome>
-    <preco>37</preco>
+    <preco>37.00</preco>
     <categoria>LUTA</categoria>
   </jogo>
   <jogo id="9">
     <nome>Killer Instinct</nome>
-    <preco>18</preco>
+    <preco>18.00</preco>
     <categoria>LUTA</categoria>
   </jogo>
   <jogo id="10">
     <nome>Final Fight</nome>
-    <preco>12</preco>
+    <preco>12.00</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
   <jogo id="11">
     <nome>Super Mario RPG</nome>
-    <preco>70</preco>
+    <preco>70.00</preco>
     <categoria>RPG</categoria>
   </jogo>
   <jogo id="12">
     <nome>Aladdin</nome>
-    <preco>16</preco>
+    <preco>16.00</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
   <jogo id="13">
     <nome>Rock 'n Roll Racing</nome>
-    <preco>22</preco>
+    <preco>22.00</preco>
     <categoria>CORRIDA</categoria>
   </jogo>
   <jogo id="14">
     <nome>Zelda: A link to the past</nome>
-    <preco>110</preco>
+    <preco>110.00</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
   <jogo id="15">
     <nome>Final Fantasy VI</nome>
-    <preco>30.5</preco>
+    <preco>30.50</preco>
     <categoria>RPG</categoria>
   </jogo>
   <jogo id="16">
     <nome>International Super Star Soccer Deluxe</nome>
-    <preco>45</preco>
+    <preco>45.00</preco>
     <categoria>ESPORTE</categoria>
   </jogo>
   <jogo id="17">
     <nome>Contra III</nome>
-    <preco>28</preco>
+    <preco>28.00</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
   <jogo id="18">
     <nome>Sunset Riders</nome>
-    <preco>37.9</preco>
+    <preco>37.90</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
   <jogo id="19">
     <nome>Goof Troop</nome>
-    <preco>41.9</preco>
+    <preco>41.90</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
   <jogo id="20">
     <nome>Mickey to Donald: Magical Adventure 3</nome>
-    <preco>32.9</preco>
+    <preco>32.90</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
   <jogo id="21">
-    <nome>Mario</nome>
-    <preco>25</preco>
+    <nome>mario</nome>
+    <preco>15.00</preco>
+    <categoria>LUTA</categoria>
+  </jogo>
+  <jogo id="22">
+    <nome>Teste</nome>
+    <preco>50.00</preco>
+    <categoria>LUTA</categoria>
+  </jogo>
+  <jogo id="23">
+    <nome>Teste</nome>
+    <preco>20.00</preco>
     <categoria>AVENTURA</categoria>
   </jogo>
 </jogos>
