@@ -2,7 +2,20 @@
     ViewBag.Title = "Página Inicial";
 }
 
-<h2>Locadora CWI Crescer</h2>
 
-<a href="/Relatorio/JogosDisponiveis">Jogos Disponíveis</a>
+<h2 class="text-center h2">Locadora BMO</h2>
+<div class="row">
+    <div class="col-lg-6 col-md-6">
+        <p class="justifica" >
+            Locadora feita exclusivamente para o Reino de Ooo!
+        </p>
 
+    </div>
+    <div class="col-lg-6 col-md-6 text-center">
+        <img src=@Url.Content("~/Content/images/bmo.png") width="300" height="300"/>
+
+    </div>
+</div>
+<div class="row">
+    <button class="btn btn-primary" onclick="location.href='/Relatorio/JogosDisponiveis'">Relatório de Jogos</button>
+</div>

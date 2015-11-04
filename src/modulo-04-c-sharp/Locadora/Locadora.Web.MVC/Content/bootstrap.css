@@ -2091,7 +2091,7 @@ fieldset[disabled] .btn-default.active {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #428bca;
+  background-color: #63BDA5;
   border-color: #357ebd;
 }
 
@@ -4384,7 +4384,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: #63BDA5;
   border-color: #e7e7e7;
 }
 
