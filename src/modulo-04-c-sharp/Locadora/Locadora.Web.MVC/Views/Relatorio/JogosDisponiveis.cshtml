@@ -5,7 +5,7 @@
 
 <h2>Jogos disponíveis para locação</h2>
 
-<table class="table table-striped table-bordered table-hover">
+<table class="table  table-bordered table-hover" style="background-image: url('../../Content/images/adventure-time-jake.jpg'); ">
     <thead>
         <tr>
             <th>Jogo</th>            
@@ -22,7 +22,9 @@
         </tr>
     }
 </table>
-Quantidade Total de Jogos: @Model.QuantidadeTotalDeJogos<br />
-Jogo Mais Caro: @Model.JogoMaisCaro<br />
-Jogo Mais Barato: @Model.JogoMaisBarato<br />
-Valor Médio dos Jogos: @Model.ValorMedio
+<div class="alert-success">
+    Quantidade Total de Jogos: @Model.QuantidadeTotalDeJogos<br />
+    Jogo Mais Caro: @Model.JogoMaisCaro<br />
+    Jogo Mais Barato: @Model.JogoMaisBarato<br />
+    Valor Médio dos Jogos: @Model.ValorMedio
+</div>

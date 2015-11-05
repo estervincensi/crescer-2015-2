@@ -3,11 +3,34 @@
     padding-bottom: 20px;
 }
 
+.background {
+    background-image: url('images/walpaper.png');
+    position: fixed;
+    height:1080px;
+    width:1920px;
+}
+.padding{
+    padding-left:0;
+    margin:0;
+}
+.layer {
+    background-color: rgba(248, 247, 216, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.posicao{
+    position:relative;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
+
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
@@ -15,6 +38,14 @@ select,
 textarea {
     max-width: 280px;
 }
-.justifica{
-    text-align: justify
+
+.justifica {
+    text-align: justify;
+    color: #c40d0d;
+}
+.padding-top{
+    padding-top:15px;
+}
+.glyphicon{
+    color:#ff0000;  
 }
