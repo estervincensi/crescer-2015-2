@@ -13,16 +13,26 @@ namespace Locadora.Dominio
         public Categoria Categoria { get; set; }
 
         public int? IdClienteLocacao { get; private set; }
-        
+
+        public Selo Selo { get; set; }
+
+        public string Imagem { get; set; }
+
+        public string Descricao { get; set; }
+
+        public string Video { get; set; }
+
         public Jogo()
         {
 
         }
 
-        public Jogo(int id, int? idClienteLocacao = null)
+        public Jogo(int id, Selo selo, string descricao,int? idClienteLocacao = null)
         {
             this.Id = id;
             this.IdClienteLocacao = idClienteLocacao;
+            this.Selo = selo;
+            this.Descricao = descricao;
         }
 
         public void LocarPara(Cliente cliente)

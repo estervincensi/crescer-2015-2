@@ -1,0 +1,41 @@
+﻿@model JogoModel
+@{
+    ViewBag.Title = "DetalhesJogos";
+}
+
+<h2>DetalhesJogos</h2>
+
+<table class="table table-hover">
+    <tr>
+        <td>Id</td>
+        <td>@Model.IdJogo</td>
+    </tr>
+    <tr>
+        <td>Nome</td>
+        <td>@Model.Nome</td>
+    </tr>
+    <tr>
+        <td>Descrição</td>
+        <td>@Model.Descricao</td>
+    </tr>
+    <tr>
+        <td>Preço</td>
+        <td>@Model.Preco</td>
+    </tr>
+    <tr>
+        <td>Categoria</td>
+        <td>@Model.Categoria</td>
+    </tr>
+    <tr>
+        <td>Selo</td>
+        <td>@Model.Selo</td>
+    </tr>
+    <tr>
+        <td>Imagem</td>
+        <td>@Model.Imagem</td>
+    </tr>
+    <tr>
+        <td>Video</td>
+        <td>@Model.Video</td>
+    </tr>
+</table>

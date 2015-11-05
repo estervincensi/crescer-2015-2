@@ -8,17 +8,21 @@
 <table class="table  table-bordered table-hover">
     <thead>
         <tr>
+            <th class="cor"> ID</th>
             <th class="cor">Jogo</th>            
             <th class="cor">Categoria</th>
             <th class="cor">Preço</th>
+            <th class="cor">Detalhes</th>
         </tr>
     </thead>
     @foreach (var jogo in @Model.Jogos)
     {
         <tr>
+            <td>@jogo.IdJogo</td>
             <td>@jogo.Nome</td>            
             <td>@jogo.Categoria</td>
             <td>@jogo.Preco.ToString("c")</td>
+            <td><a href="~/Detalhes/DetalhesJogos/@jogo.IdJogo">Detalhes</a></td>
         </tr>
     }
 </table>
@@ -28,3 +32,4 @@
     Jogo Mais Barato: @Model.JogoMaisBarato<br />
     Valor Médio dos Jogos: @Model.ValorMedio
 </div>
+
