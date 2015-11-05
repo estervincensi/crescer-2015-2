@@ -15,27 +15,16 @@ namespace Locadora.Web.MVC.Controllers
         {
 
             var model = new RelatorioModel();
-            decimal valorJogoMaisCaro = 0;
-            decimal valorJogoMaisBarato = 10000000000;
-            decimal valorTotal = 0;
             foreach(var jogo in repositorio.BuscarTodos())
             {
                 var jogoModel = new JogoModel() { Nome = jogo.Nome, Preco = jogo.Preco, Categoria = jogo.Categoria.ToString()};
                 model.Jogos.Add(jogoModel);
-                if (jogo.Preco > valorJogoMaisCaro)
-                {
-                    valorJogoMaisCaro = jogo.Preco;
-                    model.JogoMaisCaro = jogo.Nome;
-                }
-                if(jogo.Preco < valorJogoMaisBarato)
-                {
-                    valorJogoMaisBarato = jogo.Preco;
-                    model.JogoMaisBarato = jogo.Nome;
-                }
-                valorTotal += jogo.Preco;
-                model.QuantidadeTotalDeJogos++;
             }
-            model.ValorMedio = valorTotal/ model.QuantidadeTotalDeJogos;
+            var lista = repositorio.BuscarTodos();
+            model.JogoMaisCaro = lista.First(j => j.Preco == lista.Max(j => j.Preco)).Nome;
+            model.JogoMaisBarato = lista.First(j => j.Preco == lista.Min(j => j.Preco)).Nome;
+            model.ValorMedio = repositorio.BuscarTodos().Average(x => x.Preco);
+            model.QuantidadeTotalDeJogos = repositorio.BuscarTodos().Count;
             return View(model);
         }
     }
