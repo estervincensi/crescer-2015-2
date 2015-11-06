@@ -22,7 +22,7 @@
             <td>@jogo.Nome</td>            
             <td>@jogo.Categoria</td>
             <td>@jogo.Preco.ToString("c")</td>
-            <td><a href="~/Detalhes/DetalhesJogos/@jogo.IdJogo">Detalhes</a></td>
+            <td><a href="~/Relatorio/DetalhesJogos/@jogo.IdJogo">Detalhes</a></td>
         </tr>
     }
 </table>
@@ -32,4 +32,6 @@
     Jogo Mais Barato: @Model.JogoMaisBarato<br />
     Valor Médio dos Jogos: @Model.ValorMedio
 </div>
+<br />
+<a href="~/Home/Index" class="btn btn-primary">Voltar</a>
 

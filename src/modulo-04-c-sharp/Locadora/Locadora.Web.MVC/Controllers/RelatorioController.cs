@@ -1,4 +1,5 @@
-﻿using Locadora.Dominio.Repositorio;
+﻿using Locadora.Dominio;
+using Locadora.Dominio.Repositorio;
 using Locadora.Web.MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -10,22 +11,50 @@ namespace Locadora.Web.MVC.Controllers
 {
     public class RelatorioController : Controller
     {
-        private IJogoRepositorio repositorio = new Repositorio.ADO.JogoRepositorio();
+        private IJogoRepositorio repositorio = new Repositorio.XML.JogoRepositorio();
         public ActionResult JogosDisponiveis(string nome)
         {
 
             var model = new RelatorioModel();
-            foreach (var jogo in repositorio.BuscarTodos())
+            IList<Jogo> lista;
+            if (nome != null)
+            {
+                lista = repositorio.BuscarPorNome(nome);
+            }
+            else
+            {
+                lista = repositorio.BuscarTodos();
+            }
+
+            foreach (var jogo in lista)
             {
                 var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Preco = jogo.Preco, Categoria = jogo.Categoria.ToString() };
                 model.Jogos.Add(jogoModel);
             }
-            var lista = repositorio.BuscarTodos();
-            model.JogoMaisCaro = lista.First(j => j.Preco == lista.Max(x => x.Preco)).Nome;
-            model.JogoMaisBarato = lista.First(j => j.Preco == lista.Min(x => x.Preco)).Nome;
-            model.ValorMedio = repositorio.BuscarTodos().Average(x => x.Preco);
-            model.QuantidadeTotalDeJogos = repositorio.BuscarTodos().Count;
+            //var lista = repositorio.BuscarTodos();
+            model.JogoMaisCaro = model.Jogos.OrderByDescending(j => j.Preco).First().Nome;
+            model.JogoMaisBarato = model.Jogos.OrderBy(j => j.Preco).First().Nome; ;
+            model.ValorMedio = model.Jogos.Average(j => j.Preco);
+            model.QuantidadeTotalDeJogos = model.Jogos.Count;
             return View(model);
+        }
+
+        public ActionResult DetalhesJogos(int id)
+        {
+            JogoDetalheModel jogoModel;
+            var jogo = repositorio.BuscarPorId(id);
+            jogoModel = new JogoDetalheModel()
+            {
+                IdJogo = jogo.Id,
+                Nome = jogo.Nome,
+                Preco = jogo.Preco,
+                Descricao = jogo.Descricao,
+                Categoria = jogo.Categoria.ToString(),
+                Imagem = jogo.Imagem,
+                Selo = jogo.Selo.ToString(),
+                Video = jogo.Video
+            };
+            return View(jogoModel);
         }
 
     }
