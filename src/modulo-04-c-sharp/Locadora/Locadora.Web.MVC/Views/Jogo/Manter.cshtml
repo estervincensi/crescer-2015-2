@@ -1,0 +1,41 @@
+﻿@model JogoDetalheModel
+@{
+    ViewBag.Title = "Manter";
+}
+
+<h2>Manter</h2>
+
+@using (Html.BeginForm("Salvar","Jogo",FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary(false);
+    @Html.HiddenFor(m => m.IdJogo);
+
+    @Html.LabelFor(m => m.Nome);
+    @Html.TextBoxFor(m=>m.Nome);
+    @Html.ValidationMessageFor(m=>m.Nome);
+
+    @Html.LabelFor(m => m.Preco);
+    @Html.TextBoxFor(m => m.Preco);
+    @Html.ValidationMessageFor(m => m.Nome);
+
+    @Html.LabelFor(m => m.Categoria);
+    @Html.TextBoxFor(m => m.Categoria);
+    @Html.ValidationMessageFor(m => m.Nome);
+
+    @Html.LabelFor(m => m.Descricao);
+    @Html.TextBoxFor(m => m.Descricao);
+    @Html.ValidationMessageFor(m => m.Nome);
+
+    @Html.LabelFor(m => m.Imagem);
+    @Html.TextBoxFor(m => m.Imagem);
+
+    @Html.LabelFor(m => m.Video);
+    @Html.TextBoxFor(m => m.Video);
+
+    @Html.LabelFor(m => m.Selo);
+    @Html.TextBoxFor(m => m.Selo);
+    @Html.ValidationMessageFor(m => m.Nome);
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}

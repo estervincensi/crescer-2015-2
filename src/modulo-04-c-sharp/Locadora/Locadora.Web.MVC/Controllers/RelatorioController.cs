@@ -11,13 +11,13 @@ namespace Locadora.Web.MVC.Controllers
 {
     public class RelatorioController : Controller
     {
-        private IJogoRepositorio repositorio = new Repositorio.XML.JogoRepositorio();
+        private IJogoRepositorio repositorio = new Repositorio.ADO.JogoRepositorio();
         public ActionResult JogosDisponiveis(string nome)
         {
 
             var model = new RelatorioModel();
             IList<Jogo> lista;
-            if (nome != null)
+            if (!string.IsNullOrWhiteSpace(nome))
             {
                 lista = repositorio.BuscarPorNome(nome);
             }
@@ -25,18 +25,23 @@ namespace Locadora.Web.MVC.Controllers
             {
                 lista = repositorio.BuscarTodos();
             }
-
-            foreach (var jogo in lista)
+            try
             {
-                var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Preco = jogo.Preco, Categoria = jogo.Categoria.ToString() };
-                model.Jogos.Add(jogoModel);
+                foreach (var jogo in lista)
+                {
+                    var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Preco = jogo.Preco, Categoria = jogo.Categoria.ToString() };
+                    model.Jogos.Add(jogoModel);
+                }
+                model.JogoMaisCaro = model.Jogos.OrderByDescending(j => j.Preco).First().Nome;
+                model.JogoMaisBarato = model.Jogos.OrderBy(j => j.Preco).First().Nome; ;
+                model.ValorMedio = model.Jogos.Average(j => j.Preco);
+                model.QuantidadeTotalDeJogos = model.Jogos.Count;
+                return View(model);
             }
-            //var lista = repositorio.BuscarTodos();
-            model.JogoMaisCaro = model.Jogos.OrderByDescending(j => j.Preco).First().Nome;
-            model.JogoMaisBarato = model.Jogos.OrderBy(j => j.Preco).First().Nome; ;
-            model.ValorMedio = model.Jogos.Average(j => j.Preco);
-            model.QuantidadeTotalDeJogos = model.Jogos.Count;
-            return View(model);
+            catch (InvalidOperationException)
+            {
+                return View("JogoNaoEncontrado");
+            }
         }
 
         public ActionResult DetalhesJogos(int id)

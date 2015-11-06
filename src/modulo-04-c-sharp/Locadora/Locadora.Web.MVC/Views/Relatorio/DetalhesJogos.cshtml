@@ -30,11 +30,11 @@
     </tr>
     <tr>
         <td>Imagem</td>
-        <td>@Model.Imagem</td>
+        <td><img src=@Model.Imagem></td>
     </tr>
     <tr>
         <td>Video</td>
-        <td>@Model.Video</td>
+        <td>@Html.Raw(Model.Video)</td>
     </tr>
 </table>
 <a href="~/Relatorio/JogosDisponiveis" class="btn btn-primary">Voltar</a>

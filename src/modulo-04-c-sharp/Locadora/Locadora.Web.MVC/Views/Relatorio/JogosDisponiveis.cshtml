@@ -5,14 +5,17 @@
 
 <h2>Jogos disponíveis para locação</h2>
 
+<a href="~/Jogo/Manter" class="btn btn-primary">Cadastrar Novo Jogo</a>
 <table class="table  table-bordered table-hover">
     <thead>
-        <tr>
-            <th class="cor"> ID</th>
-            <th class="cor">Jogo</th>            
-            <th class="cor">Categoria</th>
-            <th class="cor">Preço</th>
-            <th class="cor">Detalhes</th>
+        <tr class="cor">
+            <th>ID</th>
+            <th>Jogo</th>            
+            <th>Categoria</th>
+            <th>Preço</th>
+            <th>Detalhes</th>
+            <th>Editar</th>
+
         </tr>
     </thead>
     @foreach (var jogo in @Model.Jogos)
@@ -23,6 +26,7 @@
             <td>@jogo.Categoria</td>
             <td>@jogo.Preco.ToString("c")</td>
             <td><a href="~/Relatorio/DetalhesJogos/@jogo.IdJogo">Detalhes</a></td>
+            <td><a href="~/Jogo/Manter/@jogo.IdJogo" >Editar Jogo</a></td>
         </tr>
     }
 </table>
