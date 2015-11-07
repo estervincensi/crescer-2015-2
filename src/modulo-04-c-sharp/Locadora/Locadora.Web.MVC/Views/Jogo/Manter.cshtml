@@ -5,15 +5,14 @@
 
 <h2>Manter</h2>
 
-@using (Html.BeginForm("Salvar","Jogo",FormMethod.Post))
+@using (Html.BeginForm("Salvar", "Jogo", FormMethod.Post))
 {
-    @Html.AntiForgeryToken();
-    @Html.ValidationSummary(false);
+    @Html.ValidationSummary(true);
     @Html.HiddenFor(m => m.IdJogo);
 
     @Html.LabelFor(m => m.Nome);
-    @Html.TextBoxFor(m=>m.Nome);
-    @Html.ValidationMessageFor(m=>m.Nome);
+    @Html.TextBoxFor(m => m.Nome);
+    @Html.ValidationMessageFor(m => m.Nome);
 
     @Html.LabelFor(m => m.Preco);
     @Html.TextBoxFor(m => m.Preco);
@@ -38,4 +37,9 @@
     @Html.ValidationMessageFor(m => m.Nome);
 
     <button type="submit" class="btn btn-primary">Salvar</button>
+}
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 }

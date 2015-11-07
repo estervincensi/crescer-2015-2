@@ -37,7 +37,7 @@ namespace Locadora.Web.MVC.Controllers
             
         }
 
-        [ValidateAntiForgeryToken]
+        
         [HttpPost]
         public ActionResult Salvar(JogoDetalheModel model)
         {
