@@ -23,10 +23,10 @@ namespace Locadora.Repositorio.ADO
                 sql.Append(" Nome = @paramNome, ");
                 sql.Append(" Preco = @paramPreco, ");
                 sql.Append(" IdCategoria = @paramIdCategoria, ");
-                sql.Append(" IdClienteLocacao = @paramIdClienteLocacao ");
-                sql.Append(" Descricao = @paramDescricao");
-                sql.Append(" Imagem = @paramImagem");
-                sql.Append(" Video = @paramVideo");
+                sql.Append(" IdClienteLocacao = @paramIdClienteLocacao, ");
+                sql.Append(" Descricao = @paramDescricao,");
+                sql.Append(" Imagem = @paramImagem,");
+                sql.Append(" Video = @paramVideo,");
                 sql.Append(" IdSelo = @paramIdSelo");
                 sql.Append(" WHERE Id = @paramId ");
 
@@ -97,8 +97,8 @@ namespace Locadora.Repositorio.ADO
             using (IDbConnection conexao = CriarConexao())
             {
                 var sql = new StringBuilder();
-                sql.Append(" INSERT INTO Jogo (Nome, Preco, Categoria, IdClienteLocacao, Descricao, Imagem, Video, IdSelo) ");
-                sql.Append(" VALUES (@paramNome, @paramPreco, @paramCategoria, @paramIdClienteLocacao, @parmaDescricao, @paramImagem, @paramVideo, @paramIdSelo) ");
+                sql.Append(" INSERT INTO Jogo (Nome, Preco, IdCategoria, IdClienteLocacao, Descricao, Imagem, Video, IdSelo) ");
+                sql.Append(" VALUES (@paramNome, @paramPreco, @paramIdCategoria, @paramIdClienteLocacao, @paramDescricao, @paramImagem, @paramVideo, @paramIdSelo) ");
 
                 IDbCommand comando = conexao.CreateCommand();
                 comando.CommandText = sql.ToString();

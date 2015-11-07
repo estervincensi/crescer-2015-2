@@ -1,4 +1,5 @@
-﻿using Locadora.Dominio.Repositorio;
+﻿using Locadora.Dominio;
+using Locadora.Dominio.Repositorio;
 using Locadora.Web.MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -13,20 +14,21 @@ namespace Locadora.Web.MVC.Controllers
         private IJogoRepositorio repositorio = new Repositorio.ADO.JogoRepositorio();
         public ActionResult Manter(int? id)
         {
-            
+
             if (id.HasValue)
             {
                 int idComValor = (int)id;
                 var jogo = repositorio.BuscarPorId(idComValor);
-                var model = new JogoDetalheModel()
+                var model = new InserirJogoModel()
                 {
                     IdJogo = jogo.Id,
                     Nome = jogo.Nome,
                     Preco = jogo.Preco,
-                    Selo = jogo.Selo.ToString(),
-                    Categoria = jogo.Categoria.ToString(),
+                    Selo = jogo.Selo,
+                    Categoria = jogo.Categoria,
                     Imagem = jogo.Imagem,
-                    Video = jogo.Video
+                    Video = jogo.Video,
+                    Descricao = jogo.Descricao
                 };
                 return View(model);
             }
@@ -34,19 +36,52 @@ namespace Locadora.Web.MVC.Controllers
             {
                 return View();
             }
-            
+
         }
 
-        
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Salvar(JogoDetalheModel model)
+        public ActionResult Salvar(InserirJogoModel model)
         {
             if (ModelState.IsValid)
             {
                 //salvar no banco
+                if (model.IdJogo==null)
+                {
+                    Jogo inserir = new Jogo()
+                    {
+                        Nome = model.Nome,
+                        Preco = model.Preco,
+                        Selo = model.Selo,
+                        Categoria = model.Categoria,
+                        Imagem = model.Imagem,
+                        Video = model.Video,
+                        Descricao = model.Descricao
+
+                    };
+                    repositorio.Criar(inserir);
+                }
+                else
+                {
+                    int id = model.IdJogo ?? default(int);
+                    Jogo atualizar = new Jogo(id, model.Selo,model.Descricao)
+                    {
+                        Nome = model.Nome,
+                        Preco = model.Preco,
+                        Categoria = model.Categoria,
+                        Imagem = model.Imagem,
+                        Video = model.Video,
+
+                    };
+                    repositorio.Atualizar(atualizar);
+                }
                 return RedirectToAction("JogosDisponiveis","Relatorio");
             }
-            return RedirectToAction("JogosDisponiveis", "Relatorio");
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v=>v.Errors);
+                return View("Manter", model);
+            }
         }
     }
 }

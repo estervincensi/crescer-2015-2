@@ -3,38 +3,38 @@
     ViewBag.Title = "DetalhesJogos";
 }
 <h2>DetalhesJogos</h2>
-<table class="table table-hover">
+<table class="table">
     <tr>
-        <td>Id</td>
+        <td class="cor">Id</td>
         <td>@Model.IdJogo</td>
     </tr>
     <tr>
-        <td>Nome</td>
+        <td class="cor">Nome</td>
         <td>@Model.Nome</td>
     </tr>
     <tr>
-        <td>Descrição</td>
+        <td class="cor">Descrição</td>
         <td>@Model.Descricao</td>
     </tr>
     <tr>
-        <td>Preço</td>
+        <td class="cor">Preço</td>
         <td>@Model.Preco</td>
     </tr>
     <tr>
-        <td>Categoria</td>
+        <td class="cor">Categoria</td>
         <td>@Model.Categoria</td>
     </tr>
     <tr>
-        <td>Selo</td>
+        <td class="cor">Selo</td>
         <td>@Model.Selo</td>
     </tr>
     <tr>
-        <td>Imagem</td>
-        <td><img src=@Model.Imagem></td>
+        <td class="cor">Imagem</td>
+        <td><img src=@Model.Imagem class="img-responsive"></td>
     </tr>
     <tr>
-        <td>Video</td>
-        <td>@Html.Raw(Model.Video)</td>
+        <td class="cor">Video</td>
+        <td><iframe width="560" height="315" src=@Model.Video frameborder="0" allowfullscreen></iframe></td>
     </tr>
 </table>
 <a href="~/Relatorio/JogosDisponiveis" class="btn btn-primary">Voltar</a>
