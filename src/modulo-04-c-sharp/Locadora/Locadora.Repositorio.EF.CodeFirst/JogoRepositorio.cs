@@ -15,7 +15,7 @@ namespace Locadora.Repositorio.EF
         {
             using (var db = new BancoDeDados())
             {
-                return db.Jogo.Include("cliente").Where(j => j.Nome == nome).ToList();
+                return db.Jogo.Include("Cliente").Where(j => j.Nome == nome).ToList();
             }
             
         }
@@ -24,7 +24,7 @@ namespace Locadora.Repositorio.EF
         {
             using (var db = new BancoDeDados())
             {
-                return db.Jogo.Include("cliente").ToList();
+                return db.Jogo.Include("Cliente").ToList();
             }
         }
 
@@ -60,7 +60,7 @@ namespace Locadora.Repositorio.EF
         {
             using (var db = new BancoDeDados())
             {
-                return db.Jogo.Include("cliente").FirstOrDefault(j=>j.Id==id);
+                return db.Jogo.Include("Cliente").FirstOrDefault(j=>j.Id==id);
             }
         }
     }
