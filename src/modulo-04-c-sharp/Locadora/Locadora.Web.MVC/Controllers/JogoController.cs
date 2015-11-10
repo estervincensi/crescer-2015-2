@@ -11,7 +11,9 @@ namespace Locadora.Web.MVC.Controllers
 {
     public class JogoController : Controller
     {
-        private IJogoRepositorio repositorio = new Repositorio.ADO.JogoRepositorio();
+        //private IJogoRepositorio repositorio = new Repositorio.ADO.JogoRepositorio();
+        private IJogoRepositorio repositorio = new Repositorio.EF.JogoRepositorio();
+
         public ActionResult Manter(int? id)
         {
 

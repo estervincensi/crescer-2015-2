@@ -7,10 +7,11 @@
     <ProjectGuid>{3D1D2CDD-D393-4855-B142-E44E776BF78D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Locadora.Repositorio.EF.CodeFirst</RootNamespace>
-    <AssemblyName>Locadora.Repositorio.EF.CodeFirst</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>Locadora.Repositorio.EF</RootNamespace>
+    <AssemblyName>Locadora.Repositorio.EF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BancoDeDados.cs" />
+    <Compile Include="JogoRepositorio.cs" />
     <Compile Include="Migrations\201511091849562_initial.cs" />
     <Compile Include="Migrations\201511091849562_initial.Designer.cs">
       <DependentUpon>201511091849562_initial.cs</DependentUpon>
