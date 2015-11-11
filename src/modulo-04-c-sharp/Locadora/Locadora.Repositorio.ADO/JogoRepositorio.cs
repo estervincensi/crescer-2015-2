@@ -12,7 +12,7 @@ namespace Locadora.Repositorio.ADO
 {
     public class JogoRepositorio : RepositorioBase,  IJogoRepositorio
     {
-        private const string BASE_SELECT = "SELECT Id, Nome, Preco, IdCategoria, IdClienteLocacao, Descricao, Imagem, Video, IdSelo FROM Jogo ";
+        private const string BASE_SELECT = "SELECT Id, Nome, IdCategoria, IdClienteLocacao, Descricao, Imagem, Video, IdSelo FROM Jogo ";
 
         public int Atualizar(Jogo entidade)
         {
@@ -33,7 +33,6 @@ namespace Locadora.Repositorio.ADO
                 IDbCommand comando = conexao.CreateCommand();
                 comando.CommandText = sql.ToString();
                 comando.AddParam("paramNome", entidade.Nome);
-                comando.AddParam("paramPreco", entidade.Preco);
                 comando.AddParam("paramIdCategoria", (int)entidade.Categoria);
                 //TODO: comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
                 comando.AddParam("paramDescricao", entidade.Descricao);
@@ -97,13 +96,12 @@ namespace Locadora.Repositorio.ADO
             using (IDbConnection conexao = CriarConexao())
             {
                 var sql = new StringBuilder();
-                sql.Append(" INSERT INTO Jogo (Nome, Preco, IdCategoria, IdClienteLocacao, Descricao, Imagem, Video, IdSelo) ");
-                sql.Append(" VALUES (@paramNome, @paramPreco, @paramIdCategoria, @paramIdClienteLocacao, @paramDescricao, @paramImagem, @paramVideo, @paramIdSelo) ");
+                sql.Append(" INSERT INTO Jogo (Nome, IdCategoria, IdClienteLocacao, Descricao, Imagem, Video, IdSelo) ");
+                sql.Append(" VALUES (@paramNome, @paramIdCategoria, @paramIdClienteLocacao, @paramDescricao, @paramImagem, @paramVideo, @paramIdSelo) ");
 
                 IDbCommand comando = conexao.CreateCommand();
                 comando.CommandText = sql.ToString();
                 comando.AddParam("paramNome", entidade.Nome);
-                comando.AddParam("paramPreco", entidade.Preco);
                 comando.AddParam("paramIdCategoria", (int)entidade.Categoria);
                 //TODO: comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
                 comando.AddParam("paramDescricao", entidade.Descricao);
@@ -153,7 +151,6 @@ namespace Locadora.Repositorio.ADO
                 );
 
             jogo.Nome = reader["Nome"].ToString();
-            jogo.Preco = Convert.ToDecimal(reader["Preco"]);
             jogo.Categoria = (Categoria)Convert.ToInt32(reader["IdCategoria"]);
             jogo.Imagem = reader["Imagem"].ToString();
             jogo.Video = reader["Video"].ToString();

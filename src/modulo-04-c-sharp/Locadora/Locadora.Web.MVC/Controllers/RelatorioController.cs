@@ -31,12 +31,9 @@ namespace Locadora.Web.MVC.Controllers
             {
                 foreach (var jogo in lista)
                 {
-                    var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Preco = jogo.Preco, Categoria = jogo.Categoria.ToString() };
+                    var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Categoria = jogo.Categoria.ToString() };
                     model.Jogos.Add(jogoModel);
                 }
-                model.JogoMaisCaro = model.Jogos.OrderByDescending(j => j.Preco).First().Nome;
-                model.JogoMaisBarato = model.Jogos.OrderBy(j => j.Preco).First().Nome; ;
-                model.ValorMedio = model.Jogos.Average(j => j.Preco);
                 model.QuantidadeTotalDeJogos = model.Jogos.Count;
                 return View(model);
             }
@@ -54,7 +51,6 @@ namespace Locadora.Web.MVC.Controllers
             {
                 IdJogo = jogo.Id,
                 Nome = jogo.Nome,
-                Preco = jogo.Preco,
                 Descricao = jogo.Descricao,
                 Categoria = jogo.Categoria.ToString(),
                 Imagem = jogo.Imagem,

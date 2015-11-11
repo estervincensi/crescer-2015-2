@@ -73,12 +73,12 @@ namespace Locadora.Repositorio.EF
             ToTable("Jogo");
             HasKey(j => j.Id);
             Property(j => j.Nome).IsRequired().HasMaxLength(250);
-            Property(j => j.Preco).IsRequired();
             Property(j => j.Descricao).IsRequired();
             Property(j => j.Imagem).IsOptional();
             Property(j => j.Video).IsOptional();
             Property(j => j.Categoria).IsRequired().HasColumnName("IdCategoria");
             Property(j => j.Selo).IsRequired().HasColumnName("IdSelo");
+            Property(j => j.DataDevolucao).IsOptional();
 
             HasOptional(p => p.Cliente).WithOptionalDependent().Map(m => m.MapKey("IdClienteLocacao"));
         }

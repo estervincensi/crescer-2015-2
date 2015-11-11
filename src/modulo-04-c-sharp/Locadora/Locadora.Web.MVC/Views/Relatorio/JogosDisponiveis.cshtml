@@ -13,7 +13,6 @@
             <th>ID</th>
             <th>Jogo</th>            
             <th>Categoria</th>
-            <th>Preço</th>
             <th>Detalhes</th>
             <th>Editar</th>
 
@@ -25,7 +24,6 @@
             <td>@jogo.IdJogo</td>
             <td>@jogo.Nome</td>            
             <td>@jogo.Categoria</td>
-            <td>@jogo.Preco.ToString("c")</td>
             <td><a href="~/Relatorio/DetalhesJogos/@jogo.IdJogo">Detalhes</a></td>
             <td><a href="~/Jogo/Manter/@jogo.IdJogo" >Editar Jogo</a></td>
         </tr>
@@ -33,9 +31,6 @@
 </table>
 <div class="alert-success">
     Quantidade Total de Jogos: @Model.QuantidadeTotalDeJogos<br />
-    Jogo Mais Caro: @Model.JogoMaisCaro<br />
-    Jogo Mais Barato: @Model.JogoMaisBarato<br />
-    Valor Médio dos Jogos: @Model.ValorMedio
 </div>
 <br />
 <a href="~/Home/Index" class="btn btn-primary">Voltar</a>

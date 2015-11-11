@@ -39,5 +39,10 @@ namespace Locadora.Web.MVC.Controllers
             ModelState.AddModelError("INVALID LOGIN", "Login ou Senha Inválidos!");
             return View("Index", login);
         }
+        public ActionResult Sair()
+        {
+            ControleDeSessao.Encerrar();
+            return View("Index");
+        }
     }
 }

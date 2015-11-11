@@ -10,12 +10,13 @@ using System.Web.Mvc;
 
 namespace Locadora.Web.MVC.Controllers
 {
-    [Autorizador(Roles = "Admin")]
+    [Autorizador]
     public class JogoController : Controller
     {
         //private IJogoRepositorio repositorio = new Repositorio.ADO.JogoRepositorio();
         private IJogoRepositorio repositorio = new Repositorio.EF.JogoRepositorio();
 
+        [Autorizador(Roles = Permissao.ADMIN)]
         public ActionResult Manter(int? id)
         {
 
@@ -27,7 +28,6 @@ namespace Locadora.Web.MVC.Controllers
                 {
                     IdJogo = jogo.Id,
                     Nome = jogo.Nome,
-                    Preco = jogo.Preco,
                     Selo = jogo.Selo,
                     Categoria = jogo.Categoria,
                     Imagem = jogo.Imagem,
@@ -43,6 +43,7 @@ namespace Locadora.Web.MVC.Controllers
 
         }
 
+        [Autorizador(Roles = Permissao.ADMIN)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Salvar(InserirJogoModel model)
@@ -55,7 +56,6 @@ namespace Locadora.Web.MVC.Controllers
                     Jogo inserir = new Jogo()
                     {
                         Nome = model.Nome,
-                        Preco = model.Preco,
                         Selo = model.Selo,
                         Categoria = model.Categoria,
                         Imagem = model.Imagem,
@@ -71,7 +71,6 @@ namespace Locadora.Web.MVC.Controllers
                     Jogo atualizar = new Jogo(id, model.Selo,model.Descricao)
                     {
                         Nome = model.Nome,
-                        Preco = model.Preco,
                         Categoria = model.Categoria,
                         Imagem = model.Imagem,
                         Video = model.Video,
@@ -86,6 +85,12 @@ namespace Locadora.Web.MVC.Controllers
                 var errors = ModelState.Values.SelectMany(v=>v.Errors);
                 return View("Manter", model);
             }
+        }
+
+        public ActionResult LocarJogo(int id)
+        {
+
+            return View();
         }
     }
 }

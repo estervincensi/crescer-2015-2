@@ -8,8 +8,6 @@ namespace Locadora.Dominio
     {
         public string Nome { get; set; }
 
-        public decimal Preco { get; set; }
-
         public Categoria Categoria { get; set; }
 
         public Cliente Cliente { get; set; }
@@ -21,6 +19,8 @@ namespace Locadora.Dominio
         public string Descricao { get; set; }
 
         public string Video { get; set; }
+
+        public DateTime DataDevolucao { get; set; }
 
         public Jogo()
         {
@@ -45,7 +45,6 @@ namespace Locadora.Dominio
             var builder = new StringBuilder();
             builder.AppendLine("Id: " + this.Id);
             builder.AppendLine("Nome: " + this.Nome);
-            builder.AppendLine("Preço: " + this.Preco.ToString("C", CultureInfo.GetCultureInfo("pt-BR")));
             builder.AppendLine("Categoria: " + this.Categoria);
 
             return builder.ToString();
@@ -64,7 +63,6 @@ namespace Locadora.Dominio
 
                 return this.Id == jogoComp.Id
                     && this.Nome == jogoComp.Nome
-                    && this.Preco == jogoComp.Preco
                     && this.Categoria == jogoComp.Categoria
                     && this.Cliente.Id == jogoComp.Cliente.Id;
             }

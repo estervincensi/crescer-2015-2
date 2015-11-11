@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Locadora.Web.MVC.Models
 {
-    public class JogoModel
+    public class LocarJogoModel
     {
         public int IdJogo { get; set; }
-        public string Nome { get; set; }
-        public string Categoria { get; set; }
+        public string Imagem { get; set; }
+        public string Descricao { get; set; }
     }
 }

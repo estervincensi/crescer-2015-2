@@ -25,6 +25,11 @@ namespace Locadora.Web.MVC.Segurança
             HttpContext.Current.Session[USUARIO_LOGADO] = usuarioLogado;
 
         }
+        public static void Encerrar()
+        {
+            FormsAuthentication.SignOut();
+            HttpContext.Current.Session.Abandon();
+        }
 
     }
 }

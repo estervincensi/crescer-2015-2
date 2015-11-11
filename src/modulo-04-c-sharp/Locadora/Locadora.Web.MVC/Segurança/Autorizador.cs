@@ -15,7 +15,7 @@ namespace Locadora.Web.MVC.Segurança
         {
             UsuarioLogado usuarioLogado = ControleDeSessao.UsuarioLogado;
 
-            if (usuarioLogado != null && AuthorizeCore(filterContext.HttpContext))
+            if (usuarioLogado != null)
             {
                 var identidade = new GenericIdentity(usuarioLogado.Email);
                 string[] roles = usuarioLogado.Permissoes;
