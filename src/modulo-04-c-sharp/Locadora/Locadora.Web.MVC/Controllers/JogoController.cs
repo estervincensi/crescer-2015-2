@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Locadora.Web.MVC.Controllers
 {
-    [Autorizador]
+    [Autorizador(Roles = "Admin")]
     public class JogoController : Controller
     {
         //private IJogoRepositorio repositorio = new Repositorio.ADO.JogoRepositorio();

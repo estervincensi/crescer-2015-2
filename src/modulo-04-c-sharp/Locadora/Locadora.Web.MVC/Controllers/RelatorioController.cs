@@ -46,7 +46,6 @@ namespace Locadora.Web.MVC.Controllers
             }
         }
 
-        [Autorizador(Roles ="DetalhesDoJogo")]
         public ActionResult DetalhesJogos(int id)
         {
             JogoDetalheModel jogoModel;

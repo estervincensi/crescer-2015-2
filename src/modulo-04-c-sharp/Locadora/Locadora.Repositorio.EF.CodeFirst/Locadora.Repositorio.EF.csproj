@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201511101731202_UsuarioPermissao.Designer.cs">
       <DependentUpon>201511101731202_UsuarioPermissao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511110242405_correcoes.cs" />
+    <Compile Include="Migrations\201511110242405_correcoes.Designer.cs">
+      <DependentUpon>201511110242405_correcoes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioRepositorio.cs" />
@@ -81,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511101731202_UsuarioPermissao.resx">
       <DependentUpon>201511101731202_UsuarioPermissao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511110242405_correcoes.resx">
+      <DependentUpon>201511110242405_correcoes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
