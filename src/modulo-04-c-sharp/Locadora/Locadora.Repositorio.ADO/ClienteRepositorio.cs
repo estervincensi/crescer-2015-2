@@ -30,6 +30,11 @@ namespace Locadora.Repositorio.ADO
             throw new NotImplementedException();
         }
 
+        public Cliente BuscaUmClientePorNome(string nome)
+        {
+            throw new NotImplementedException();
+        }
+
         public int Criar(Cliente entidade)
         {
             throw new NotImplementedException();

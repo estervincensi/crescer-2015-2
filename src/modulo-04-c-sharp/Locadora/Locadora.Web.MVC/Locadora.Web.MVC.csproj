@@ -195,6 +195,7 @@
     <Compile Include="Helpers\CriarModulos.cs" />
     <Compile Include="Models\InserirJogoModel.cs" />
     <Compile Include="Models\JogoDetalheModel.cs" />
+    <Compile Include="Models\JogoLocadoModel.cs" />
     <Compile Include="Models\JogoModel.cs" />
     <Compile Include="Models\LocarJogoModel.cs" />
     <Compile Include="Models\LoginModel.cs" />

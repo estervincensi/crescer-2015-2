@@ -60,7 +60,7 @@ namespace Locadora.Web.MVC.Controllers
                         Categoria = model.Categoria,
                         Imagem = model.Imagem,
                         Video = model.Video,
-                        Descricao = model.Descricao,
+                        Descricao = model.Descricao
 
                     };
                     repositorio.Criar(inserir);
@@ -85,12 +85,6 @@ namespace Locadora.Web.MVC.Controllers
                 var errors = ModelState.Values.SelectMany(v=>v.Errors);
                 return View("Manter", model);
             }
-        }
-
-        public ActionResult LocarJogo(int id)
-        {
-
-            return View();
         }
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="Selo.cs" />
     <Compile Include="Serviços\IServicoCriptografia.cs" />
     <Compile Include="Serviços\ServicoAutenticacao.cs" />
+    <Compile Include="Serviços\ServicoLocacao.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

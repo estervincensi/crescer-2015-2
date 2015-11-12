@@ -10,6 +10,8 @@ namespace Locadora.Dominio
 
         public Categoria Categoria { get; set; }
 
+        public int? IdCliente { get; set; }
+
         public Cliente Cliente { get; set; }
 
         public Selo Selo { get; set; }
@@ -37,6 +39,7 @@ namespace Locadora.Dominio
 
         public void LocarPara(Cliente cliente)
         {
+            this.IdCliente = cliente.Id;
             this.Cliente = cliente;
         }
 

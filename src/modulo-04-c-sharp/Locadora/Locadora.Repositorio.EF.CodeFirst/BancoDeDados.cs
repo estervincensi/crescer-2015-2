@@ -80,7 +80,8 @@ namespace Locadora.Repositorio.EF
             Property(j => j.Selo).IsRequired().HasColumnName("IdSelo");
             Property(j => j.DataDevolucao).IsOptional();
 
-            HasOptional(p => p.Cliente).WithOptionalDependent().Map(m => m.MapKey("IdClienteLocacao"));
+            HasOptional(p => p.Cliente).WithMany().HasForeignKey(x => x.IdCliente);
+            //HasOptional(p => p.Cliente).WithOptionalDependent().Map(m => m.MapKey("IdClienteLocacao"));
         }
     }
 }

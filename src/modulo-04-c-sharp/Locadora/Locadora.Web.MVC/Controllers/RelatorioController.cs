@@ -1,5 +1,6 @@
 ﻿using Locadora.Dominio;
 using Locadora.Dominio.Repositorio;
+using Locadora.Web.MVC.Helpers;
 using Locadora.Web.MVC.Models;
 using Locadora.Web.MVC.Segurança;
 using System;
@@ -27,12 +28,15 @@ namespace Locadora.Web.MVC.Controllers
             {
                 lista = repositorio.BuscarTodos();
             }
-            if(lista.Count>0)
+            if (lista.Count > 0)
             {
                 foreach (var jogo in lista)
                 {
-                    var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Categoria = jogo.Categoria.ToString(),Selo=jogo.Selo };
-                    model.Jogos.Add(jogoModel);
+                    if (jogo.DataDevolucao == null)
+                    {
+                        var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Categoria = jogo.Categoria.ToString(), Selo = jogo.Selo, DataDevolucao = jogo.DataDevolucao };
+                        model.Jogos.Add(jogoModel);
+                    }
                 }
                 model.QuantidadeTotalDeJogos = model.Jogos.Count;
                 return View(model);
@@ -59,6 +63,23 @@ namespace Locadora.Web.MVC.Controllers
             };
             return View(jogoModel);
         }
+        public JsonResult ClienteAutocomplete(string term)
+        {
+            IList<Cliente> ClientesEncontrados = ObterClientesPorFiltro(term);
 
+            var json = ClientesEncontrados.Select(x => new { label = x.Nome });
+
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+
+        private IList<Cliente> ObterClientesPorFiltro(string nome)
+        {
+            IClienteRepositorio clienteRepositorio = new Repositorio.EF.ClienteRepositorio();
+
+            if (string.IsNullOrEmpty(nome))
+                return clienteRepositorio.BuscarTodos();
+            else
+                return clienteRepositorio.BuscarPorNome(nome);
+        }
     }
 }

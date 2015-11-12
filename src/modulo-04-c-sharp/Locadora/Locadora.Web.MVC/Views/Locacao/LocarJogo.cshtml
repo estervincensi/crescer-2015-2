@@ -5,9 +5,24 @@
 
 <h2>LOCAÇÃO DE JOGO</h2>
 
-@Html.Partial("_InformacoesDoJogo", Model)
+    @Html.Partial("_InformacoesDoJogo", Model)
+@using (Html.BeginForm("Salvar", "Locacao", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.IdJogo)
+    @Html.HiddenFor(m => m.DataDevolucao)
+    <br />
+    @Html.Label("Cliente")
+    <input type="text" id="cliente" name="cliente" />
+    <button type="submit" class="btn btn-primary" id="btnPesquisar">Finalizar Locação</button>
+}
 
-<br />
-@Html.Label("Cliente")
-@Html.TextBox("Cliente")
-<button class="btn btn-primary">Finalizar Locação</button>
+@section Scripts {
+    <script>
+        $("document").ready(function() {
+            $("#cliente").autocomplete({
+              source: '@Url.Action("ClienteAutocomplete", "Relatorio")',
+              select: function() { $("#btnPesquisar").click(); }
+            });
+        });
+    </script>
+}
