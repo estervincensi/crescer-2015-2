@@ -10,7 +10,7 @@ namespace Locadora.Dominio
     {
         public string Nome { get; set; }
 
-        public Cliente()
+        private Cliente()
         {
 
         }

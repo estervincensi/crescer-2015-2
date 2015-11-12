@@ -1,0 +1,15 @@
+﻿@model LocarJogoModel
+
+<div class="row">
+    <div class="col-lg-3 col-md-3"></div>
+    <div class="col-lg-3 col-md-3"><img src="@Html.DisplayFor(m =>m.Imagem)" /></div>
+    <div class="col-lg-3 col-md-3">
+        <p>
+            <h2>@Html.DisplayFor(m => m.Nome)</h2>
+            @Html.Label("Data prevista de devolução:")
+            @Html.DisplayFor(m => m.DataDevolucao)<br />
+            @Html.Label("Valor:")
+            @Html.DisplayFor(m => m.Valor)
+        </p>
+    </div>
+</div>

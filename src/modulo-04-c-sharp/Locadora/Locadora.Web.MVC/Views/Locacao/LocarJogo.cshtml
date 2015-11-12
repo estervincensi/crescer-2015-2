@@ -1,0 +1,13 @@
+﻿@model LocarJogoModel
+@{
+    ViewBag.Title = "LocarJogo";
+}
+
+<h2>LOCAÇÃO DE JOGO</h2>
+
+@Html.Partial("_InformacoesDoJogo", Model)
+
+<br />
+@Html.Label("Cliente")
+@Html.TextBox("Cliente")
+<button class="btn btn-primary">Finalizar Locação</button>

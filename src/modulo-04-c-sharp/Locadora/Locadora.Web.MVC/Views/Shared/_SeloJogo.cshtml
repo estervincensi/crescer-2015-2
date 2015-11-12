@@ -1,0 +1,22 @@
+﻿@model Locadora.Dominio.Selo
+
+@{
+    string imgSelo = "";
+
+    switch (Model)
+    {
+        case Locadora.Dominio.Selo.BRONZE:
+            imgSelo = "~/Content/Images/bronze-medal.png";
+            break;
+        case Locadora.Dominio.Selo.PRATA:
+            imgSelo = "~/Content/Images/silver-medal.png";
+            break;
+        case Locadora.Dominio.Selo.OURO:
+            imgSelo = "~/Content/Images/gold-medal.png";
+            break;
+        default:
+            break;
+    }
+}
+
+<img src="@Url.Content(imgSelo)" class="imagem-selo-jogo" alt="Selo do Jogo" />

@@ -60,7 +60,7 @@ namespace Locadora.Web.MVC.Controllers
                         Categoria = model.Categoria,
                         Imagem = model.Imagem,
                         Video = model.Video,
-                        Descricao = model.Descricao
+                        Descricao = model.Descricao,
 
                     };
                     repositorio.Criar(inserir);
@@ -73,7 +73,7 @@ namespace Locadora.Web.MVC.Controllers
                         Nome = model.Nome,
                         Categoria = model.Categoria,
                         Imagem = model.Imagem,
-                        Video = model.Video,
+                        Video = model.Video
 
                     };
                     repositorio.Atualizar(atualizar);

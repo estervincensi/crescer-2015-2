@@ -23,6 +23,9 @@ namespace Locadora.Web.MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",
                         "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/themes/base")
+                .IncludeDirectory("~/Content/themes/base/", "*.css", true));
         }
     }
 }

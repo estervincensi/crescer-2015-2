@@ -27,17 +27,17 @@ namespace Locadora.Web.MVC.Controllers
             {
                 lista = repositorio.BuscarTodos();
             }
-            try
+            if(lista.Count>0)
             {
                 foreach (var jogo in lista)
                 {
-                    var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Categoria = jogo.Categoria.ToString() };
+                    var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Categoria = jogo.Categoria.ToString(),Selo=jogo.Selo };
                     model.Jogos.Add(jogoModel);
                 }
                 model.QuantidadeTotalDeJogos = model.Jogos.Count;
                 return View(model);
             }
-            catch (InvalidOperationException)
+            else
             {
                 return View("JogoNaoEncontrado");
             }

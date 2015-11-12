@@ -11,10 +11,12 @@
     <thead>
         <tr class="cor">
             <th>ID</th>
+            <th>Selo</th>
             <th>Jogo</th>            
             <th>Categoria</th>
             <th>Detalhes</th>
             <th>Editar</th>
+            <th>Locar</th>
 
         </tr>
     </thead>
@@ -22,10 +24,12 @@
     {
         <tr>
             <td>@jogo.IdJogo</td>
+            <td>@Html.Partial("~/Views/Shared/_SeloJogo.cshtml",jogo.Selo)</td>
             <td>@jogo.Nome</td>            
             <td>@jogo.Categoria</td>
             <td><a href="~/Relatorio/DetalhesJogos/@jogo.IdJogo">Detalhes</a></td>
             <td><a href="~/Jogo/Manter/@jogo.IdJogo" >Editar Jogo</a></td>
+            <td><a href="~/Locacao/LocarJogo/@jogo.IdJogo">Locar Jogo</a></td>
         </tr>
     }
 </table>

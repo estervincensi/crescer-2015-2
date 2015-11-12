@@ -20,14 +20,14 @@ namespace Locadora.Dominio
 
         public string Video { get; set; }
 
-        public DateTime DataDevolucao { get; set; }
+        public DateTime? DataDevolucao { get; set; }
 
         public Jogo()
         {
 
         }
 
-        public Jogo(int id, Selo selo, string descricao,Cliente cliente = null)
+        public Jogo(int id, Selo selo, string descricao, Cliente cliente = null)
         {
             this.Id = id;
             this.Cliente = cliente;
@@ -57,7 +57,7 @@ namespace Locadora.Dominio
 
         public override bool Equals(object obj)
         {
-            if(obj.GetType() == typeof(Jogo))
+            if (obj.GetType() == typeof(Jogo))
             {
                 Jogo jogoComp = (Jogo)obj;
 

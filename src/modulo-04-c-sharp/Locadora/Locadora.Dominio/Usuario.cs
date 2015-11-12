@@ -6,17 +6,24 @@ using System.Threading.Tasks;
 
 namespace Locadora.Dominio
 {
-    public class Usuario
+    public class Usuario : EntidadeBase
     {
-        public int Id { get; set; }
-        public string NomeCompleto { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public ICollection<Permissao> Permissoes { get; set; }
+        public string NomeCompleto { get; private set; }
+        public string Email { get; private set; }
+        public string Senha { get; private set; }
+        public ICollection<Permissao> Permissoes { get; private set; }
 
-        public Usuario()
+        public Usuario(string nomeCompleto, string email, string senha)
         {
+            this.NomeCompleto = nomeCompleto;
+            this.Senha = senha;
+            this.Email = email;
             this.Permissoes = new HashSet<Permissao>();
+        }
+
+        private Usuario()
+        {
+
         }
 
         public void AdicionarPermissao(Permissao permissao)
