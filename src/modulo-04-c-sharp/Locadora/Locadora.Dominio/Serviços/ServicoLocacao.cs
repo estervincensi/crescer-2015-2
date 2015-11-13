@@ -16,11 +16,11 @@ namespace Locadora.Dominio.Serviços
         {
             this.jogoRepositorio = jogoRepositorio;
             this.clienteRepositorio = clienteRepositorio;
-
         }
-        public DateTime VerificaDataPrevistaDeEntrega(int id)
+
+        public DateTime VerificaDataPrevistaDeEntrega(int idJogo)
         {
-            Selo selo = BuscaSeloDoJogo(id);
+            Selo selo = BuscaSeloDoJogo(idJogo);
             if (selo == Selo.OURO)
             {
                 return DateTime.Now.AddDays(1);
@@ -69,49 +69,38 @@ namespace Locadora.Dominio.Serviços
             return true;
         }
 
-        public decimal verificaValorFinal(int id)
+        public decimal VerificaValorFinal(int id)
         {
-            Jogo j = jogoRepositorio.BuscarPorId(id);
-            if (j.Selo == Selo.OURO)
+            Jogo jogo = jogoRepositorio.BuscarPorId(id);
+            decimal valor = VerificaValorDoJogo(id);
+            if (jogo.Selo == Selo.OURO)
             {
-                if (j.DataLocacao.Value.AddDays(1) < DateTime.Now)
-                {
-                    TimeSpan intervalo = DateTime.Now - j.DataLocacao.Value.AddDays(1);
-                    int dias = intervalo.Days;
-                    return 5 * intervalo.Days + 15;
-                }
-                else
-                {
-                    return 15;
-                }
+                return ObtemValorFinal(jogo, valor, 1);
             }
-            else if(j.Selo == Selo.PRATA)
+            else if (jogo.Selo == Selo.PRATA)
             {
-                if (j.DataLocacao.Value.AddDays(2) < DateTime.Now)
-                {
-                    TimeSpan intervalo = DateTime.Now - j.DataLocacao.Value.AddDays(2);
-                    int dias = intervalo.Days;
-                    return 5 * intervalo.Days + 10;
-                }
-                else
-                {
-                    return 10;
-                }
+                return ObtemValorFinal(jogo, valor, 2);
             }
-            else if (j.Selo == Selo.PRATA)
+            else if (jogo.Selo == Selo.PRATA)
             {
-                if (j.DataLocacao.Value.AddDays(3) < DateTime.Now)
-                {
-                    TimeSpan intervalo = DateTime.Now - j.DataLocacao.Value.AddDays(3);
-                    int dias = intervalo.Days;
-                    return 5 * intervalo.Days + 5;
-                }
-                else
-                {
-                    return 5;
-                }
+                return ObtemValorFinal(jogo, valor, 3);
             }
             return 0;
+        }
+
+        private static decimal ObtemValorFinal(Jogo jogo, decimal valorOriginal, int qtdDiasSelo)
+        {
+            if (jogo.DataLocacao.Value.AddDays(qtdDiasSelo) < DateTime.Now)
+            {
+                TimeSpan intervalo = DateTime.Now - jogo.DataLocacao.Value.AddDays(qtdDiasSelo);
+                int dias = intervalo.Days;
+                return 5 * intervalo.Days + valorOriginal;
+            }
+            else
+            {
+                return valorOriginal;
+            }
+
         }
     }
 }

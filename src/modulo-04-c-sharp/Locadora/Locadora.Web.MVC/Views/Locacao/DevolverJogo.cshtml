@@ -5,14 +5,21 @@
 
 <h2>@TempData["Devolvido"]</h2>
 
-<h2>DevolverJogo</h2>
-<form method="post" action=@Url.Action("Preenche","Locacao") id="formBusca">
-    <input type="text" id="jogo" name="jogo" />
-    <input type="submit" id="btnPesquisar" value="Pesquisar" />
-</form>
+<div class="row text-center">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <h2>DevolverJogo</h2>
+        <form method="post" action=@Url.Action("Preenche","Locacao") id="formBusca">
+            <input type="text" id="jogo" name="jogo" />
+            <input type="submit" id="btnPesquisar" value="Pesquisar" class="btn btn-primary" />
+        </form>
 
 
-@Html.Partial("~/Views/Locacao/_DevolverJogoPartial.cshtml", Model)
+        @Html.Partial("~/Views/Locacao/_DevolverJogoPartial.cshtml", Model)
+    </div>
+    <div class="col-md-6 col-lg-6 col-sm-6">
+        <img src="~/Content/images/adventureTime.png" />
+    </div>
+</div>
 
 
 

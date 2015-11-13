@@ -42,6 +42,7 @@ namespace Locadora.Dominio
         {
             this.IdCliente = cliente.Id;
             this.Cliente = cliente;
+            this.DataLocacao = DateTime.Now;
         }
 
         public override string ToString()

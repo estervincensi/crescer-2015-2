@@ -2,68 +2,67 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Locadora.Dominio.Test.Mocks;
+using Locadora.Dominio.Serviços;
 
 namespace Locadora.Dominio.Test
 {
-    /// <summary>
-    /// Summary description for ServicoLocacaoTeste
-    /// </summary>
     [TestClass]
     public class ServicoLocacaoTeste
     {
-        public ServicoLocacaoTeste()
+        private ServicoLocacao CriarServicoLocacao()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+            return new ServicoLocacao(new JogoRepositorioMock(), new ClienteRepositorioMock());
         }
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
+        [TestMethod]
+        public void DataPrevistaDeEntregaEh1DiaQuandoSeloOuro()
         {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
+            ServicoLocacao locacao = CriarServicoLocacao();
+            Jogo j = new Jogo(1, "teste", Selo.OURO, "abc");
+            var data = locacao.VerificaDataPrevistaDeEntrega(j.Id);
+            Assert.AreEqual(data.Date, DateTime.Now.AddDays(1).Date);
         }
-
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
+        [TestMethod]
+        public void DataPrevistaDeEntregaEh2DiasQuandoSeloPrata()
+        {
+            ServicoLocacao locacao = CriarServicoLocacao();
+            Jogo j = new Jogo(2, "teste", Selo.PRATA, "abc");
+            var data = locacao.VerificaDataPrevistaDeEntrega(j.Id);
+            Assert.AreEqual(data.Date, DateTime.Now.AddDays(2).Date);
+        }
 
         [TestMethod]
-        public void TestMethod1()
+        public void DataPrevistaDeEntregaEh3DiasQuandoSeloBronze()
         {
-            //
-            // TODO: Add test logic here
-            //
+            ServicoLocacao locacao = CriarServicoLocacao();
+            Jogo j = new Jogo(3, "teste", Selo.BRONZE, "abc");
+            var data = locacao.VerificaDataPrevistaDeEntrega(j.Id);
+            Assert.AreEqual(data.Date, DateTime.Now.AddDays(3).Date);
+        }
+
+        [TestMethod]
+        public void ValorDoJogoEh15QuandoSeloOuro()
+        {
+            ServicoLocacao locacao = CriarServicoLocacao();
+            Jogo j = new Jogo(1, "teste", Selo.OURO, "abc");
+            var preco = locacao.VerificaValorDoJogo(j.Id);
+            Assert.AreEqual(15, preco);
+        }
+        [TestMethod]
+        public void ValorDoJogoEh10QuandoSeloPrata()
+        {
+            ServicoLocacao locacao = CriarServicoLocacao();
+            Jogo j = new Jogo(2, "teste", Selo.PRATA, "abc");
+            var preco = locacao.VerificaValorDoJogo(j.Id);
+            Assert.AreEqual(10, preco);
+        }
+        [TestMethod]
+        public void ValorDoJogoEh5QuandoSeloBronze()
+        {
+            ServicoLocacao locacao = CriarServicoLocacao();
+            Jogo j = new Jogo(3, "teste", Selo.BRONZE, "abc");
+            var preco = locacao.VerificaValorDoJogo(j.Id);
+            Assert.AreEqual(5, preco);
         }
     }
 }

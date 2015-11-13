@@ -39,5 +39,18 @@ textarea {
 .tamanho {
     display: block;
     height: auto;
-    max-width: 80%;
+    width:80%;
+}
+
+.position-absolute{
+    position:absolute;
+}
+
+.medalha{
+    width:70px;
+    height:70px;
+    margin-top:-91px;
+}
+position-relative{
+    position:relative;
 }

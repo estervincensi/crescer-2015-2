@@ -3,28 +3,36 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Login</h2>
 
-@using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form" }))
-{
-    @Html.AntiForgeryToken();
-    @Html.ValidationSummary(true);
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Email)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Senha)
-        @Html.PasswordFor(m => m.Senha, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Senha)
-    </div>
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <h2>Login</h2>
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form" }))
+            {
+            @Html.AntiForgeryToken();
+            @Html.ValidationSummary(true);
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Senha)
+                    @Html.PasswordFor(m => m.Senha, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Senha)
+                </div>
 
-    <input type="submit" name="enviar" value="Login" />
-    
-    <br />
-    @Html.ValidationMessage("INVALID LOGIN");
-}
+                <input type="submit" name="enviar" value="Login" class="btn btn-primary" />
+
+                <br />
+                @Html.ValidationMessage("INVALID LOGIN");
+            }
+    </div>
+    <div class="col-lg-4">
+        <img src="~/Content/images/adventureTime.png" />
+    </div>
+</div>
 
 @section Scripts {
     <script src="~/Scripts/jquery.validate.js"></script>

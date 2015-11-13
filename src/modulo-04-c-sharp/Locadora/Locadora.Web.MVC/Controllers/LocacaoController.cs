@@ -37,12 +37,15 @@ namespace Locadora.Web.MVC.Controllers
 
         public ActionResult Salvar(JogoLocadoModel model)
         {
-            if (servicoLocacao.PodeLocar(model.Cliente))
+            if (string.IsNullOrWhiteSpace(model.Cliente))
+            {
+                return View("Erro");
+            }
+            else if (servicoLocacao.PodeLocar(model.Cliente))
             {
                 var jogo = repositorio.BuscarPorId(model.IdJogo);
                 var cliente = repositorioCliente.BuscaUmClientePorNome(model.Cliente);
                 jogo.LocarPara(cliente);
-                jogo.DataLocacao = DateTime.Now;
                 repositorio.Atualizar(jogo);
                 return RedirectToAction("JogosDisponiveis", "Relatorio");
             }
@@ -63,21 +66,37 @@ namespace Locadora.Web.MVC.Controllers
         {
             LocarJogoModel model;
             Jogo jogo1 = repositorio.BuscarPorNome(jogo).First();
-            model = new LocarJogoModel() { IdJogo = jogo1.Id, DataDevolucao = jogo1.DataLocacao, Nome = jogo1.Nome };
-            model.Valor = servicoLocacao.verificaValorFinal(jogo1.Id);
+            if (jogo1.DataLocacao != null)
+            {
 
-            return View("DevolverJogo", model);
+                model = new LocarJogoModel() { IdJogo = jogo1.Id, DataDevolucao = jogo1.DataLocacao, Nome = jogo1.Nome };
+                model.Valor = servicoLocacao.VerificaValorFinal(jogo1.Id);
+
+                return View("DevolverJogo", model);
+            }
+            else
+            {
+                return View("Erro");
+            }
         }
-        public ActionResult FinalizaDevolucao(int IdJogo)
+        public ActionResult FinalizaDevolucao(int? IdJogo)
         {
-
-            Jogo jogo = repositorio.BuscarPorId(IdJogo);
-            jogo.DataLocacao = null;
-            jogo.IdCliente = null;
-            jogo.Cliente = null;
-            repositorio.Atualizar(jogo);
-            TempData["msg"] = "Jogo Devolvido com sucesso";
-            return RedirectToAction("DevolverJogo");
+            if (IdJogo == null)
+            {
+                return View("Erro");
+            }
+            else
+            {
+                int idJogo = (int)IdJogo;
+                Jogo jogo = repositorio.BuscarPorId(idJogo);
+                jogo.DataLocacao = null;
+                jogo.IdCliente = null;
+                jogo.Cliente = null;
+                repositorio.Atualizar(jogo);
+                TempData["msg"] = "Jogo Devolvido com sucesso";
+                return RedirectToAction("DevolverJogo");
+            }
+            
 
         }
 

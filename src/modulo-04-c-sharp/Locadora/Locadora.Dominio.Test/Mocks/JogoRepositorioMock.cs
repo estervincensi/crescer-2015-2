@@ -42,7 +42,12 @@ namespace Locadora.Dominio.Test.Mocks
         private IList<Jogo> Db()
         {
             var jogos = new List<Jogo>();
-            var jogo = new Jogo(1,"teste",Selo.OURO,"teste");
+            var jogo1 = new Jogo(1,"teste",Selo.OURO,"teste");
+            var jogo2 = new Jogo(2, "teste1", Selo.PRATA, "teste1");
+            var jogo3 = new Jogo(3, "teste2", Selo.BRONZE, "teste2");
+            jogos.Add(jogo1);
+            jogos.Add(jogo2);
+            jogos.Add(jogo3);
             return jogos;
         }
     }

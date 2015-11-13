@@ -19,7 +19,10 @@
             <th>Jogo</th>
             <th>Categoria</th>
             <th>Detalhes</th>
+            @if(User.IsInRole("ADMIN"))
+            {
             <th>Editar</th>
+            }
             <th>Locar</th>
 
         </tr>
@@ -33,11 +36,14 @@
             <td>@jogo.Nome</td>
             <td>@jogo.Categoria</td>
             <td><a href="~/Relatorio/DetalhesJogos/@jogo.IdJogo">Detalhes</a></td>
-            <td><a href="~/Jogo/Manter/@jogo.IdJogo">Editar Jogo</a></td>
+            @if (User.IsInRole("ADMIN"))
+            {
+                <td><a href="~/Jogo/Manter/@jogo.IdJogo">Editar Jogo</a></td>
+            }
             <td><a href="~/Locacao/LocarJogo/@jogo.IdJogo">Locar Jogo</a></td>
         </tr>
 
-    }
+        }
 </table>
 <div class="alert-success">
     Quantidade Total de Jogos: @Model.QuantidadeTotalDeJogos<br />

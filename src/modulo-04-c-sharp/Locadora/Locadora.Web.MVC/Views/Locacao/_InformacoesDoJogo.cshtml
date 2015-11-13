@@ -1,8 +1,26 @@
 ﻿@model LocarJogoModel
 
+@Styles.Render("~/Content/css")
 <div class="row">
     <div class="col-lg-3 col-md-3"></div>
-    <div class="col-lg-3 col-md-3"><img src="@Html.DisplayFor(m =>m.Imagem)" class="tamanho"/></div>
+    <div class="col-lg-3 col-md-3 position-relative">
+        <img src="@Html.DisplayFor(m =>m.Imagem)" class="tamanho" />
+        <div class="position-absolute">
+            @if (Model.Selo.ToString() == "OURO")
+            {
+                <img src="~/Content/images/gold-medal.png" class="medalha"  />
+            }
+            @if (Model.Selo.ToString() == "PRATA")
+            {
+                <img src="~/Content/images/silver-medal.png" class="medalha"  />
+            }
+            @if (Model.Selo.ToString() == "BRONZE")
+            {
+
+                <img src="~/Content/images/bronze-medal.png" class="medalha"  />
+            }
+        </div>
+    </div>
     <div class="col-lg-3 col-md-3">
         <p>
             <h2>@Html.DisplayFor(m => m.Nome)</h2>
