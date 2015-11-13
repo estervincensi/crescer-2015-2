@@ -22,19 +22,20 @@ namespace Locadora.Dominio
 
         public string Video { get; set; }
 
-        public DateTime? DataDevolucao { get; set; }
+        public DateTime? DataLocacao { get; set; }
 
         public Jogo()
         {
 
         }
 
-        public Jogo(int id, Selo selo, string descricao, Cliente cliente = null)
+        public Jogo(int id,string nome, Selo selo, string descricao, Cliente cliente = null)
         {
             this.Id = id;
             this.Cliente = cliente;
             this.Selo = selo;
             this.Descricao = descricao;
+            this.Nome = nome;
         }
 
         public void LocarPara(Cliente cliente)

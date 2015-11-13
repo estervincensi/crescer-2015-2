@@ -10,5 +10,6 @@ namespace Locadora.Web.MVC.Models
         public int IdJogo { get; set; }
         public DateTime? DataDevolucao { get; set; }
         public string Cliente { get; set; }
+        public decimal valorFinal { get; set; }
     }
 }

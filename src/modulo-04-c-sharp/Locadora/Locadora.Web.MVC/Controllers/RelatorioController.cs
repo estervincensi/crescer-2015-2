@@ -32,9 +32,9 @@ namespace Locadora.Web.MVC.Controllers
             {
                 foreach (var jogo in lista)
                 {
-                    if (jogo.DataDevolucao == null)
+                    if (jogo.DataLocacao == null)
                     {
-                        var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Categoria = jogo.Categoria.ToString(), Selo = jogo.Selo, DataDevolucao = jogo.DataDevolucao };
+                        var jogoModel = new JogoModel() { IdJogo = jogo.Id, Nome = jogo.Nome, Categoria = jogo.Categoria.ToString(), Selo = jogo.Selo, DataDevolucao = jogo.DataLocacao };
                         model.Jogos.Add(jogoModel);
                     }
                 }
@@ -63,23 +63,6 @@ namespace Locadora.Web.MVC.Controllers
             };
             return View(jogoModel);
         }
-        public JsonResult ClienteAutocomplete(string term)
-        {
-            IList<Cliente> ClientesEncontrados = ObterClientesPorFiltro(term);
-
-            var json = ClientesEncontrados.Select(x => new { label = x.Nome });
-
-            return Json(json, JsonRequestBehavior.AllowGet);
-        }
-
-        private IList<Cliente> ObterClientesPorFiltro(string nome)
-        {
-            IClienteRepositorio clienteRepositorio = new Repositorio.EF.ClienteRepositorio();
-
-            if (string.IsNullOrEmpty(nome))
-                return clienteRepositorio.BuscarTodos();
-            else
-                return clienteRepositorio.BuscarPorNome(nome);
-        }
+        
     }
 }

@@ -126,6 +126,7 @@ namespace Locadora.Repositorio.XML
 
             var jogo = new Jogo(
                     id: Convert.ToInt32(jogoXml.Attribute("id").Value),
+                    nome:"",
                     //TODO: idClienteLocacao: jogoXml.Element("id_cliente_locacao").Value.ToNullable<int>(),
                     descricao: jogoXml.Element("descricao").Value,
                     selo: ConverterXmlSeloEmEnum(jogoXml.Element("selo"))

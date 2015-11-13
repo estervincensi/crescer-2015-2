@@ -7,12 +7,10 @@
 @if (Model == null || Model.IdJogo == null)
 {
     <h2 class="text-center">Cadastrar Novo Jogo</h2>
-    TempData["Mensagem"] = "Jogo Inserido Com Sucesso!";
 }
 else
 {
     <h2 class="text-center">Editar Jogo</h2>
-    TempData["Mensagem"] = "Jogo Atualizado Com Sucesso!";
 }
 @using (Html.BeginForm("Salvar", "Jogo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {

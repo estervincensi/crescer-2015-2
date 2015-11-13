@@ -21,14 +21,23 @@ textarea {
 
 .justifica {
     text-align: justify;
-    color:#539E8A;
+    color: #539E8A;
 }
-.padding-top{
-    padding-top:15px;
+
+.padding-top {
+    padding-top: 15px;
 }
-.glyphicon{
-    color:#ff0000;  
+
+.glyphicon {
+    color: #ff0000;
 }
-.cor{
-    background-color:#63BDA5;
+
+.cor {
+    background-color: #63BDA5;
+}
+
+.tamanho {
+    display: block;
+    height: auto;
+    max-width: 80%;
 }

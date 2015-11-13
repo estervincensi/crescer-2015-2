@@ -145,6 +145,7 @@ namespace Locadora.Repositorio.ADO
         {
             var jogo = new Jogo(
                 id: Convert.ToInt32(reader["Id"]),
+                nome:"",
                 //TODO: idClienteLocacao: reader["IdClienteLocacao"].ToString().ToNullable<int>(),
                 selo: (Selo)Convert.ToInt32(reader["IdSelo"]),
                 descricao: reader["Descricao"].ToString()

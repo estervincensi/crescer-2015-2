@@ -18,7 +18,7 @@ namespace Locadora.Web.MVC.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            return View("Index","_LayoutSemLogin");
         }
 
         [HttpPost]
@@ -42,7 +42,7 @@ namespace Locadora.Web.MVC.Controllers
         public ActionResult Sair()
         {
             ControleDeSessao.Encerrar();
-            return View("Index");
+            return RedirectToAction("Index", "Login");
         }
     }
 }

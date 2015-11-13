@@ -1,0 +1,13 @@
+﻿@model LocarJogoModel
+<h1 class="alert-danger">@TempData["msg"]</h1>
+<h2>@Html.DisplayFor(m => m.Nome)</h2>
+<h3>@Html.LabelFor(m => m.DataDevolucao)</h3>
+<h3>@Html.DisplayFor(m => m.DataDevolucao)</h3>
+<h3>@Html.LabelFor(m => m.Valor)</h3>
+<h3>@Html.DisplayFor(m => m.Valor)</h3>
+
+@using (Html.BeginForm("FinalizaDevolucao", "Locacao", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.IdJogo)
+    <input type="submit" value="Finalizar Devolução" />
+}

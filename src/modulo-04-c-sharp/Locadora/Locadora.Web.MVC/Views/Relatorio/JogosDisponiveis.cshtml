@@ -6,7 +6,11 @@
 <h1>@TempData["Mensagem"]</h1>
 <h2>Jogos disponíveis para locação</h2>
 
-<a href="~/Jogo/Manter" class="btn btn-primary">Cadastrar Novo Jogo</a>
+@if (User.IsInRole("ADMIN"))
+{
+    <a href="~/Jogo/Manter" class="btn btn-primary">Cadastrar Novo Jogo</a>
+}
+
 <table class="table  table-bordered table-hover">
     <thead>
         <tr class="cor">

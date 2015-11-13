@@ -64,19 +64,20 @@ namespace Locadora.Web.MVC.Controllers
 
                     };
                     repositorio.Criar(inserir);
+                    TempData["Mensagem"] = "Jogo Inserido Com Sucesso!";
                 }
                 else
                 {
                     int id = model.IdJogo ?? default(int);
-                    Jogo atualizar = new Jogo(id, model.Selo,model.Descricao)
-                    {
-                        Nome = model.Nome,
+                    Jogo atualizar = new Jogo(id,model.Nome,model.Selo,model.Descricao)
+                    {                        
                         Categoria = model.Categoria,
                         Imagem = model.Imagem,
                         Video = model.Video
 
                     };
                     repositorio.Atualizar(atualizar);
+                    TempData["Mensagem"] = "Jogo Atualizado Com Sucesso!";
                 }
                 return RedirectToAction("JogosDisponiveis","Relatorio");
             }

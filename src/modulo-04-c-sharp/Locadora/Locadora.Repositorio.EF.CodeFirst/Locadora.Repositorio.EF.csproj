@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201511121925352_IncluindoIdClienteNoJogo.Designer.cs">
       <DependentUpon>201511121925352_IncluindoIdClienteNoJogo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511130024157_alteracoes.cs" />
+    <Compile Include="Migrations\201511130024157_alteracoes.Designer.cs">
+      <DependentUpon>201511130024157_alteracoes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioRepositorio.cs" />
@@ -109,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511121925352_IncluindoIdClienteNoJogo.resx">
       <DependentUpon>201511121925352_IncluindoIdClienteNoJogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511130024157_alteracoes.resx">
+      <DependentUpon>201511130024157_alteracoes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

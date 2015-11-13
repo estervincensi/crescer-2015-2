@@ -52,12 +52,24 @@
   </Choose>
   <ItemGroup>
     <Compile Include="JogoTest.cs" />
+    <Compile Include="Mocks\ClienteRepositorioMock.cs" />
+    <Compile Include="Mocks\JogoRepositorioMock.cs" />
+    <Compile Include="Mocks\ServicoCriptografiaMock.cs" />
+    <Compile Include="Mocks\UsuarioRepositorioMock.cs" />
+    <Compile Include="PermissaoTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicoAutenticacaoTeste.cs" />
+    <Compile Include="ServicoLocacaoTeste.cs" />
+    <Compile Include="UsuarioTeste.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Locadora.Dominio\Locadora.Dominio.csproj">
       <Project>{93d95d00-78c7-4b77-be44-686ab7a29c7c}</Project>
       <Name>Locadora.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Locadora.Infraestrutura.Servicos\Locadora.Infraestrutura.Servicos.csproj">
+      <Project>{2dfe5edc-4001-416b-9eed-034c6b7ad5a5}</Project>
+      <Name>Locadora.Infraestrutura.Servicos</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

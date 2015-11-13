@@ -183,6 +183,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\AutoCompleteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JogoController.cs" />
     <Compile Include="Controllers\LocacaoController.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Models\JogoDetalheModel.cs" />
     <Compile Include="Models\JogoLocadoModel.cs" />
     <Compile Include="Models\JogoModel.cs" />
+    <Compile Include="Models\ListaJogosLocadosModel.cs" />
     <Compile Include="Models\LocarJogoModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RelatorioModel.cs" />
@@ -219,6 +221,11 @@
     <Content Include="Views\Shared\_SeloJogo.cshtml" />
     <Content Include="Views\Locacao\LocarJogo.cshtml" />
     <Content Include="Views\Locacao\_InformacoesDoJogo.cshtml" />
+    <Content Include="Views\Locacao\NaoPermitidoLocar.cshtml" />
+    <Content Include="Views\Locacao\DevolverJogo.cshtml" />
+    <Content Include="Views\Locacao\_DevolverJogoPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutSemLogin.cshtml" />
+    <Content Include="Views\Locacao\Erro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -228,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AutoComplete\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Locadora.Dominio\Locadora.Dominio.csproj">

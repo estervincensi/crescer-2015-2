@@ -15,7 +15,7 @@ namespace Locadora.Repositorio.EF
         {
             using (var db = new BancoDeDados())
             {
-                return db.Jogo.Include("Cliente").Where(j => j.Nome == nome).ToList();
+                return db.Jogo.Include("Cliente").Where(j => j.Nome.Contains(nome)).ToList();
             }
             
         }

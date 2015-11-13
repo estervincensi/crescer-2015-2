@@ -20,7 +20,7 @@
     <script>
         $("document").ready(function() {
             $("#cliente").autocomplete({
-              source: '@Url.Action("ClienteAutocomplete", "Relatorio")',
+              source: '@Url.Action("ClienteAutocomplete", "AutoComplete")',
               select: function() { $("#btnPesquisar").click(); }
             });
         });

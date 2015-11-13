@@ -14,8 +14,10 @@ namespace Locadora.Web.MVC.Models
         public string Imagem { get; set; }
         public string Descricao { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",ApplyFormatInEditMode = true)]
+        [Display(Name="Data de Locacao:")]
         public DateTime? DataDevolucao { get; set; }
         public Selo Selo { get; set; }
+        [Display(Name = "Valor Final:")]
         public decimal Valor { get; set; }
     }
 }

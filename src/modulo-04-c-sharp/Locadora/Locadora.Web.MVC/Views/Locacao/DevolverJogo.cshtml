@@ -1,0 +1,28 @@
+﻿@model LocarJogoModel
+@{
+    ViewBag.Title = "DevolverJogo";
+}
+
+<h2>@TempData["Devolvido"]</h2>
+
+<h2>DevolverJogo</h2>
+<form method="post" action=@Url.Action("Preenche","Locacao") id="formBusca">
+    <input type="text" id="jogo" name="jogo" />
+    <input type="submit" id="btnPesquisar" value="Pesquisar" />
+</form>
+
+
+@Html.Partial("~/Views/Locacao/_DevolverJogoPartial.cshtml", Model)
+
+
+
+@section Scripts {
+    <script>
+        $("document").ready(function () {
+            $("#jogo").autocomplete({
+                source: '@Url.Action("JogoAutocomplete", "AutoComplete")',
+                select: function () { $("#formBusca").submit(); }
+            });
+        });
+    </script>
+}

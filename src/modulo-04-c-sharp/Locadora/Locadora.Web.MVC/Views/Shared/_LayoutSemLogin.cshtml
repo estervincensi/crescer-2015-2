@@ -6,7 +6,7 @@
     <title>Locadora - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+
 </head>
 <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -17,18 +17,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Início", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Relatório de Jogos", "JogosDisponiveis", "Relatorio", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Devolver Jogos", "DevolverJogo", "Locacao", new { area = "" }, new { @class = "navbar-brand" })
-                @if (User.IsInRole(Locadora.Dominio.Permissao.ADMIN)) 
-                {
-                    @Html.ActionLink("Cadastrar Jogo", "Manter", "Jogo", new { area = "" }, new { @class = "navbar-brand" })
-                }
-                @Html.ActionLink("Sair", "Sair", "Login", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
@@ -44,6 +35,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Styles.Render("~/Content/themes/base")
 
-    @RenderSection("Scripts",false)
+    @RenderSection("Scripts", false)
+
 </body>
 </html>

@@ -20,10 +20,9 @@ namespace Locadora.Dominio
             this.Email = email;
             this.Permissoes = new HashSet<Permissao>();
         }
-
-        private Usuario()
+        public Usuario()
         {
-
+            this.Permissoes = new HashSet<Permissao>();
         }
 
         public void AdicionarPermissao(Permissao permissao)

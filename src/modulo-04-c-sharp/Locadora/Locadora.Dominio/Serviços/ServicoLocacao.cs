@@ -61,9 +61,57 @@ namespace Locadora.Dominio.Serviços
         public bool PodeLocar(string nomeCliente)
         {
             Cliente cliente = clienteRepositorio.BuscaUmClientePorNome(nomeCliente);
-            var lista = jogoRepositorio.BuscarTodos().Where(j => j.Cliente.Id == cliente.Id);
+            var lista = jogoRepositorio.BuscarTodos().Where(j => j.IdCliente == cliente.Id);
+            if (lista.Count() >= 3)
+            {
+                return false;
+            }
             return true;
         }
 
+        public decimal verificaValorFinal(int id)
+        {
+            Jogo j = jogoRepositorio.BuscarPorId(id);
+            if (j.Selo == Selo.OURO)
+            {
+                if (j.DataLocacao.Value.AddDays(1) < DateTime.Now)
+                {
+                    TimeSpan intervalo = DateTime.Now - j.DataLocacao.Value.AddDays(1);
+                    int dias = intervalo.Days;
+                    return 5 * intervalo.Days + 15;
+                }
+                else
+                {
+                    return 15;
+                }
+            }
+            else if(j.Selo == Selo.PRATA)
+            {
+                if (j.DataLocacao.Value.AddDays(2) < DateTime.Now)
+                {
+                    TimeSpan intervalo = DateTime.Now - j.DataLocacao.Value.AddDays(2);
+                    int dias = intervalo.Days;
+                    return 5 * intervalo.Days + 10;
+                }
+                else
+                {
+                    return 10;
+                }
+            }
+            else if (j.Selo == Selo.PRATA)
+            {
+                if (j.DataLocacao.Value.AddDays(3) < DateTime.Now)
+                {
+                    TimeSpan intervalo = DateTime.Now - j.DataLocacao.Value.AddDays(3);
+                    int dias = intervalo.Days;
+                    return 5 * intervalo.Days + 5;
+                }
+                else
+                {
+                    return 5;
+                }
+            }
+            return 0;
+        }
     }
 }
