@@ -10,7 +10,7 @@ public class LinkedList<T> implements LinkedListsInterface<T> {
     @Override
     public void addFirst(T value) {
         Node node = new Node(value, first);
-        if (first == null) {
+        if (isEmpty()) {
             last = node;
         }
         first = node;

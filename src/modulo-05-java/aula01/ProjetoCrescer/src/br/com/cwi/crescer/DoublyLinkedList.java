@@ -1,6 +1,9 @@
 package br.com.cwi.crescer;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import br.com.cwi.crescer.LinkedList.Node;
 
 public class DoublyLinkedList<T> implements LinkedListsInterface<T> {
 
@@ -8,44 +11,95 @@ public class DoublyLinkedList<T> implements LinkedListsInterface<T> {
 
     @Override
     public void addFirst(T value) {
-        // TODO Auto-generated method stub
-
+    	Node node = new Node(value,first,null);
+    	if(isEmpty()){
+    		first = node;
+    		last = node;
+    	}else{
+    		first.setPrevious(node);
+    		first = node;
+    	}
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        return first == null;
     }
 
     @Override
     public List<T> list() {
-        // TODO Auto-generated method stub
-        return null;
+    	ArrayList<T> lista = new ArrayList<T>();
+    	Node node = first;
+    	while(node!=null){
+    		lista.add(node.getValue());
+    		node = node.getNext();
+    	}
+        return lista;
     }
 
     @Override
     public void addLast(T value) {
-        // TODO Auto-generated method stub
-
+    	if(isEmpty()){
+    		addFirst(value);
+    	}else{
+    		Node node = new Node(value);
+    		this.last.setNext(node);
+    		node.setPrevious(this.last);
+    		this.last = node;
+    	}
     }
 
-    @Override
+    public T getFirst() {
+		return first.getValue();
+	}
+
+	public T getLast() {
+		return last.getValue();
+	}
+
+	@Override
     public void removeFirst() {
-        // TODO Auto-generated method stub
+       if(first.getNext()!=null){
+    	   first = first.getNext();
+       }else{
+    	   first = null;
+       }
 
     }
 
     @Override
     public void remove(int index) {
-        // TODO Auto-generated method stub
-
+        Node tmp = getNode(index-1);
+        Node remove = tmp.getNext();
+        if(remove==last){
+        	tmp.setNext(null);
+        	last = tmp;
+        }else{
+        	Node next = remove.getNext();
+            tmp.setNext(next);
+            next.setPrevious(tmp);
+        }
     }
 
     @Override
     public void add(int index, T value) {
-        // TODO Auto-generated method stub
+        if(index==0){
+        	this.addFirst(value);
+        }else{
+        	Node previous = getNode(index-1);
+        	Node next = previous.getNext();
+        	Node node = new Node(value, next,previous);
+        	previous.setNext(node);
+        	next.setPrevious(node);
+        }
 
+    }
+    private Node getNode(int index) {
+        Node node = first;
+        for (int i = 0; i < index; i++) {
+            node = node.getNext();
+        }
+        return node;
     }
     private class Node {
 
