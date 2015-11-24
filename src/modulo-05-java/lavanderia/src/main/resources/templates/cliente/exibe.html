@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Exibe</title>
+</head>
+<body>
+	<h2>Visualizar</h2>
+	<form th:object="${cliente}">
+
+		<p>
+			<label>ID: </label> <input th:field="*{id}" type="text"
+				disabled="disabled" />
+		</p>
+
+		<p>
+			<label>Nome: </label> <input th:field="*{nome}" type="text"
+				disabled="disabled" />
+		</p>
+
+		<p>
+			<label>CPF: </label> <input th:field="*{cpf}" type="text"
+				disabled="disabled" />
+		</p>
+
+		<p>
+			<label>Email: </label> <input th:field="*{email}" type="text"
+				disabled="disabled" />
+		</p>
+
+		<p>
+			<label>Endereco: </label> <input th:field="*{endereco}" type="text"
+				disabled="disabled" />
+		</p>
+		<p>
+			<label>Bairro: </label> <input th:field="*{bairro}" type="text"
+				disabled="disabled" />
+		</p>
+
+
+		<p>
+			<label>CEP:</label> <input th:field="*{cep}" type="text" />
+		</p>
+
+		<p>
+			<label>Cidade: </label> <select th:field="*{idCidade}"
+				disabled="disabled">
+				<option th:each="c : ${cidades}" th:text="${c.nome}"
+					th:value="${c.idCidade}"></option>
+			</select>
+		</p>
+
+	</form>
+	<a th:href="${ '/clientes/'}">Voltar</a>
+</body>
+</html>

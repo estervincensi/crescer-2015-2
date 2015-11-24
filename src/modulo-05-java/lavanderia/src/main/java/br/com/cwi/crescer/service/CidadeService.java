@@ -1,22 +1,24 @@
 package br.com.cwi.crescer.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cwi.crescer.DAO.CidadeDAO;
+import br.com.cwi.crescer.domain.Cidade;
 
 @Service
 public class CidadeService {
 	private CidadeDAO cidadeDAO;
-	
+
 	@Autowired
-	public CidadeService(CidadeDAO cidadeDAO){
-		super();
+	public CidadeService(CidadeDAO cidadeDAO) {
 		this.cidadeDAO = cidadeDAO;
 	}
-	
-	public String buscarNome(Long id){
-		return cidadeDAO.findById(id).getNome();
+
+	public List<Cidade> listar() {
+		return cidadeDAO.listAll();
 	}
 
 }
