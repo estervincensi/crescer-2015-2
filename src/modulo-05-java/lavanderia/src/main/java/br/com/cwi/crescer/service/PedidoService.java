@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cwi.crescer.DAO.PedidoDAO;
+import br.com.cwi.crescer.domain.Pedido.SituacaoPedido;
 
 @Service
 public class PedidoService {
@@ -15,7 +16,7 @@ private PedidoDAO pedidoDAO;
 		this.pedidoDAO = pedidoDAO;
 	}
 	
-	public String buscarSituacao(Long id){
+	public SituacaoPedido buscarSituacao(Long id){
 		return pedidoDAO.findById(id).getSituacao();
 	}
 	

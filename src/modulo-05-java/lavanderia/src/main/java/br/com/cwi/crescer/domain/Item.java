@@ -1,98 +1,127 @@
 package br.com.cwi.crescer.domain;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Item")
-@SequenceGenerator(name = Item.SEQUENCE_NAME,sequenceName = Item.SEQUENCE_NAME)
+@Table(name = "Item")
+@SequenceGenerator(name = Item.SEQUENCE_NAME, sequenceName = Item.SEQUENCE_NAME)
 public class Item {
-	public static final String SEQUENCE_NAME="SEQ_Item";
-	
+	public static final String SEQUENCE_NAME = "SEQ_Item";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
-	@Column(name="IDItem")
+	@Column(name = "IDItem")
 	private Long idItem;
-	
-	@Column(name="IDPedido")
-	@Basic(optional=false)
-	private Long idPedido;
-	
-	@Column(name="IDProduto")
-	@Basic(optional=false)
-	private Long idProduto;
-	
-	@Column(name="Peso")
-	@Basic(optional=false)
-	private double peso;
-	
-	@Column(name="ValorUnitario")
-	@Basic(optional=false)
-	private double valorUnitario;
-	
-	@Column(name="ValorDesconto")
-	@Basic(optional=false)
-	private double valorDesconto;
-	
-	@Column(name="ValorTotal")
-	@Basic(optional=false)
-	private double valorTotal;
-	
-	@Column(name="Situacao")
-	private String situacao;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "IDPedido")
+	@Basic(optional = false)
+	private Pedido pedido;
+
+	@ManyToOne
+	@JoinColumn(name = "IDProduto")
+	@Basic(optional = false)
+	private Produto produto;
+
+	@Column(name = "Peso")
+	@Basic(optional = false)
+	private BigDecimal peso;
+
+	@Column(name = "VALORUnitario")
+	@Basic(optional = false)
+	private BigDecimal valorUnitario;
+
+	@Column(name = "VALORDesconto")
+	@Basic(optional = false)
+	private BigDecimal valorDesconto;
+
+	@Column(name = "VALORTotal")
+	@Basic(optional = false)
+	private BigDecimal valorTotal;
+
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "Situacao", length = 1)
+	private SituacaoItem situacao;
+
+	public static enum SituacaoItem {
+		PENDENTE, PROCESSANDO, PROCESSADO
+	}
+
 	public Long getIdItem() {
 		return idItem;
 	}
+
 	public void setIdItem(Long idItem) {
 		this.idItem = idItem;
 	}
-	public Long getIdPedido() {
-		return idPedido;
+
+	public Pedido getPedido() {
+		return pedido;
 	}
-	public void setIdPedido(Long idPedido) {
-		this.idPedido = idPedido;
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
-	public Long getIdProduto() {
-		return idProduto;
+
+	public Produto getProduto() {
+		return produto;
 	}
-	public void setIdProduto(Long idProduto) {
-		this.idProduto = idProduto;
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
-	public double getPeso() {
+
+	public BigDecimal getPeso() {
 		return peso;
 	}
-	public void setPeso(double peso) {
+
+	public void setPeso(BigDecimal peso) {
 		this.peso = peso;
 	}
-	public double getValorUnitario() {
+
+	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
-	public void setValorUnitario(double valorUnitario) {
+
+	public void setValorUnitario(BigDecimal valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
-	public double getValorDesconto() {
+
+	public BigDecimal getValorDesconto() {
 		return valorDesconto;
 	}
-	public void setValorDesconto(double valorDesconto) {
+
+	public void setValorDesconto(BigDecimal valorDesconto) {
 		this.valorDesconto = valorDesconto;
 	}
-	public double getValorTotal() {
+
+	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
-	public void setValorTotal(double valorTotal) {
+
+	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	public String getSituacao() {
+
+	public SituacaoItem getSituacao() {
 		return situacao;
 	}
-	public void setSituacao(String situacao) {
+
+	public void setSituacao(SituacaoItem situacao) {
 		this.situacao = situacao;
 	}
+
 }

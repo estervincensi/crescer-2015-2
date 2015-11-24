@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.cwi.crescer.domain.Item.SituacaoItem;
 import br.com.cwi.crescer.service.ItemService;
 
 @Controller
@@ -19,7 +20,7 @@ private ItemService itemService;
 	
 	@RequestMapping("/item")
 	public String exercicios(Model model){
-		String nome = itemService.buscarSituacao(1L);
+		SituacaoItem nome = itemService.buscarSituacao(1L);
 		model.addAttribute("tipo", "Item - Situacao");
 		model.addAttribute("mensagem", nome);
 		return "index2";

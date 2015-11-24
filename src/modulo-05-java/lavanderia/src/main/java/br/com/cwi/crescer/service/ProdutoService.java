@@ -1,5 +1,7 @@
 package br.com.cwi.crescer.service;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ private ProdutoDAO produtoDAO;
 		this.produtoDAO = produtoDAO;
 	}
 	
-	public double buscarValor(Long id){
+	public BigDecimal buscarValor(Long id){
 		return produtoDAO.findById(id).getValor();
 	}
 	

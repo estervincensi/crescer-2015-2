@@ -1,5 +1,7 @@
 package br.com.cwi.crescer.controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,7 @@ private ProdutoService produtoService;
 	
 	@RequestMapping("/produto")
 	public String exercicios(Model model){
-		double nome = produtoService.buscarValor(1L);
+		BigDecimal nome = produtoService.buscarValor(1L);
 		model.addAttribute("tipo", "Produto - Valor");
 		model.addAttribute("mensagem", nome);
 		return "index2";

@@ -7,20 +7,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CIDADE")
-//@SequenceGenerator(name = Cidade.SEQUENCE_NAME, sequenceName = Cidade.SEQUENCE_NAME)
+@Table(name = "CIDADE")
 public class Cidade {
-	//public static final String SEQUENCE_NAME = ""
 	@Id
-	@Column(name="IDCIDADE")
+	@Column(name = "IDCIDADE")
 	private Long idCidade;
-	
-	@Column(name="Nome", length=50)
-	@Basic(optional=false)
+
+	@Column(name = "Nome", length = 50)
+	@Basic(optional = false)
 	private String nome;
-	
-	@Column(name="UF", length=2)
-	@Basic(optional=false)
+
+	@Column(name = "UF", length = 2)
+	@Basic(optional = false)
 	private String uf;
 
 	public Long getIdCidade() {
