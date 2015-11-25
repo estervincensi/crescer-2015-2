@@ -1,92 +1,68 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
 <head>
-<meta charset="ISO-8859-1" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
-	crossorigin="anonymous" />
-<link rel="stylesheet" type="text/css" href="../../index.css" />
-<title>Remove</title>
+<title>Remover Cliente</title>
 </head>
 <body>
-	<header>
-		<div class="navbar navbar-inverse">
-			<nav>
-				<ul class="nav navbar-nav">
-					<div class="navbar-header">
-						<a class="navbar-brand" href="/" style="color: #fff;">Lavanderia
-							Crescer</a>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-md-offset-4 col-md-4">
+				<h2 class="textoCentralizado textoRoxo">Remover Cliente</h2>
+				<form th:action="@{/clientes/remover}" th:object="${cliente}"
+					method="post">
+					<div class="container-form textoRoxo">
+						<div class="form-group">
+							<input th:field="*{id}" type="hidden" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Nome: </label> <input
+								class="form-control" th:field="*{nome}" type="text"
+								disabled="disabled" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">CPF: </label> <input
+								class="form-control" th:field="*{cpf}" type="text"
+								disabled="disabled" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Endereco: </label> <input
+								class="form-control" th:field="*{endereco}" type="text"
+								disabled="disabled" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Bairro: </label> <input
+								class="form-control" th:field="*{bairro}" type="text"
+								disabled="disabled" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Cep: </label> <input
+								class="form-control" th:field="*{cep}" type="text"
+								disabled="disabled" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Email: </label> <input
+								class="form-control" th:field="*{email}" type="text"
+								disabled="disabled" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Cidade: </label> <select
+								class="form-control" th:field="*{idCidade}" disabled="disabled">
+								<option th:each="cidade : ${cidades}" th:text="${cidade.nome}"
+									th:value="${cidade.idCidade}"></option>
+							</select>
+						</div>
 					</div>
-					<li class="inline-block corBranca"><a href="/"
-						style="color: #fff;">Home</a></li>
-					<li class="inline-block"><a href="/clientes/novo"
-						style="color: #fff;">Cadastrar cliente</a></li>
-					<li class="inline-block"><a href="/clientes"
-						style="color: #fff;">Lista de clientes</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<div class="col-md-4"></div>
-	<div class="col-md-4">
-		<h2 class="textoCentralizado textoRoxo">Remover Cliente</h2>
-		<form th:action="@{/clientes/remover}" th:object="${cliente}"
-			method="post">
-			<div class="container-form">
-				<div class="form-group">
-					<input th:field="*{id}" type="hidden" />
-				</div>
-				<div class="form-group">
-					<label class="control-label">Nome: </label> <input
-						class="form-control" th:field="*{nome}" type="text"
-						disabled="disabled" />
-				</div>
-				<div class="form-group">
-					<label class="control-label">CPF: </label> <input
-						class="form-control" th:field="*{cpf}" type="text"
-						disabled="disabled" />
-				</div>
-				<div class="form-group">
-					<label class="control-label">Endereco: </label> <input
-						class="form-control" th:field="*{endereco}" type="text"
-						disabled="disabled" />
-				</div>
-				<div class="form-group">
-					<label class="control-label">Bairro: </label> <input
-						class="form-control" th:field="*{bairro}" type="text"
-						disabled="disabled" />
-				</div>
-				<div class="form-group">
-					<label class="control-label">Cep: </label> <input
-						class="form-control" th:field="*{cep}" type="text"
-						disabled="disabled" />
-				</div>
-				<div class="form-group">
-					<label class="control-label">Email: </label> <input
-						class="form-control" th:field="*{email}" type="text"
-						disabled="disabled" />
-				</div>
-				<div class="form-group">
-					<label class="control-label">Cidade: </label> <select
-						class="form-control" th:field="*{idCidade}" disabled="disabled">
-						<option th:each="cidade : ${cidades}" th:text="${cidade.nome}"
-							th:value="${cidade.idCidade}"></option>
-					</select>
-				</div>
+					<h4 style="text-align: center;">Tem certeza que gostaria de
+						remover este cliente?</h4>
+					<button class="btn btn-primary" type="submit"
+						style="background-color: #800080;">Remover</button>
+					<a class="btn btn-primary" href="/clientes"
+						style="background-color: #800080;">Cancelar</a>
+				</form>
 			</div>
-			<h4 style="text-align: center;">Tem certeza que gostaria de
-				remover este cliente?</h4>
-			<button class="btn btn-primary" type="submit">Remover</button>
-			<a class="btn btn-primary" href="/clientes">Cancelar</a>
-		</form>
+		</div>
 	</div>
-	<div class="col-md-4"></div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
-		integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
-		crossorigin="anonymous"></script>
 </body>
 </html>

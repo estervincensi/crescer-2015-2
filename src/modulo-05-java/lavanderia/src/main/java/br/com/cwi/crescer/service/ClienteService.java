@@ -55,7 +55,10 @@ public class ClienteService {
 	}
 
 	public void remover(ClienteDTO dto) {
-		clienteDAO.delete(dto.getId());
+		//clienteDAO.delete(dto.getId());
+		Cliente entity = clienteDAO.findById(dto.getId());
+		entity.setSituacao(SituacaoCliente.INATIVO);
+		clienteDAO.save(entity);
 	}
 
 }

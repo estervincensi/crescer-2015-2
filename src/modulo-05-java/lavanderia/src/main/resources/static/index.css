@@ -11,6 +11,11 @@ header :first-child{
 .navbar-inverse .navbar-nav>li>a{
 	color:#fff;
 }
+
+.altura{
+	min-height:520px;
+}
+
 .tamanho{
 	width:400px;
 }
