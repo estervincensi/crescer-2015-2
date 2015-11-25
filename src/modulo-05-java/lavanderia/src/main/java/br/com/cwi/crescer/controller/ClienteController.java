@@ -61,6 +61,17 @@ public class ClienteController {
 		clienteService.incluir(dto);
 		return new ModelAndView("redirect:/clientes");
 	}
+	
+	@RequestMapping(path = "/remover/{id}", method = RequestMethod.GET)
+	public ModelAndView viewRemove(@PathVariable("id") Long id) {
+		return new ModelAndView("cliente/remove", "cliente", clienteService.buscarClientePorId(id));
+	}
+	
+	@RequestMapping(path = "/remover", method = RequestMethod.POST)
+	public ModelAndView remove(ClienteDTO dto) { 
+		clienteService.remover(dto); //tenho que arrumar isso aqui, nao sei pq ta vindo null
+		return new ModelAndView("redirect:/clientes");
+	}
 
 	@ModelAttribute("cidades")
 	public List<Cidade> comboCidade() {
