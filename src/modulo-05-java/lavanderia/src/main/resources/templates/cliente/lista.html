@@ -2,14 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+	crossorigin="anonymous" />
 <title>Lista</title>
 </head>
 <body>
-	<h1>Listagem de Clientes</h1>
+	<header>
+		<div class="navbar navbar-inverse">
+			<nav>
+				<ul class="nav navbar-nav">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/" style="color: #fff;">Lavanderia
+							Crescer</a>
+					</div>
+					<li class="inline-block corBranca"><a href="/"
+						style="color: #fff;">Home</a></li>
+					<li class="inline-block"><a href="/clientes/novo"
+						style="color: #fff;">Cadastrar cliente</a></li>
+					<li class="inline-block"><a href="/clientes"
+						style="color: #fff;">Lista de clientes</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<h1 class="textoCentralizado textoRoxo">Listagem de Clientes</h1>
 
 	<div th:if="${not #lists.isEmpty(clientes)}">
 
-		<table>
+		<table class="table">
 
 			<tr>
 				<th>Id</th>
@@ -21,7 +44,8 @@
 				<th>Remover</th>
 			</tr>
 			<tr th:each="cliente : ${clientes}">
-				<td th:text="${cliente.id}"><a th:href="@{|/clientes/${cliente.id}|}"></a></td>
+				<td th:text="${cliente.id}"><a
+					th:href="@{|/clientes/${cliente.id}|}"></a></td>
 				<td th:text="${cliente.nome}"></td>
 				<td th:text="${cliente.cpf}"></td>
 				<td th:text="${cliente.email}"></td>
@@ -33,4 +57,8 @@
 
 	</div>
 </body>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+	integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+	crossorigin="anonymous"></script>
 </html>

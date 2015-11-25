@@ -55,7 +55,7 @@ public class ClienteService {
 	}
 
 	public void remover(ClienteDTO dto) {
-		clienteDAO.delete(dto.getId());		
+		clienteDAO.delete(dto.getId());
 	}
 
 }

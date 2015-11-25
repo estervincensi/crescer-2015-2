@@ -5,11 +5,17 @@
 	text-align: center;
 }
 
-nav{
+header :first-child{
 	background-color: #800080;
-	color: #ffffff;
-	height:60px;
-	line-height:60px;
+}
+.navbar-inverse .navbar-nav>li>a{
+	color:#fff;
+}
+.tamanho{
+	width:400px;
+}
+.fundoRoxo{
+	background-color: #800080;
 }
 
 .corpo{

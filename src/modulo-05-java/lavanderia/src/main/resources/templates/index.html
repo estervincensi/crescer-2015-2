@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<link rel="stylesheet" type="text/css" href="index.css"/>
-		<meta charset="UTF-8"/>
-		<title>Index</title>
-	</head>
-	<body>
-		<header>
+<head>
+<link rel="stylesheet" type="text/css" href="index.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+	crossorigin="anonymous" />
+<meta charset="UTF-8" />
+<title>Index</title>
+</head>
+<body>
+	<header>
+		<div class="navbar navbar-inverse">
 			<nav>
-				<ul>
-					<li>Home</li>
+				<ul class="nav navbar-nav">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/" style="color:#fff;">Lavanderia Crescer</a>
+					</div>
+					<li class="inline-block corBranca"><a href="/" style="color:#fff;">Home</a></li>
+					<li class="inline-block"><a href="/clientes/novo" style="color:#fff;">Cadastrar
+							cliente</a></li>
+					<li class="inline-block"><a href="/clientes" style="color:#fff;">Lista de
+							clientes</a></li>
 				</ul>
 			</nav>
-		</header>
-		<div class="corpo">
-			<h1 class="textoRoxo textoCentralizado" th:text="${mensagem}">index</h1>
-		</div>		
-		<footer> Lavanderia Crescer</footer>
-	</body>
+		</div>
+	</header>
+	<div class="corpo">
+		<h1 class="textoRoxo textoCentralizado" th:text="${mensagem}">index</h1>
+	</div>
+	<footer> Lavanderia Crescer</footer>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+		integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+		crossorigin="anonymous"></script>
+</body>
 </html>

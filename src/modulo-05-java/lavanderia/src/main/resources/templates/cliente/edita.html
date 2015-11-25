@@ -2,47 +2,80 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+	crossorigin="anonymous" />
 <title>Editar</title>
 </head>
 <body>
-
-	<form th:action="@{/clientes/editar}" th:object="${cliente}"
-		method="post">
-
-		<input th:field="*{id}" type="hidden" />
-
-		<p>
-			<label>Nome: </label> <input th:field="*{nome}" type="text" />
-		</p>
-
-		<p>
-			<label>CPF: </label> <input th:field="*{cpf}" type="text" />
-		</p>
-
-		<p>
-			<label>Email: </label> <input th:field="*{email}" type="text" />
-		</p>
-		<p>
-			<label>Endereco: </label> <input th:field="*{endereco}" type="text" />
-		</p>
-		<p>
-			<label>Bairro: </label> <input th:field="*{bairro}" type="text" />
-		</p>
-		<p>
-			<label>CEP: </label> <input th:field="*{cep}" type="text" />
-		</p>
-
-		<p>
-			<label>Cidade: </label> <select th:field="*{idCidade}">
-				<option th:each="c : ${cidades}" th:text="${c.nome}"
-					th:value="${c.idCidade}">[option]</option>
-			</select>
-		</p>
-
-
-
-		<button type="submit">Salvar</button>
-
-	</form>
+	<header>
+		<div class="navbar navbar-inverse">
+			<nav>
+				<ul class="nav navbar-nav">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/" style="color: #fff;">Lavanderia
+							Crescer</a>
+					</div>
+					<li class="inline-block corBranca"><a href="/"
+						style="color: #fff;">Home</a></li>
+					<li class="inline-block"><a href="/clientes/novo"
+						style="color: #fff;">Cadastrar cliente</a></li>
+					<li class="inline-block"><a href="/clientes"
+						style="color: #fff;">Lista de clientes</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<h2 class="textoCentralizado textoRoxo">Editar Cliente</h2>
+		<form th:action="@{/clientes/editar}" th:object="${cliente}"
+			method="post">
+			<div class="container-form">
+				<div class="form-group">
+					<input th:field="*{id}" type="hidden" />
+				</div>
+				<div class="form-group">
+					<label class="control-label">Nome: </label> <input
+						class="form-control" th:field="*{nome}" type="text" />
+				</div>
+				<div class="form-group">
+					<label class="control-label">CPF: </label> <input
+						class="form-control" th:field="*{cpf}" type="text" />
+				</div>
+				<div class="form-group">
+					<label class="control-label">Endereco: </label> <input
+						class="form-control" th:field="*{endereco}" type="text" />
+				</div>
+				<div class="form-group">
+					<label class="control-label">Bairro: </label> <input
+						class="form-control" th:field="*{bairro}" type="text" />
+				</div>
+				<div class="form-group">
+					<label class="control-label">Cep: </label> <input
+						class="form-control" th:field="*{cep}" type="text" />
+				</div>
+				<div class="form-group">
+					<label class="control-label">Email: </label> <input
+						class="form-control" th:field="*{email}" type="text" />
+				</div>
+				<div class="form-group">
+					<label class="control-label">Cidade: </label> <select
+						class="form-control" th:field="*{idCidade}">
+						<option th:each="cidade : ${cidades}" th:text="${cidade.nome}"
+							th:value="${cidade.idCidade}"></option>
+					</select>
+				</div>
+			</div>
+			<button class="btn btn-primary" type="submit">Salvar</button>
+			<a class="btn btn-primary" href="/clientes">Cancelar</a>
+		</form>
+	</div>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+		integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+		crossorigin="anonymous"></script>
 </body>
 </html>
