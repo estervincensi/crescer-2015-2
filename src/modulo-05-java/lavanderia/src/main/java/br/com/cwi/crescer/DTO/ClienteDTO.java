@@ -11,17 +11,21 @@ public class ClienteDTO {
 	private Long id;
 	
 	@NotBlank
+	@Length(max=50)
 	private String nome;
 	
 	@CPF
+	@NotBlank
 	private String cpf;
 	
+	@Length(max=50)
 	private String endereco;
 
-	@NotBlank
 	@Email
+	@Length(max=100)
 	private String email;
 	
+	@Length(max=50)
 	private String bairro;
 	
 	@NotNull

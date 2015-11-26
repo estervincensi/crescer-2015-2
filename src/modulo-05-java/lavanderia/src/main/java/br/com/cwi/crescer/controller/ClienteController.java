@@ -44,7 +44,11 @@ public class ClienteController {
 	}
 
 	@RequestMapping(path = "/editar", method = RequestMethod.POST)
-	public ModelAndView editar(ClienteDTO dto, RedirectAttributes redirectAttributes) {
+	public ModelAndView editar(@Valid @ModelAttribute("cliente") ClienteDTO dto, BindingResult result,
+			RedirectAttributes redirectAttributes) {
+		if(result.hasErrors()){
+			return new ModelAndView("cliente/edita");
+		}
 		clienteService.atualizar(dto);
 		redirectAttributes.addFlashAttribute("mensagem", "Operacao realizada com sucesso!");
 		return new ModelAndView("redirect:/clientes");
@@ -62,10 +66,10 @@ public class ClienteController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView incluir(@Valid @ModelAttribute("cliente") ClienteDTO dto, BindingResult result,
-		RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes) {
 		redirectAttributes.addFlashAttribute("mensagem", "Operacao realizada com sucesso!");
-		
-		if(result.hasErrors()){
+
+		if (result.hasErrors()) {
 			return new ModelAndView("cliente/novo");
 		}
 		clienteService.incluir(dto);
