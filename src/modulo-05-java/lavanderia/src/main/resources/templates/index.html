@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout">
+	layout:decorator="layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <title>Index</title>
 </head>
 <body>
 	<div layout:fragment="content">
 		<h1 class="textoRoxo textoCentralizado" th:text="${mensagem}">index</h1>
+		<h2 th:text="${#authentication.name}" sec:authorize="isAuthenticated()"></h2> 
+		
+		<h2 th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Voce e Usuario Admin</h2>
+		<h2 th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}"> Voce e Usuario normal</h2>
 	</div>
 </body>
 </html>

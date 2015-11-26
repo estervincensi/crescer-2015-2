@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <meta charset="utf-8" />
 
-<link rel="stylesheet" type="text/css" th:href="@{/index.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
@@ -27,12 +28,17 @@
 						style="color: #fff;">Cadastrar cliente</a></li>
 					<li class="inline-block"><a href="/clientes"
 						style="color: #fff;">Lista de clientes</a></li>
+					<li class="inline-block">
+						<form name="form" th:action="@{/logout}" action="/logout"
+							method="POST" sec:authorize="isAuthenticated()">
+							<button class="btn btn-primary" type="submit">Sair</button>
+						</form>
+					</li>					
 				</ul>
 			</nav>
 		</div>
 	</header>
-	<div layout:fragment="content" class="content altura">
-	</div>
+	<div layout:fragment="content" class="content altura"></div>
 	<footer> Lavanderia Crescer</footer>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"

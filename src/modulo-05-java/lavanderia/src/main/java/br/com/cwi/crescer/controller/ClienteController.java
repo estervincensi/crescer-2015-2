@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,7 +43,8 @@ public class ClienteController {
 	public ModelAndView exibe(@PathVariable("id") Long id) {
 		return new ModelAndView("cliente/exibe", "cliente", clienteService.buscarClientePorId(id));
 	}
-
+	
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(path = "/editar", method = RequestMethod.POST)
 	public ModelAndView editar(@Valid @ModelAttribute("cliente") ClienteDTO dto, BindingResult result,
 			RedirectAttributes redirectAttributes) {
@@ -53,7 +55,8 @@ public class ClienteController {
 		redirectAttributes.addFlashAttribute("mensagem", "Operacao realizada com sucesso!");
 		return new ModelAndView("redirect:/clientes");
 	}
-
+	
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(path = "/editar/{id}", method = RequestMethod.GET)
 	public ModelAndView edita(@PathVariable("id") Long id) {
 		return new ModelAndView("cliente/edita", "cliente", clienteService.buscarClientePorId(id));
