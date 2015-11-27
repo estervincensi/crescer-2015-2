@@ -1,22 +1,25 @@
 package br.com.cwi.crescer.DTO;
 
 import br.com.cwi.crescer.domain.Cliente;
+import br.com.cwi.crescer.domain.Cliente.SituacaoCliente;
 
 public class ClienteResumoDTO {
 	private Long id;
 	private String nome;
 	private String cpf;
 	private String email;
+	private SituacaoCliente situacao;
 
 	public ClienteResumoDTO() {
 	}
 
-	public ClienteResumoDTO(Long id, String nome, String cpf, String email) {
+	public ClienteResumoDTO(Long id, String nome, String cpf, String email, SituacaoCliente situacao) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
+		this.situacao = situacao;
 	}
 	
 	public ClienteResumoDTO(Cliente entity){
@@ -24,6 +27,15 @@ public class ClienteResumoDTO {
 		this.nome = entity.getNome();
 		this.cpf = entity.getCpf();
 		this.email = entity.getEmail();
+		this.situacao = entity.getSituacao();
+	}
+	
+	public SituacaoCliente getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(SituacaoCliente situacao) {
+		this.situacao = situacao;
 	}
 
 	public Long getId() {

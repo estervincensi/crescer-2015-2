@@ -39,4 +39,8 @@ public class ClienteDAO {
 		em.remove(em.getReference(Cliente.class, id));
 	}
 
+	public List<Cliente> listAll() {
+		return em.createQuery("from Cliente",Cliente.class).getResultList();
+	}
+
 }

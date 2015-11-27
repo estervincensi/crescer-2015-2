@@ -3,13 +3,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
+<meta charset="utf-8" />
 <title>Exibir Cliente</title>
 </head>
 <body>
 	<div layout:fragment="content">
 		<div class="row">
 			<div class="col-md-offset-4 col-md-4">
-				<h2 class="textoCentralizado textoRoxo">Informacoes do Cliente</h2>
+				<h2 class="textoCentralizado textoRoxo">Informações do Cliente</h2>
 				<form th:object="${cliente}">
 					<div class="container-form textoRoxo">
 						<div class="form-group">
@@ -26,7 +27,12 @@
 								disabled="disabled" />
 						</div>
 						<div class="form-group">
-							<label class="control-label">Endereco: </label> <input
+							<label class="control-label">E-mail: </label> <input
+								class="form-control" th:field="*{email}" type="text"
+								disabled="disabled" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Endereço: </label> <input
 								class="form-control" th:field="*{endereco}" type="text"
 								disabled="disabled" />
 						</div>
@@ -41,16 +47,16 @@
 								disabled="disabled" />
 						</div>
 						<div class="form-group">
-							<label class="control-label">Email: </label> <input
-								class="form-control" th:field="*{email}" type="text"
-								disabled="disabled" />
-						</div>
-						<div class="form-group">
 							<label class="control-label">Cidade: </label> <select
 								class="form-control" th:field="*{idCidade}" disabled="disabled">
 								<option th:each="cidade : ${cidades}" th:text="${cidade.nome}"
 									th:value="${cidade.idCidade}"></option>
 							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Situação: </label> <input
+								class="form-control" th:field="*{situacao}" type="text"
+								disabled="disabled" />
 						</div>
 					</div>
 					<a class="btn btn-primary" href="/clientes"

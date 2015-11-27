@@ -32,6 +32,17 @@ public class ClienteDTO {
 	private Long idCidade;
 	
 	private Long cep;
+	
+	@NotNull
+	private String situacao;
+
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
 
 	public Long getCep() {
 		return cep;

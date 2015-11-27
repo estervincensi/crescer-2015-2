@@ -3,13 +3,32 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
+<meta charset="utf-8" />
 <title>Listagem de Clientes</title>
 </head>
 <body>
 	<div layout:fragment="content">
 		<h3 class="textoRoxo" th:if="${mensagem}" th:text="${mensagem}"></h3>
 		<h1 class="textoCentralizado textoRoxo">Listagem de Clientes</h1>
+		<div class="row">
+			<div class="col-md-10">
+				<form class="form-group">
+					<div class="row">
+						<div class="col-md-2">
+							<label>Pesquisa por nome:</label>
+						</div>
+						<div class="col-md-2">
+							<input type="text" />
+						</div>
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-primary form-control">Pesquisar</button>
+						</div>
 
+
+					</div>
+				</form>
+			</div>
+		</div>
 		<div th:if="${not #lists.isEmpty(clientes)}">
 
 			<table class="table textoRoxo">
@@ -19,9 +38,9 @@
 					<th>Nome</th>
 					<th>CPF</th>
 					<th>Email</th>
+					<th>Situação</th>
 					<th>Visualizar</th>
 					<th>Editar</th>
-					<th>Remover</th>
 				</tr>
 				<tr th:each="cliente : ${clientes}">
 					<td th:text="${cliente.id}"><a
@@ -29,12 +48,11 @@
 					<td th:text="${cliente.nome}"></td>
 					<td th:text="${cliente.cpf}"></td>
 					<td th:text="${cliente.email}"></td>
+					<td th:text="${cliente.situacao}"></td>
 					<td><a th:href="${ '/clientes/' + cliente.id}"
 						class="btn btn-primary" style="background-color: #800080;">Visualizar</a></td>
 					<td><a th:href="${'/clientes/editar/' + cliente.id}"
 						class="btn btn-primary" style="background-color: #800080;">Editar</a></td>
-					<td><a th:href="${'/clientes/remover/' + cliente.id}"
-						class="btn btn-primary" style="background-color: #800080;">Remover</a></td>
 				</tr>
 			</table>
 		</div>

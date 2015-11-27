@@ -1,7 +1,10 @@
 package br.com.cwi.crescer.mapper;
 
+
+
 import br.com.cwi.crescer.DTO.ClienteDTO;
 import br.com.cwi.crescer.domain.Cliente;
+import br.com.cwi.crescer.domain.Cliente.SituacaoCliente;
 
 public class ClienteMapper {
 
@@ -13,6 +16,7 @@ public class ClienteMapper {
 		entity.setEndereco(dto.getEndereco());
 		entity.setBairro(dto.getBairro());
 		entity.setCep(dto.getCep());
+		entity.setSituacao(SituacaoCliente.valueOf(dto.getSituacao()));
 		return entity;
 	}
 
@@ -26,6 +30,7 @@ public class ClienteMapper {
 		dto.setEndereco(entity.getEndereco());
 		dto.setBairro(entity.getBairro());
 		dto.setCep(entity.getCep());
+		dto.setSituacao(entity.getSituacao().toString());
 		return dto;
 	}
 
@@ -36,6 +41,7 @@ public class ClienteMapper {
 		entity.setEndereco(dto.getEndereco());
 		entity.setBairro(dto.getBairro());
 		entity.setCep(dto.getCep());
+		entity.setSituacao(SituacaoCliente.valueOf(dto.getSituacao()));
 
 		return entity;
 	}

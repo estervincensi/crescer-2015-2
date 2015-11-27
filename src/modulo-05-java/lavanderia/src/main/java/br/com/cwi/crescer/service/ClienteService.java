@@ -26,8 +26,8 @@ public class ClienteService {
 		this.cidadeDAO = cidadeDAO;
 	}
 
-	public List<ClienteResumoDTO> listarClientesAtivos() {
-		List<Cliente> clientes = clienteDAO.findBySituacao(SituacaoCliente.ATIVO);
+	public List<ClienteResumoDTO> listarClientes() {
+		List<Cliente> clientes = clienteDAO.listAll();
 		List<ClienteResumoDTO> dtos = new ArrayList<ClienteResumoDTO>();
 		for (Cliente cliente : clientes) {
 			dtos.add(new ClienteResumoDTO(cliente));
@@ -59,6 +59,11 @@ public class ClienteService {
 		Cliente entity = clienteDAO.findById(dto.getId());
 		entity.setSituacao(SituacaoCliente.INATIVO);
 		clienteDAO.save(entity);
+	}
+
+	public List<ClienteResumoDTO> listarClientesPorNome(String nome) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

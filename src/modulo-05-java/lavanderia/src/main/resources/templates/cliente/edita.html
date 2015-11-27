@@ -3,6 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
+<meta charset="utf-8" />
 <title>Editar Cliente</title>
 </head>
 <body>
@@ -16,34 +17,39 @@
 						<div class="form-group">
 							<input th:field="*{id}" type="hidden" />
 						</div>
-						<div class="form-group" th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
 							<label class="control-label">Nome: </label> <input
-								class="form-control" th:field="*{nome}" type="text" />
-								<span class="help-inline" th:errors="*{nome}"></span>
+								class="form-control" th:field="*{nome}" type="text" /> <span
+								class="help-inline" th:errors="*{nome}"></span>
 						</div>
-						<div class="form-group" th:classappend="${#fields.hasErrors('cpf')}? 'has-error'">
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('cpf')}? 'has-error'">
 							<label class="control-label">CPF: </label> <input
-								class="form-control" th:field="*{cpf}" type="text" />
-								<span class="help-inline" th:errors="*{cpf}"></span>
+								class="form-control" th:field="*{cpf}" type="text" /> <span
+								class="help-inline" th:errors="*{cpf}"></span>
 						</div>
-						<div class="form-group" th:classappend="${#fields.hasErrors('endereco')}? 'has-error'">
-							<label class="control-label">Endereco: </label> <input
-								class="form-control" th:field="*{endereco}" type="text" />
-								<span class="help-inline" th:errors="*{endereco}"></span>
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('email')}? 'has-error'">
+							<label class="control-label">Email: </label> <input
+								class="form-control" th:field="*{email}" type="text" /> <span
+								class="help-inline" th:errors="*{email}"></span>
 						</div>
-						<div class="form-group" th:classappend="${#fields.hasErrors('bairro')}? 'has-error'">
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('endereco')}? 'has-error'">
+							<label class="control-label">Endereço: </label> <input
+								class="form-control" th:field="*{endereco}" type="text" /> <span
+								class="help-inline" th:errors="*{endereco}"></span>
+						</div>
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('bairro')}? 'has-error'">
 							<label class="control-label">Bairro: </label> <input
-								class="form-control" th:field="*{bairro}" type="text" />
-								<span class="help-inline" th:errors="*{bairro}"></span>
+								class="form-control" th:field="*{bairro}" type="text" /> <span
+								class="help-inline" th:errors="*{bairro}"></span>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Cep: </label> <input
 								class="form-control" th:field="*{cep}" type="text" />
-						</div>
-						<div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
-							<label class="control-label">Email: </label> <input
-								class="form-control" th:field="*{email}" type="text" />
-								<span class="help-inline" th:errors="*{email}"></span>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Cidade: </label> <select
@@ -51,6 +57,15 @@
 								<option th:each="cidade : ${cidades}" th:text="${cidade.nome}"
 									th:value="${cidade.idCidade}"></option>
 							</select>
+						</div>
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('situacao')}? 'has-error'">
+							<label class="control-label"> Situação: </label> <select
+								th:field="*{situacao}">
+								<option
+									th:each="situacao: ${T(br.com.cwi.crescer.domain.Cliente.SituacaoCliente).values()}"
+									th:value="${situacao}" th:text="${situacao}"></option>
+							</select> <span class="help-inline" th:errors="*{situacao}"></span>
 						</div>
 					</div>
 					<button class="btn btn-primary" type="submit"
