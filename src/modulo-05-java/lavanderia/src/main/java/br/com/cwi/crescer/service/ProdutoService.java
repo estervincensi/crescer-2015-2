@@ -72,13 +72,21 @@ private MaterialDAO materialDAO;
 	}
 
 	public List<ProdutoDTO> listarProdutosPorMaterial(String material) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Produto>produtos = produtoDAO.listarPorMaterial(material);
+		List<ProdutoDTO> dtos = new ArrayList<ProdutoDTO>();
+		for(Produto produto: produtos){
+			dtos.add(new ProdutoDTO(produto));
+		}
+		return dtos;
 	}
 
 	public List<ProdutoDTO> listarProdutosPorServico(String servico) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Produto>produtos = produtoDAO.listarPorServico(servico);
+		List<ProdutoDTO> dtos = new ArrayList<ProdutoDTO>();
+		for(Produto produto: produtos){
+			dtos.add(new ProdutoDTO(produto));
+		}
+		return dtos;
 	}
 	
 }

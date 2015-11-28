@@ -52,7 +52,7 @@ public class ProdutoController {
 			}
 			return new ModelAndView("produto/lista", "produtos", produtoService.listarProdutosPorMaterial(material));
 		}
-		if (servico != null) {
+		if (servico!= null) {
 			return new ModelAndView("produto/lista", "produtos",produtoService.listarProdutosPorServico(servico));
 		}
 		return new ModelAndView("produto/lista", "produtos", produtoService.listarProdutos());

@@ -15,11 +15,13 @@
 				<form class="form-group" th:action="@{/produto/lista}"
 					th:object="${String}">
 					<div class="row">
-						<div class="col-md-2">
+						<div class="col-md-4">
 							<select id="servico" name="servico">
+								<option disabled="disabled" selected="selected">Pesquisar por serviço</option>
 								<option th:each="servico : ${servicos}"
 									th:text="${servico.descricao}" th:value="${servico.descricao}"></option>
 							</select> <select id="material" name="material">
+								<option disabled="disabled" selected="selected">Pesquisar por materiais</option>
 								<option th:each="material : ${materiais}"
 									th:text="${material.descricao}"
 									th:value="${material.descricao}"></option>
