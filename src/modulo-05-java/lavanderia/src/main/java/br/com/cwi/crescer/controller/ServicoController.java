@@ -17,11 +17,4 @@ private ServicoService servicoService;
 		this.servicoService = servicoService;
 	}
 	
-	@RequestMapping("/servico")
-	public String exercicios(Model model){
-		String nome = servicoService.buscarDescricao(1L);
-		model.addAttribute("tipo", "Serviço - Descrição");
-		model.addAttribute("mensagem", nome);
-		return "index2";
-	}
 }

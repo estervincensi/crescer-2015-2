@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>Listagem de Produtos</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h3 class="textoRoxo" th:if="${mensagem}" th:text="${mensagem}"></h3>
+		<h1 class="textoCentralizado textoRoxo">Listagem de Produtos</h1>
+		<div class="row">
+			<div class="col-md-10">
+				<form class="form-group" th:action="@{/produtos/lista}"
+					th:object="${String}">
+					<div class="row">
+						colocar aqui os combos
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-primary form-control">Pesquisar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div th:if="${not #lists.isEmpty(produtos)}">
+
+			<table class="table textoRoxo">
+
+				<tr>
+					<th>Id</th>
+					<th>Serviço</th>
+					<th>Material</th>
+					<th>Valor</th>
+					<th>Prazo</th>
+					<th>Situação</th>
+					<th>Visualizar</th>
+					<th>Editar</th>
+				</tr>
+				<tr th:each="produto : ${produtos}">
+					<td th:text="${produto.idProduto}"><a
+						th:href="@{|/produto/${produto.idProduto}|}"></a></td>
+					<td th:if="${produto.idServico}==1">Lavar</td>
+					<td th:if="${produto.idServico}==2">Secar</td>
+					<td th:if="${produto.idMaterial}==1">Delicada</td>
+					<td th:if="${produto.idMaterial}==2">Normal</td>
+					<td th:if="${produto.idMaterial}==3">Pesada</td>
+					<td th:text="${produto.valor}"></td>
+					<td th:text="${produto.prazo}"></td>
+					<td th:text="${produto.situacao}"></td>
+					<td><a th:href="${ '/produto/' + produto.idProduto}"
+						class="btn btn-primary" style="background-color: #800080;">Visualizar</a></td>
+					<td><a th:href="${'/produto/editar/' + produto.idProduto}"
+						class="btn btn-primary" style="background-color: #800080;">Editar</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

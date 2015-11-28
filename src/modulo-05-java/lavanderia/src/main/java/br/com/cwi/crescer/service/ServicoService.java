@@ -1,9 +1,12 @@
 package br.com.cwi.crescer.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cwi.crescer.DAO.ServicoDAO;
+import br.com.cwi.crescer.domain.Servico;
 
 @Service
 public class ServicoService {
@@ -14,9 +17,9 @@ private ServicoDAO servicoDAO;
 		super();
 		this.servicoDAO = servicoDAO;
 	}
-	
-	public String buscarDescricao(Long id){
-		return servicoDAO.findById(id).getDescricao();
+
+	public List<Servico> listar() {
+		return servicoDAO.listAll();
 	}
 
 }
