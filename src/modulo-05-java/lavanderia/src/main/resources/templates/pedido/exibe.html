@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>Exibir Pedido</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div th:object="${pedido}">
+			<div class="row">
+				<div class="col-md-4">
+					<h2 class="textoCentralizado textoRoxo">Informações do Pedido</h2>
+
+					<div class="textoRoxo">
+						<input th:field="*{idPedido}" type="hidden" /> <label>Nome
+							Cliente: </label>
+						<h4 th:text="*{cliente.nome}" class="displayInline"></h4>
+						<br /> <label>Data Inclusão: </label>
+						<h4 th:text="*{dataInclusao}" class="displayInline"></h4>
+						<br /> <label>Data Entrega: </label>
+						<h4 th:text="*{dataEntrega}" class="displayInline"></h4>
+						<br /> <label>Valor Bruto: </label>
+						<h4 th:text="*{valorBruto}" class="displayInline"></h4>
+						<br /> <label>Valor Desconto: </label>
+						<h4 th:text="*{valorDesconto}" class="displayInline"></h4>
+						<br /> <label>Valor Final: </label>
+						<h4 th:text="*{valorFinal}" class="displayInline"></h4>
+						<br /> <label>Situação: </label>
+						<h4 th:text="*{situacao}" class="displayInline"></h4>
+						<br />
+					</div>
+
+				</div>
+				<div class="col-md-8">
+					<table class="table table-bordered">
+						<tr>
+							<th>IdItem</th>
+							<th>Produto (Serviço e Material)</th>
+							<th>Peso</th>
+							<th>Valor Unitário</th>
+							<th>Situação</th>
+
+						</tr>
+						<tr th:each="itens : ${pedido.itens}">
+							<td th:text="${itens.idItem}"></td>
+							<td th:each="produtos: ${itens.produto}">
+								<label th:each= "servicos: ${produtos.servico}">
+									<label th:text="${servicos.descricao}"></label>
+								</label>
+								<label th:each= "materiais: ${produtos.material}">
+									<label th:text="${materiais.descricao}"></label>
+								</label>
+							</td>
+							<td th:text="${itens.peso}"></td>
+							<td th:text="${itens.valorUnitario}"></td>
+							<td th:text="${itens.situacao}"></td>
+							
+						</tr>
+					</table>
+				</div>
+				<div class="row">
+				<div class="col-md-12"><a class="btn btn-primary" href="/pedido"
+						style="background-color: #800080;">Voltar</a></div>
+					
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

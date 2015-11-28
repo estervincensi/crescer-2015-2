@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>Listagem de Pedidos</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h3 class="textoRoxo" th:if="${mensagem}" th:text="${mensagem}"></h3>
+		<h1 class="textoCentralizado textoRoxo">Listagem de Pedidos</h1>
+		<div class="row">
+			<div class="col-md-10">
+				<form class="form-group" th:action="@{/pedido/lista}"
+					th:object="${String}">
+					<div class="row">
+						<div class="col-md-2">
+							<label>Pesquisa por cpf:</label>
+						</div>
+						<div class="col-md-2">
+							<input type="text" id="cpf" name="cpf" />
+						</div>
+						<div>
+							<label class="control-label"> Situação: </label> 
+							<select id="situacao" name="situacao">
+							<option disabled="disabled" selected="selected">Selecione uma opção</option>
+								<option
+									th:each="situacao: ${T(br.com.cwi.crescer.domain.Pedido.SituacaoPedido).values()}"
+									th:value="${situacao}" th:text="${situacao}"></option>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-primary form-control">Pesquisar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div th:if="${not #lists.isEmpty(pedidos)}">
+
+			<table class="table textoRoxo">
+
+				<tr>
+					<th>IdPedido</th>
+					<th>Nome Cliente</th>
+					<th>CPF</th>
+					<th>Data Inclusão</th>
+					<th>Valor Total</th>
+					<th>Situação</th>
+					<th>Visualizar</th>
+					<th>Editar</th>
+				</tr>
+				<tr th:each="pedido : ${pedidos}">
+					<td th:text="${pedido.idPedido}"><a
+						th:href="@{|/pedido/${pedido.idPedido}|}"></a></td>
+					<td th:text="${pedido.cliente.getNome()}"></td>
+					<td th:text="${pedido.cliente.getCpf()}"></td>
+					<td th:text="${pedido.dataInclusao}"></td>
+					<td th:text="${pedido.valorFinal}"></td>
+					<td th:text="${pedido.situacao}"></td>
+					<td><a th:href="${ '/pedido/' + pedido.idPedido}"
+						class="btn btn-primary" style="background-color: #800080;">Visualizar</a></td>
+					<td><a th:href="${'/pedido/editar/' + pedido.idPedido}"
+						class="btn btn-primary" style="background-color: #800080;">Editar</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

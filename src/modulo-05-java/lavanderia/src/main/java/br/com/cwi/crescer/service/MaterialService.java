@@ -17,10 +17,6 @@ private MaterialDAO materialDAO;
 		super();
 		this.materialDAO = materialDAO;
 	}
-	
-	public String buscarDescricao(Long id){
-		return materialDAO.findById(id).getDescricao();
-	}
 
 	public List<Material> listar() {
 		return materialDAO.listAll();
