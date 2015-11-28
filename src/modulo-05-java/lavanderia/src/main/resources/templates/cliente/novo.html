@@ -16,7 +16,7 @@
 		<div class="row">
 			<div class="col-md-offset-4 col-md-4">
 				<h2 class="textoCentralizado textoRoxo">Cadastrar Cliente</h2>
-				<form th:action="@{/clientes}" th:object="${cliente}" method="post">
+				<form th:action="@{/clientes/novo}" th:object="${cliente}" method="post">
 					<div class="container-form textoRoxo">
 						<div class="form-group">
 							<input th:field="*{id}" type="hidden" />

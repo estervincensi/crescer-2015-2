@@ -12,13 +12,14 @@
 		<h1 class="textoCentralizado textoRoxo">Listagem de Clientes</h1>
 		<div class="row">
 			<div class="col-md-10">
-				<form class="form-group">
+				<form class="form-group" th:action="@{/clientes/lista}"
+					th:object="${String}">
 					<div class="row">
 						<div class="col-md-2">
 							<label>Pesquisa por nome:</label>
 						</div>
 						<div class="col-md-2">
-							<input type="text" />
+							<input type="text" id="nome" name="nome" />
 						</div>
 						<div class="col-md-2">
 							<button type="submit" class="btn btn-primary form-control">Pesquisar</button>

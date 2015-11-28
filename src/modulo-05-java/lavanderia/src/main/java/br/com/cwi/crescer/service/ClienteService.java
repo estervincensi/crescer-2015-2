@@ -34,6 +34,15 @@ public class ClienteService {
 		}
 		return dtos;
 	}
+	
+	public List<ClienteResumoDTO> listarClientesPorNome(String nome) {
+		List<Cliente> clientes = clienteDAO.listByName(nome);
+		List<ClienteResumoDTO> dtos = new ArrayList<ClienteResumoDTO>();
+		for(Cliente cliente:clientes){
+			dtos.add(new ClienteResumoDTO(cliente));
+		}
+		return dtos;
+	}
 
 	public ClienteDTO buscarClientePorId(Long id) {
 		Cliente entity = clienteDAO.findById(id);
@@ -43,6 +52,7 @@ public class ClienteService {
 	public void atualizar(ClienteDTO dto) {
 		Cliente entity = clienteDAO.findById(dto.getId());
 		ClienteMapper.merge(dto, entity);
+		entity.setSituacao(SituacaoCliente.valueOf(dto.getSituacao()));
 		entity.setCidade(cidadeDAO.findById(dto.getIdCidade()));
 		clienteDAO.save(entity);
 	}
@@ -61,9 +71,6 @@ public class ClienteService {
 		clienteDAO.save(entity);
 	}
 
-	public List<ClienteResumoDTO> listarClientesPorNome(String nome) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

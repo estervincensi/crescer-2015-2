@@ -39,11 +39,10 @@ public class ClienteController {
 
 	}
 	
-//	@RequestMapping(method = RequestMethod.GET)
-//	public ModelAndView listarPorNome(String nome) {
-//		return new ModelAndView("cliente/lista", "clientes", clienteService.listarClientesPorNome(nome));
-//
-//	}
+	@RequestMapping(path="/lista", method = RequestMethod.GET)
+	public ModelAndView buscarCliente(String nome) {
+		return new ModelAndView("cliente/lista", "clientes", clienteService.listarClientesPorNome(nome));
+	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ModelAndView exibe(@PathVariable("id") Long id) {
@@ -73,7 +72,7 @@ public class ClienteController {
 		return new ModelAndView("cliente/novo", "cliente", new ClienteDTO());
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(path = "/novo",method = RequestMethod.POST)
 	public ModelAndView incluir(@Valid @ModelAttribute("cliente") ClienteDTO dto, BindingResult result,
 			RedirectAttributes redirectAttributes) {
 		redirectAttributes.addFlashAttribute("mensagem", "Operacao realizada com sucesso!");

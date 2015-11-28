@@ -11,6 +11,7 @@ public class ClienteDTO {
 	private Long id;
 	
 	@NotBlank
+	@NotNull
 	@Length(max=50)
 	private String nome;
 	
@@ -33,7 +34,6 @@ public class ClienteDTO {
 	
 	private Long cep;
 	
-	@NotNull
 	private String situacao;
 
 	public String getSituacao() {

@@ -16,7 +16,6 @@ public class ClienteMapper {
 		entity.setEndereco(dto.getEndereco());
 		entity.setBairro(dto.getBairro());
 		entity.setCep(dto.getCep());
-		entity.setSituacao(SituacaoCliente.valueOf(dto.getSituacao()));
 		return entity;
 	}
 
