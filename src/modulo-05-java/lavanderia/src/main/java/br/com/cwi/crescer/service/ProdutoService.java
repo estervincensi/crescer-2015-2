@@ -49,5 +49,17 @@ private MaterialDAO materialDAO;
 		return false;
 		
 	}
+
+	public ProdutoDTO buscarProdutoPorId(Long id) {
+		Produto entity = produtoDAO.findById(id);
+		return ProdutoMapper.toDTO(entity);
+	}
+
+	public void atualizar(ProdutoDTO dto) {
+		Produto entity = produtoDAO.findById(dto.getIdProduto());
+		ProdutoMapper.merge(dto, entity);
+		produtoDAO.save(entity);
+		
+	}
 	
 }

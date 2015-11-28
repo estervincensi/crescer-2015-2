@@ -4,34 +4,37 @@
 	layout:decorator="layout">
 <head>
 <meta charset="utf-8" />
-<title>Novo Produto</title>
+<title>Editar Produto</title>
 </head>
 <body>
 	<div layout:fragment="content">
-	
 		<div class="row">
 			<div class="col-md-offset-4 col-md-4">
-			<h3 class="textoRoxo" th:if="${mensagemProduto}" th:text="${mensagemProduto}"></h3>
-				<h2 class="textoCentralizado textoRoxo">Cadastrar Produto</h2>
-				<form th:action="@{/produto/novo}" th:object="${produto}"
+				<h3 class="textoRoxo" th:if="${mensagemProduto}"
+					th:text="${mensagemProduto}"></h3>
+				<h2 class="textoCentralizado textoRoxo">Editar Produto</h2>
+				<form th:action="@{/produto/editar}" th:object="${produto}"
 					method="post">
 					<div class="container-form textoRoxo">
 						<div class="form-group">
 							<input th:field="*{idProduto}" type="hidden" />
+							<input th:field="*{idServico}" type="hidden" />
+							<input th:field="*{idMaterial}" type="hidden" />
 						</div>
 						<div class="form-group">
 							<label class="control-label">Serviço: </label> <select
-								class="form-control" th:field="*{idServico}">
+								class="form-control" th:field="*{idServico}" disabled="disabled">
 								<option th:each="servico : ${servicos}"
 									th:text="${servico.descricao}" th:value="${servico.idServico}"></option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Material: </label> <select
-								class="form-control" th:field="*{idMaterial}">
+								class="form-control" th:field="*{idMaterial}"
+								disabled="disabled">
 								<option th:each="material : ${materiais}"
 									th:text="${material.descricao}"
-									th:value="${material.idMaterial}"></option>									
+									th:value="${material.idMaterial}"></option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -45,6 +48,14 @@
 								class="help-inline" th:errors="*{valor}"></span>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="control-label"> Situação: </label> <select
+							th:field="*{situacao}">
+							<option
+								th:each="situacao: ${T(br.com.cwi.crescer.domain.Produto.SituacaoProduto).values()}"
+								th:value="${situacao}" th:text="${situacao}"></option>
+						</select>
+					</div>
 					<button class="btn btn-primary" type="submit"
 						style="background-color: #800080;">Salvar</button>
 					<a class="btn btn-primary" href="/produto"
@@ -53,5 +64,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

@@ -4,10 +4,8 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.NotNull;
 
-import br.com.cwi.crescer.domain.Material;
 import br.com.cwi.crescer.domain.Produto;
 import br.com.cwi.crescer.domain.Produto.SituacaoProduto;
-import br.com.cwi.crescer.domain.Servico;
 
 public class ProdutoDTO {
 	private Long idProduto;

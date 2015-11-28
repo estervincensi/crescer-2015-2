@@ -12,4 +12,22 @@ public class ProdutoMapper {
 		return entity;
 	}
 
+	public static ProdutoDTO toDTO(Produto entity) {
+		ProdutoDTO dto = new ProdutoDTO();
+		dto.setIdProduto(entity.getIdProduto());
+		dto.setIdMaterial(entity.getMaterial().getIdMaterial());
+		dto.setIdServico(entity.getServico().getIdServico());
+		dto.setPrazo(entity.getPrazo());
+		dto.setValor(entity.getValor());
+		dto.setSituacao(entity.getSituacao());
+		return dto;
+	}
+	
+	public static Produto merge(ProdutoDTO dto, Produto entity) {
+		entity.setPrazo(dto.getPrazo());
+		entity.setValor(dto.getValor());
+		entity.setSituacao(dto.getSituacao());
+		return entity;
+	}
+
 }
