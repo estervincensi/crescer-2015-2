@@ -49,7 +49,6 @@ public class ClienteController {
 		return new ModelAndView("cliente/exibe", "cliente", clienteService.buscarClientePorId(id));
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(path = "/editar", method = RequestMethod.POST)
 	public ModelAndView editar(@Valid @ModelAttribute("cliente") ClienteDTO dto, BindingResult result,
 			RedirectAttributes redirectAttributes) {
@@ -61,7 +60,6 @@ public class ClienteController {
 		return new ModelAndView("redirect:/clientes");
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(path = "/editar/{id}", method = RequestMethod.GET)
 	public ModelAndView edita(@PathVariable("id") Long id) {
 		return new ModelAndView("cliente/edita", "cliente", clienteService.buscarClientePorId(id));
