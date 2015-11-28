@@ -61,5 +61,24 @@ private MaterialDAO materialDAO;
 		produtoDAO.save(entity);
 		
 	}
+
+	public List<ProdutoDTO> listarProdutosPorMaterialeServico(String material, String servico) {
+		List<Produto>produtos = produtoDAO.listarPorMaterialEServico(material,servico);
+		List<ProdutoDTO> dtos = new ArrayList<ProdutoDTO>();
+		for(Produto produto: produtos){
+			dtos.add(new ProdutoDTO(produto));
+		}
+		return dtos;
+	}
+
+	public List<ProdutoDTO> listarProdutosPorMaterial(String material) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<ProdutoDTO> listarProdutosPorServico(String servico) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

@@ -12,10 +12,20 @@
 		<h1 class="textoCentralizado textoRoxo">Listagem de Produtos</h1>
 		<div class="row">
 			<div class="col-md-10">
-				<form class="form-group" th:action="@{/produtos/lista}"
+				<form class="form-group" th:action="@{/produto/lista}"
 					th:object="${String}">
 					<div class="row">
-						colocar aqui os combos
+						<div class="col-md-2">
+							<select id="servico" name="servico">
+								<option th:each="servico : ${servicos}"
+									th:text="${servico.descricao}" th:value="${servico.descricao}"></option>
+							</select> <select id="material" name="material">
+								<option th:each="material : ${materiais}"
+									th:text="${material.descricao}"
+									th:value="${material.descricao}"></option>
+							</select>
+
+						</div>
 						<div class="col-md-2">
 							<button type="submit" class="btn btn-primary form-control">Pesquisar</button>
 						</div>

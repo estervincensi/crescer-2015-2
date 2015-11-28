@@ -24,7 +24,11 @@ public class ProdutoDAO {
 	}
 
 	public List<Produto> verificarSeExiste(Long idServico, Long idMaterial) {
-		return em.createQuery("from Produto p where p.servico.idServico = :idServico  and p.material.idMaterial = :idMaterial",Produto.class).setParameter("idServico", idServico).setParameter("idMaterial", idMaterial).getResultList();
+		return em
+				.createQuery(
+						"from Produto p where p.servico.idServico = :idServico  and p.material.idMaterial = :idMaterial",
+						Produto.class)
+				.setParameter("idServico", idServico).setParameter("idMaterial", idMaterial).getResultList();
 	}
 
 	@Transactional
@@ -34,6 +38,13 @@ public class ProdutoDAO {
 			return produto;
 		}
 		return em.merge(produto);
+	}
+
+	public List<Produto> listarPorMaterialEServico(String material, String servico) {
+		return em
+				.createQuery("from Produto p where p.servico.descricao = :servico and p.material.descricao = :material",
+						Produto.class).setParameter("material", material).setParameter("servico", servico)
+				.getResultList();
 	}
 
 }

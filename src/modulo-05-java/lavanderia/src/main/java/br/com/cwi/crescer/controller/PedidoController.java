@@ -25,7 +25,7 @@ private PedidoService pedidoService;
 	}
 	
 	@RequestMapping(path="/lista", method = RequestMethod.GET)
-	public ModelAndView buscarCliente(String cpf, String situacao) {
+	public ModelAndView buscarPedido(String cpf, String situacao) {
 		if(!cpf.isEmpty()){
 			if(situacao!=null){
 				return new ModelAndView("pedido/lista", "pedidos", pedidoService.listarPedidosPorCpfeSituacao(cpf,situacao));

@@ -42,7 +42,22 @@ public class ProdutoController {
 		return new ModelAndView("produto/lista", "produtos", produtoService.listarProdutos());
 
 	}
-	
+
+	@RequestMapping(path = "/lista", method = RequestMethod.GET)
+	public ModelAndView buscarProduto(String material, String servico) {
+		if (material!=null) {
+			if (servico != null) {
+				return new ModelAndView("produto/lista", "produtos",
+						produtoService.listarProdutosPorMaterialeServico(material, servico));
+			}
+			return new ModelAndView("produto/lista", "produtos", produtoService.listarProdutosPorMaterial(material));
+		}
+		if (servico != null) {
+			return new ModelAndView("produto/lista", "produtos",produtoService.listarProdutosPorServico(servico));
+		}
+		return new ModelAndView("produto/lista", "produtos", produtoService.listarProdutos());
+	}
+
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(path = "/novo", method = RequestMethod.GET)
 	public ModelAndView viewNovo() {
@@ -64,15 +79,15 @@ public class ProdutoController {
 			redirectAttributes.addFlashAttribute("mensagemProduto", "Impossivel incluir produto duplicado!");
 			return new ModelAndView("redirect:/produto/novo");
 		}
-		
+
 	}
-	
+
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(path = "/editar/{id}", method = RequestMethod.GET)
 	public ModelAndView edita(@PathVariable("id") Long id) {
 		return new ModelAndView("produto/edita", "produto", produtoService.buscarProdutoPorId(id));
 	}
-	
+
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(path = "/editar", method = RequestMethod.POST)
 	public ModelAndView editar(@Valid @ModelAttribute("produto") ProdutoDTO dto, BindingResult result,
@@ -83,7 +98,7 @@ public class ProdutoController {
 		produtoService.atualizar(dto);
 		redirectAttributes.addFlashAttribute("mensagem", "Operacao realizada com sucesso!");
 		return new ModelAndView("redirect:/produto");
-	}	
+	}
 
 	@ModelAttribute("servicos")
 	public List<Servico> comboServico() {
