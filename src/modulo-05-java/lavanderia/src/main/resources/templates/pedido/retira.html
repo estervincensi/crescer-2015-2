@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>Retirar Pedido</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<form th:action="@{/pedido/retirar}" th:object="${pedido}" method="post">
+			<div class="textoRoxo">
+				<input th:field="*{idPedido}" type="hidden" /> <label>Nome
+					Cliente: </label>
+				<h4 th:text="*{cliente.nome}" class="displayInline"></h4>
+				<br /> <label>Data Inclusão: </label>
+				<h4 th:text="*{dataInclusao}" class="displayInline"></h4>
+				<br /> <label>Data Entrega: </label>
+				<h4 th:text="*{dataEntrega}" class="displayInline"></h4>
+				<br /> <label>Valor Bruto: </label>
+				<h4 th:text="*{valorBruto}" class="displayInline"></h4>
+				<br /> <label>Valor Desconto: </label>
+				<h4 th:text="*{valorDesconto}" class="displayInline"></h4>
+				<br /> <label>Valor Final: </label>
+				<h4 th:text="*{valorFinal}" class="displayInline"></h4>
+				<br /> <label>Situação: </label>
+				<h4 th:text="*{situacao}" class="displayInline"></h4>
+				<br />
+			</div>
+			<h2>Tem certeza que deseja retirar o produto selecionado?</h2>
+			<button type="submit" class="btn btn-primary">Retirar</button>
+			<a th:href="@{/pedido}" class="btn btn-primary">Cancelar</a>
+		</form>
+	</div>
+</body>
+</html>

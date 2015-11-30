@@ -184,4 +184,11 @@ public class PedidoService {
 		pedido.setSituacao(SituacaoPedido.PROCESSADO);
 		pedidoDAO.save(pedido);
 	}
+
+	public void retirar(Long idPedido) {
+		Pedido pedido = pedidoDAO.findById(idPedido);
+		pedido.setSituacao(SituacaoPedido.ENCERRADO);
+		pedidoDAO.save(pedido);
+		
+	}
 }

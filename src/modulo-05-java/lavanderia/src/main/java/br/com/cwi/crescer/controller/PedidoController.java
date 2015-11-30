@@ -76,6 +76,17 @@ public class PedidoController {
 		pedidoService.processarPedido(dto);
 		return new ModelAndView("redirect:/pedido");
 	}
+	
+	@RequestMapping(path="/retirar/{id}",method = RequestMethod.GET)
+	public ModelAndView retira(@PathVariable("id")Long id){
+		return new ModelAndView("pedido/retira","pedido",pedidoService.buscarPedidoPorId(id));
+	}
+	
+	@RequestMapping(path="/retirar",method = RequestMethod.POST)
+	public ModelAndView retirar(Long idPedido){
+		pedidoService.retirar(idPedido);
+		return new ModelAndView("redirect:/pedido");
+	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ModelAndView exibe(@PathVariable("id") Long id) {
