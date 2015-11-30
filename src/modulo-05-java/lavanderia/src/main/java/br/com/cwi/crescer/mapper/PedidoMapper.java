@@ -1,7 +1,12 @@
 package br.com.cwi.crescer.mapper;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import br.com.cwi.crescer.DTO.PedidoDTO;
+import br.com.cwi.crescer.domain.Cliente;
 import br.com.cwi.crescer.domain.Pedido;
+import br.com.cwi.crescer.domain.Pedido.SituacaoPedido;
 
 public class PedidoMapper {
 
@@ -18,5 +23,21 @@ public class PedidoMapper {
 		dto.setItens(entity.getItens());
 		return dto;
 	}
+
+	public static Pedido merge(PedidoDTO dto, Pedido entity) {
+		entity.setCliente(dto.getCliente());
+		entity.setDataEntrega(dto.getDataEntrega());
+		entity.setDataInclusao(dto.getDataInclusao());
+		entity.setIdPedido(dto.getIdPedido());
+		entity.setValorBruto(dto.getValorBruto());
+		entity.setValorDesconto(dto.getValorDesconto());
+		entity.setValorFinal(dto.getValorFinal());
+		return entity;
+	
+	}
+	
+	public static Pedido getNewEntity(Cliente cliente) {
+        return new Pedido(cliente, new Date(), new BigDecimal(0), SituacaoPedido.PENDENTE);
+    }
 
 }

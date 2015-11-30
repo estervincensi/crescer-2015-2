@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.cwi.crescer.domain.Pedido;
 import br.com.cwi.crescer.domain.Produto;
 
 @Repository
@@ -54,6 +53,14 @@ public class ProdutoDAO {
 
 	public List<Produto> listarPorServico(String servico) {
 		return em.createQuery("from Produto p where p.servico.descricao = :servico ",Produto.class).setParameter("servico",servico).getResultList();
+	}
+
+	public Produto buscarPorMaterialeServico(Produto produto) {
+		Produto produtoBuscado = em.createQuery("FROM Produto p where p.servico = :servico and p.material = :material", Produto.class)
+				.setParameter("material", produto.getMaterial())
+				.setParameter("servico", produto.getServico())
+				.getSingleResult();
+		return produtoBuscado;
 	}
 
 }

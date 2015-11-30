@@ -49,7 +49,7 @@
 					<th>Valor Total</th>
 					<th>Situação</th>
 					<th>Visualizar</th>
-					<th>Editar</th>
+					<th>Processar Itens</th>
 				</tr>
 				<tr th:each="pedido : ${pedidos}">
 					<td th:text="${pedido.idPedido}"><a
@@ -61,8 +61,8 @@
 					<td th:text="${pedido.situacao}"></td>
 					<td><a th:href="${ '/pedido/' + pedido.idPedido}"
 						class="btn btn-primary" style="background-color: #800080;">Visualizar</a></td>
-					<td><a th:href="${'/pedido/editar/' + pedido.idPedido}"
-						class="btn btn-primary" style="background-color: #800080;">Editar</a></td>
+					<td><a th:if="${pedido.situacao==T(br.com.cwi.crescer.domain.Pedido.SituacaoPedido).PROCESSANDO}" th:href="${'/pedido/processar/' + pedido.idPedido}"
+						class="btn btn-primary" style="background-color: #800080;">Processar Itens</a></td>
 				</tr>
 			</table>
 		</div>

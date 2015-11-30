@@ -37,11 +37,11 @@ private MaterialDAO materialDAO;
 	}
 
 	public boolean incluir(ProdutoDTO dto) {
-		List<Produto> produto = produtoDAO.verificarSeExiste(dto.getIdServico(),dto.getIdMaterial());
+		List<Produto> produto = produtoDAO.verificarSeExiste(dto.getServico().getIdServico(),dto.getMaterial().getIdMaterial());
 		if(produto.isEmpty()){
 			Produto entity = ProdutoMapper.getNewEntity(dto);
-			entity.setMaterial(materialDAO.findById(dto.getIdMaterial()));
-			entity.setServico(servicoDAO.findById(dto.getIdServico()));
+			entity.setMaterial(materialDAO.findById(dto.getMaterial().getIdMaterial()));
+			entity.setServico(servicoDAO.findById(dto.getServico().getIdServico()));
 			entity.setSituacao(SituacaoProduto.ATIVO);
 			produtoDAO.save(entity);
 			return true;
@@ -88,5 +88,20 @@ private MaterialDAO materialDAO;
 		}
 		return dtos;
 	}
+	
+	public List<Produto> listar(){
+		return produtoDAO.listAll();
+	}
+	
+	public List<ProdutoDTO> listarTodos() {
+        List<Produto> produtos = produtoDAO.listAll();
+        List<ProdutoDTO> produtosDTO = new ArrayList<ProdutoDTO>();
+        
+        for (Produto produto: produtos) {
+        	produtosDTO.add(new ProdutoDTO(produto));
+        }
+
+        return produtosDTO;
+    }
 	
 }

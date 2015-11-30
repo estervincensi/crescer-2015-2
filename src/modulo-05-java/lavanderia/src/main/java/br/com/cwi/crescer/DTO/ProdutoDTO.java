@@ -4,17 +4,19 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.NotNull;
 
+import br.com.cwi.crescer.domain.Material;
 import br.com.cwi.crescer.domain.Produto;
 import br.com.cwi.crescer.domain.Produto.SituacaoProduto;
+import br.com.cwi.crescer.domain.Servico;
 
 public class ProdutoDTO {
 	private Long idProduto;
 	
 	@NotNull
-	private Long idServico;
+	private Servico servico;
 	
 	@NotNull
-	private Long idMaterial;
+	private Material material;
 	
 	@NotNull
 	private BigDecimal valor;
@@ -40,9 +42,9 @@ public class ProdutoDTO {
 	}
 
 	public ProdutoDTO(Produto produto) {
-		this.idServico = produto.getServico().getIdServico();
+		this.servico = produto.getServico();
 		this.idProduto = produto.getIdProduto();
-		this.idMaterial = produto.getMaterial().getIdMaterial();
+		this.material = produto.getMaterial();
 		this.valor = produto.getValor();
 		this.situacao = produto.getSituacao();
 		this.prazo = produto.getPrazo();
@@ -59,20 +61,20 @@ public class ProdutoDTO {
 		this.idProduto = idProduto;
 	}
 
-	public Long getIdServico() {
-		return idServico;
+	public Servico getServico() {
+		return servico;
 	}
 
-	public void setIdServico(Long idServico) {
-		this.idServico = idServico;
+	public void setServico(Servico servico) {
+		this.servico = servico;
 	}
 
-	public Long getIdMaterial() {
-		return idMaterial;
+	public Material getMaterial() {
+		return material;
 	}
 
-	public void setIdMaterial(Long idMaterial) {
-		this.idMaterial = idMaterial;
+	public void setMaterial(Material material) {
+		this.material = material;
 	}
 
 	public BigDecimal getValor() {

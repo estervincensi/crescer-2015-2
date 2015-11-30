@@ -21,5 +21,9 @@ private ServicoDAO servicoDAO;
 	public List<Servico> listar() {
 		return servicoDAO.listAll();
 	}
+	
+	public Servico buscarPorId(Long idServico) {
+		return servicoDAO.findById(idServico);
+	}
 
 }

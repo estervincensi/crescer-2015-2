@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -37,5 +38,20 @@ public class PedidoDAO {
 	public List<Pedido> listarPorSituacao(String situacao) {
 		return em.createQuery("from Pedido p where p.situacao = :situacao", Pedido.class)
 				.setParameter("situacao", SituacaoPedido.valueOf(situacao)).getResultList();
+	}
+
+	@Transactional
+	public Pedido save(Pedido entity) {
+		if (entity.getIdPedido() == null) {
+			em.persist(entity);
+			return entity;
+		}
+		return em.merge(entity);
+	}
+
+	public Pedido ultimo() {
+		return em.createQuery("FROM Pedido ORDER BY idPedido DESC", Pedido.class)
+				.setMaxResults(1)
+				.getSingleResult();
 	}
 }

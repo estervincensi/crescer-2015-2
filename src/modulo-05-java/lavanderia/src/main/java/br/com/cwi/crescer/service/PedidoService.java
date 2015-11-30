@@ -1,24 +1,36 @@
 package br.com.cwi.crescer.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.cwi.crescer.DAO.ClienteDAO;
 import br.com.cwi.crescer.DAO.PedidoDAO;
+import br.com.cwi.crescer.DTO.PedidoResumidoDTO;
 import br.com.cwi.crescer.DTO.PedidoDTO;
+import br.com.cwi.crescer.DTO.PedidoResumoDTO;
+import br.com.cwi.crescer.domain.Cliente;
+import br.com.cwi.crescer.domain.Item;
+import br.com.cwi.crescer.domain.Item.SituacaoItem;
 import br.com.cwi.crescer.domain.Pedido;
+import br.com.cwi.crescer.domain.Pedido.SituacaoPedido;
 import br.com.cwi.crescer.mapper.PedidoMapper;
 
 @Service
 public class PedidoService {
 	private PedidoDAO pedidoDAO;
+	private ClienteDAO clienteDAO;
 
 	@Autowired
-	public PedidoService(PedidoDAO pedidoDAO) {
+	public PedidoService(PedidoDAO pedidoDAO, ClienteDAO clienteDAO) {
 		super();
 		this.pedidoDAO = pedidoDAO;
+		this.clienteDAO = clienteDAO;
 	}
 
 	public List<PedidoDTO> listarPedidos() {
@@ -34,7 +46,7 @@ public class PedidoService {
 		Pedido entity = pedidoDAO.findById(id);
 		return PedidoMapper.toDTO(entity);
 	}
-
+	
 	public List<PedidoDTO> listarPedidosPorCpf(String cpf) {
 		List<Pedido> pedidos = pedidoDAO.listarPorCpf(cpf);
 		List<PedidoDTO> dtos = new ArrayList<PedidoDTO>();
@@ -60,5 +72,96 @@ public class PedidoService {
 			dtos.add(new PedidoDTO(pedido));
 		}
 		return dtos;
+	}
+
+	public void processarPedido(PedidoResumidoDTO dto) {
+		Pedido entity = pedidoDAO.findById(dto.getId());
+		entity.setSituacao(SituacaoPedido.PROCESSADO);
+		for(Item item : entity.getItens()){
+			item.setSituacao(SituacaoItem.PROCESSADO);
+		}
+		pedidoDAO.save(entity);
+	}
+
+	
+	public BigDecimal verificarDesconto(Pedido pedido, Item item){
+		BigDecimal desconto8PorCento = new BigDecimal(0.08);
+		BigDecimal desconto4PorCento = new BigDecimal(0.04);
+		BigDecimal desconto4e87PorCento = new BigDecimal(0.0487);
+		
+		BigDecimal valorParaDesconto = new BigDecimal(90);
+		BigDecimal pesoParaDesconto = new BigDecimal(15);
+		
+		BigDecimal pesoTotal = somarPesos(pedido);
+		pesoTotal = pesoTotal.add(item.getPeso());
+		
+		Calendar c = Calendar.getInstance();
+		c.setTime(pedido.getDataInclusao());
+		if(c.DAY_OF_WEEK == Calendar.MONDAY || c.DAY_OF_WEEK == Calendar.THURSDAY || c.DAY_OF_WEEK == Calendar.WEDNESDAY){
+			return pedido.getValorBruto().multiply(desconto8PorCento);
+		}
+		if(c.DAY_OF_WEEK == Calendar.TUESDAY || c.DAY_OF_WEEK == Calendar.FRIDAY){
+			return pedido.getValorBruto().multiply(desconto4PorCento);
+		}
+		if(pedido.getValorBruto().compareTo(valorParaDesconto)>0 || pesoTotal.compareTo(pesoParaDesconto)>0){
+			return pedido.getValorBruto().multiply(desconto4e87PorCento);
+		}
+		return pedido.getValorBruto();
+	}
+	
+	public BigDecimal somarPesos(Pedido pedido){
+		BigDecimal pesos = new BigDecimal(0);
+		for(Item item: pedido.getItens()){
+			pesos = pesos.add(item.getPeso());
+		}
+		return pesos;
+	}
+	
+	public Date atualizarData(Item item, Pedido pedido){
+		Date dataEntrega = pedido.getDataInclusao();
+		Calendar c = Calendar.getInstance();
+		c.setTime(dataEntrega);
+		c.add(Calendar.DAY_OF_MONTH, item.getProduto().getPrazo());
+		dataEntrega = c.getTime();
+		return dataEntrega;
+	}
+
+	public Pedido incluirInicial(PedidoResumoDTO pedidoResumo) {
+		Cliente cliente = clienteDAO.findById(pedidoResumo.getIdCliente());
+		Pedido pedido = new Pedido();
+		pedido.setCliente(cliente);
+		Date dataInclusao = new Date();
+		pedido.setDataInclusao(dataInclusao);
+		BigDecimal valorInicial = new BigDecimal(0); //valor inicial porque não há nenhum item quando o pedido é incluido pela primeira vez
+		pedido.setValorBruto(valorInicial);
+		pedido.setSituacao(SituacaoPedido.PENDENTE);
+		pedidoDAO.save(pedido);
+		return pedido;
+	}
+	
+	public Pedido atualizarComItem(Item incluido) {
+		Pedido pedido = pedidoDAO.findById(incluido.getPedido().getIdPedido());
+		Date dataEntregaAtualizada = atualizarData(incluido,pedido);
+		
+		if(pedido.getDataEntrega() == null){
+			pedido.setDataEntrega(dataEntregaAtualizada);
+		}else{
+			if(dataEntregaAtualizada.after(pedido.getDataEntrega())){
+				pedido.setDataEntrega(dataEntregaAtualizada);
+			}
+		}	
+		
+		pedido.setValorBruto(obterValorBrutoAtual(incluido,pedido));
+		
+		BigDecimal valorDesconto = verificarDesconto(pedido, incluido);
+		pedido.setValorDesconto(valorDesconto);
+		pedido.setValorFinal(pedido.getValorBruto().subtract(valorDesconto));
+		pedido = pedidoDAO.save(pedido);
+		return pedido;
+	}
+	public BigDecimal obterValorBrutoAtual(Item item, Pedido pedido){
+		BigDecimal valorBrutoAtual = pedido.getValorBruto();
+		BigDecimal valorBrutoAtualizado = valorBrutoAtual.add(item.getValorTotal());
+		return valorBrutoAtualizado;
 	}
 }

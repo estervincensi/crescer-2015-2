@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.com.cwi.crescer.domain.Pedido.SituacaoPedido;
+
 @Entity
 @Table(name = "Pedido")
 @SequenceGenerator(name = Pedido.SEQUENCE_NAME, sequenceName = Pedido.SEQUENCE_NAME)
@@ -59,6 +61,18 @@ public class Pedido {
 	@OneToMany(mappedBy = "pedido")
 	private List<Item> itens;
 	
+	
+	
+	public Pedido() {
+	}
+
+	public Pedido(Cliente cliente, Date dataInclusao, BigDecimal valorBruto, SituacaoPedido situacao) {
+		this.cliente = cliente;
+		this.dataInclusao = dataInclusao;
+		this.valorBruto = valorBruto;
+		this.situacao = situacao;
+	}
+
 	public BigDecimal getValorDesconto() {
 		return valorDesconto;
 	}

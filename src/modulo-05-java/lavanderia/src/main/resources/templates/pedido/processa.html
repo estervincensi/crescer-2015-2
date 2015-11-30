@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>Processar Pedido</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<form th:action="@{/pedido/processar}" th:object="${pedido}"
+					method="post">
+			<div class="form-group">
+				<input th:field="*{idPedido}" type="hidden" />
+			</div>
+			<table class="table table-bordered">
+				<tr>
+					<th>IdItem</th>
+					<th>Produto (Serviço e Material)</th>
+					<th>Peso</th>
+					<th>Valor Unitário</th>
+					<th>Situação</th>
+					<th>Processar Item</th>
+
+				</tr>
+				<tr th:each="itens : ${pedido.itens}">
+					<td th:text="${itens.idItem}" th:field="{itens.idItem}"></td>
+					<td th:each="produtos: ${itens.produto}">
+						<label th:each="servicos: ${produtos.servico}"> 
+							<label	th:text="${servicos.descricao}"></label>
+						</label> 
+						<label th:each="materiais: ${produtos.material}">
+					 			<label th:text="${materiais.descricao}" ></label>
+						</label>
+					</td>
+					<td th:text="${itens.peso}" th:field="{itens.peso}"></td>
+					<td th:text="${itens.valorUnitario}" th:field="{itens.valorUnitario}"></td>
+					<td th:text="${itens.situacao}" th:field="{itens.situacao}"></td>
+					<td><a href="" class="btn btn-primary">Processar Item</a></td>
+				</tr>
+			</table>
+			<button type="submit" class="btn btn-primary">Processar
+				Pedido</button>
+		</form>
+	</div>
+</body>
+</html>

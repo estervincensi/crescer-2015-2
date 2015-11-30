@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +24,15 @@ public class ItemDAO {
 	public List<Item> findBySituacao(SituacaoItem situacao) {
 		return em.createQuery("FROM Item i WHERE i.situacao = :situacao", Item.class).setParameter("situacao", situacao)
 				.getResultList();
+	}
+
+	@Transactional
+	public Item save(Item item) {
+		if (item.getIdItem() == null) {
+			em.persist(item);
+			return item;
+		}
+		return em.merge(item);
 	}
 
 }

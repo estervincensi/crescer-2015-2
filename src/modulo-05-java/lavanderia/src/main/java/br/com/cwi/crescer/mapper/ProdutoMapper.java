@@ -15,8 +15,8 @@ public class ProdutoMapper {
 	public static ProdutoDTO toDTO(Produto entity) {
 		ProdutoDTO dto = new ProdutoDTO();
 		dto.setIdProduto(entity.getIdProduto());
-		dto.setIdMaterial(entity.getMaterial().getIdMaterial());
-		dto.setIdServico(entity.getServico().getIdServico());
+		dto.setMaterial(entity.getMaterial());
+		dto.setServico(entity.getServico());
 		dto.setPrazo(entity.getPrazo());
 		dto.setValor(entity.getValor());
 		dto.setSituacao(entity.getSituacao());

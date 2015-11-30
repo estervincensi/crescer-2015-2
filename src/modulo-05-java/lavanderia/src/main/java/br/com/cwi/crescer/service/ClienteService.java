@@ -48,6 +48,10 @@ public class ClienteService {
 		Cliente entity = clienteDAO.findById(id);
 		return ClienteMapper.toDTO(entity);
 	}
+	
+	public Cliente buscarPorId(Long id){
+		return clienteDAO.findById(id);
+	}
 
 	public void atualizar(ClienteDTO dto) {
 		Cliente entity = clienteDAO.findById(dto.getId());
@@ -69,6 +73,10 @@ public class ClienteService {
 		Cliente entity = clienteDAO.findById(dto.getId());
 		entity.setSituacao(SituacaoCliente.INATIVO);
 		clienteDAO.save(entity);
+	}
+
+	public List<Cliente> listar() {
+		return clienteDAO.listAll();
 	}
 
 
