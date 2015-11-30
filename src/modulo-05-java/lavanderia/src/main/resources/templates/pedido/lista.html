@@ -49,6 +49,7 @@
 					<th>Valor Total</th>
 					<th>Situação</th>
 					<th>Visualizar</th>
+					<th>Retirar Pedido</th>
 					<th>Processar Itens</th>
 				</tr>
 				<tr th:each="pedido : ${pedidos}">
@@ -61,6 +62,7 @@
 					<td th:text="${pedido.situacao}"></td>
 					<td><a th:href="${ '/pedido/' + pedido.idPedido}"
 						class="btn btn-primary" style="background-color: #800080;">Visualizar</a></td>
+					<td><a href="" class="btn btn-primary">Retirar Pedido</a></td>
 					<td><a th:if="${pedido.situacao==T(br.com.cwi.crescer.domain.Pedido.SituacaoPedido).PROCESSANDO}" th:href="${'/pedido/processar/' + pedido.idPedido}"
 						class="btn btn-primary" style="background-color: #800080;">Processar Itens</a></td>
 				</tr>

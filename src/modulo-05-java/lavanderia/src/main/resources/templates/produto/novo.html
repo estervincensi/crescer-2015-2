@@ -21,14 +21,14 @@
 						</div>
 						<div class="form-group">
 							<label class="control-label">Serviço: </label> <select
-								class="form-control" th:field="*{idServico}">
+								class="form-control" th:field="*{servico.idServico}">
 								<option th:each="servico : ${servicos}"
 									th:text="${servico.descricao}" th:value="${servico.idServico}"></option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Material: </label> <select
-								class="form-control" th:field="*{idMaterial}">
+								class="form-control" th:field="*{material.idMaterial}">
 								<option th:each="material : ${materiais}"
 									th:text="${material.descricao}"
 									th:value="${material.idMaterial}"></option>									

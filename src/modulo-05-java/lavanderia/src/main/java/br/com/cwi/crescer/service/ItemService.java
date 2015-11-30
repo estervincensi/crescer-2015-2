@@ -60,4 +60,10 @@ public class ItemService {
 		return produto;
 	}
 
+	public void alterarSituacao(Long idItem) {
+		Item item = itemDAO.findById(idItem);
+		item.setSituacao(SituacaoItem.PROCESSADO);
+		itemDAO.save(item);
+	}
+
 }

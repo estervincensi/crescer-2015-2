@@ -20,7 +20,6 @@ import br.com.cwi.crescer.DTO.PedidoResumidoDTO;
 import br.com.cwi.crescer.DTO.PedidoResumoDTO;
 import br.com.cwi.crescer.domain.Cliente;
 import br.com.cwi.crescer.domain.Material;
-import br.com.cwi.crescer.domain.Pedido;
 import br.com.cwi.crescer.domain.Servico;
 import br.com.cwi.crescer.service.ClienteService;
 import br.com.cwi.crescer.service.MaterialService;
@@ -96,10 +95,11 @@ public class PedidoController {
 			return new ModelAndView("pedido/incluir");
 		}
 
-		Pedido pedido = pedidoService.incluirInicial(pedidoResumo);
+		pedidoService.incluirInicial(pedidoResumo);
+		Long idPedido = pedidoService.retornaUltimoID();
 		redirectAttributes.addFlashAttribute("menssagemFlash", "agora você pode adicionar itens a esse pedido");
 		ItemDTO itemDTO = new ItemDTO();
-		itemDTO.setIdPedido(pedido.getIdPedido());
+		itemDTO.setIdPedido(idPedido);
 		return new ModelAndView("item/manter", "item", itemDTO);
 	}
 

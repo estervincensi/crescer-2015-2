@@ -83,7 +83,6 @@ public class PedidoService {
 		pedidoDAO.save(entity);
 	}
 
-	
 	public BigDecimal verificarDesconto(Pedido pedido, Item item){
 		BigDecimal desconto8PorCento = new BigDecimal(0.08);
 		BigDecimal desconto4PorCento = new BigDecimal(0.04);
@@ -93,20 +92,20 @@ public class PedidoService {
 		BigDecimal pesoParaDesconto = new BigDecimal(15);
 		
 		BigDecimal pesoTotal = somarPesos(pedido);
-		pesoTotal = pesoTotal.add(item.getPeso());
+		//pesoTotal = pesoTotal.add(item.getPeso());
 		
 		Calendar c = Calendar.getInstance();
 		c.setTime(pedido.getDataInclusao());
-		if(c.DAY_OF_WEEK == Calendar.MONDAY || c.DAY_OF_WEEK == Calendar.THURSDAY || c.DAY_OF_WEEK == Calendar.WEDNESDAY){
+		if(c.get(Calendar.DAY_OF_WEEK) == 2 || c.get(Calendar.DAY_OF_WEEK) == 3 || c.get(Calendar.DAY_OF_WEEK) == 4){
 			return pedido.getValorBruto().multiply(desconto8PorCento);
 		}
-		if(c.DAY_OF_WEEK == Calendar.TUESDAY || c.DAY_OF_WEEK == Calendar.FRIDAY){
+		if(c.get(Calendar.DAY_OF_WEEK) == 5 || c.get(Calendar.DAY_OF_WEEK) == 6){
 			return pedido.getValorBruto().multiply(desconto4PorCento);
 		}
 		if(pedido.getValorBruto().compareTo(valorParaDesconto)>0 || pesoTotal.compareTo(pesoParaDesconto)>0){
 			return pedido.getValorBruto().multiply(desconto4e87PorCento);
 		}
-		return pedido.getValorBruto();
+		return new BigDecimal(0);
 	}
 	
 	public BigDecimal somarPesos(Pedido pedido){
@@ -163,5 +162,26 @@ public class PedidoService {
 		BigDecimal valorBrutoAtual = pedido.getValorBruto();
 		BigDecimal valorBrutoAtualizado = valorBrutoAtual.add(item.getValorTotal());
 		return valorBrutoAtualizado;
+	}
+	
+	public Long retornaUltimoID(){
+		Pedido pedido = pedidoDAO.ultimo();
+		return pedido.getIdPedido();
+	}
+
+	public boolean verificarSituacaoDosItens(Long idPedido) {
+		Pedido pedido = pedidoDAO.findById(idPedido);
+		for(Item item : pedido.getItens()){
+			if(item.getSituacao()!=SituacaoItem.PROCESSADO){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public void atualizarSituacao(Long idPedido) {
+		Pedido pedido = pedidoDAO.findById(idPedido);
+		pedido.setSituacao(SituacaoPedido.PROCESSADO);
+		pedidoDAO.save(pedido);
 	}
 }

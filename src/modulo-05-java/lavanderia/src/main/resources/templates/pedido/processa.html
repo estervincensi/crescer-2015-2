@@ -8,37 +8,42 @@
 </head>
 <body>
 	<div layout:fragment="content">
+		<table class="table table-bordered">
+			<tr>
+				<th>IdItem</th>
+				<th>Produto (Serviço e Material)</th>
+				<th>Peso</th>
+				<th>Valor Unitário</th>
+				<th>Situação</th>
+				<th>Processar Item</th>
+
+			</tr>
+			
+			<tr th:each="itens : ${pedido.itens}">
+			<form th:action="@{/itens/processar}" method="post">
+				<input name="idItem" th:value="${itens.idItem}" type="hidden" />
+				<input name="idPedido" th:value="${pedido.idPedido}" type="hidden" />
+				<td th:text="${itens.idItem}"></td>
+				<td th:each="produtos: ${itens.produto}"><label
+					th:each="servicos: ${produtos.servico}"> 
+					<label th:text="${servicos.descricao}"></label>
+				</label> <label th:each="materiais: ${produtos.material}"> 
+				<label th:text="${materiais.descricao}"></label>
+				</label></td>
+				<td th:text="${itens.peso}" th:field="{itens.peso}"></td>
+				<td th:text="${itens.valorUnitario}"
+					th:field="{itens.valorUnitario}"></td>
+				<td th:text="${itens.situacao}" th:field="{itens.situacao}"></td>
+				<td><button type="submit" class="btn btn-primary">Processar
+						Item</button></td>			
+			</form>	
+			</tr>
+		</table>
 		<form th:action="@{/pedido/processar}" th:object="${pedido}"
-					method="post">
+			method="post">
 			<div class="form-group">
 				<input th:field="*{idPedido}" type="hidden" />
 			</div>
-			<table class="table table-bordered">
-				<tr>
-					<th>IdItem</th>
-					<th>Produto (Serviço e Material)</th>
-					<th>Peso</th>
-					<th>Valor Unitário</th>
-					<th>Situação</th>
-					<th>Processar Item</th>
-
-				</tr>
-				<tr th:each="itens : ${pedido.itens}">
-					<td th:text="${itens.idItem}" th:field="{itens.idItem}"></td>
-					<td th:each="produtos: ${itens.produto}">
-						<label th:each="servicos: ${produtos.servico}"> 
-							<label	th:text="${servicos.descricao}"></label>
-						</label> 
-						<label th:each="materiais: ${produtos.material}">
-					 			<label th:text="${materiais.descricao}" ></label>
-						</label>
-					</td>
-					<td th:text="${itens.peso}" th:field="{itens.peso}"></td>
-					<td th:text="${itens.valorUnitario}" th:field="{itens.valorUnitario}"></td>
-					<td th:text="${itens.situacao}" th:field="{itens.situacao}"></td>
-					<td><a href="" class="btn btn-primary">Processar Item</a></td>
-				</tr>
-			</table>
 			<button type="submit" class="btn btn-primary">Processar
 				Pedido</button>
 		</form>

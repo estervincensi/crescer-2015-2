@@ -42,16 +42,6 @@ public class ItemController {
 		this.servicoService = servicoService;
 	}
 	
-	@RequestMapping(path = "/incluir", method = RequestMethod.GET)
-    public ModelAndView incluir(ItemDTO item){
-        return new ModelAndView("item/incluir","item",item);
-    }
-	
-	
- 
-
-
-	
 	@RequestMapping(path = "/manter", method = RequestMethod.POST)
     public ModelAndView manter(@Valid @ModelAttribute("item")ItemDTO itemDTO,
     							BindingResult result,
@@ -74,6 +64,15 @@ public class ItemController {
 		outroItem.setIdPedido(pedidoAtualizado.getIdPedido());
         return new ModelAndView("item/manter","item",outroItem);
     }
+	
+	@RequestMapping(path="/processar",method= RequestMethod.POST)
+	public ModelAndView processar(Long idItem, Long idPedido){
+		itemService.alterarSituacao(idItem);
+		if(pedidoService.verificarSituacaoDosItens(idPedido)){
+			pedidoService.atualizarSituacao(idPedido);
+		}
+		return new ModelAndView ("redirect:/pedido/processar/"+idPedido);
+	}
 	
 	 @ModelAttribute("materiais")
 	 public List<Material> comboMateriais() {
