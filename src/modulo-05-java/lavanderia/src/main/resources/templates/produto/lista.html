@@ -50,11 +50,11 @@
 				<tr th:each="produto : ${produtos}">
 					<td th:text="${produto.idProduto}"><a
 						th:href="@{|/produto/${produto.idProduto}|}"></a></td>
-					<td th:if="${produto.idServico}==1">Lavar</td>
-					<td th:if="${produto.idServico}==2">Secar</td>
-					<td th:if="${produto.idMaterial}==1">Delicada</td>
-					<td th:if="${produto.idMaterial}==2">Normal</td>
-					<td th:if="${produto.idMaterial}==3">Pesada</td>
+					<td th:if="${produto.servico.idServico}==1">Lavar</td>
+					<td th:if="${produto.servico.idServico}==2">Secar</td>
+					<td th:if="${produto.material.idMaterial}==1">Delicada</td>
+					<td th:if="${produto.material.idMaterial}==2">Normal</td>
+					<td th:if="${produto.material.idMaterial}==3">Pesada</td>
 					<td th:text="${produto.valor}"></td>
 					<td th:text="${produto.prazo}"></td>
 					<td th:text="${produto.situacao}"></td>

@@ -134,7 +134,7 @@ public class PedidoService {
 		pedido.setDataInclusao(dataInclusao);
 		BigDecimal valorInicial = new BigDecimal(0); //valor inicial porque não há nenhum item quando o pedido é incluido pela primeira vez
 		pedido.setValorBruto(valorInicial);
-		pedido.setSituacao(SituacaoPedido.PENDENTE);
+		pedido.setSituacao(SituacaoPedido.PROCESSANDO);
 		pedidoDAO.save(pedido);
 		return pedido;
 	}

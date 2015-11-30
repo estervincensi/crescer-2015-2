@@ -75,7 +75,7 @@ public class PedidoController {
 		PedidoResumidoDTO dto = new PedidoResumidoDTO();
 		dto.setId(pedidoDto.getIdPedido());
 		pedidoService.processarPedido(dto);
-		return new ModelAndView("redirect:/produto");
+		return new ModelAndView("redirect:/pedido");
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)

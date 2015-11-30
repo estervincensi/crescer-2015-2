@@ -20,7 +20,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.cwi.crescer.domain.Pedido.SituacaoPedido;
 
 @Entity
 @Table(name = "Pedido")

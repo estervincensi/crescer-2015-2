@@ -18,19 +18,19 @@
 					<div class="container-form textoRoxo">
 						<div class="form-group">
 							<input th:field="*{idProduto}" type="hidden" />
-							<input th:field="*{idServico}" type="hidden" />
-							<input th:field="*{idMaterial}" type="hidden" />
+							<input th:field="*{servico.idServico}" type="hidden" />
+							<input th:field="*{material.idMaterial}" type="hidden" />
 						</div>
 						<div class="form-group">
 							<label class="control-label">Serviço: </label> <select
-								class="form-control" th:field="*{idServico}" disabled="disabled">
+								class="form-control" th:field="*{servico.idServico}" disabled="disabled">
 								<option th:each="servico : ${servicos}"
 									th:text="${servico.descricao}" th:value="${servico.idServico}"></option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Material: </label> <select
-								class="form-control" th:field="*{idMaterial}"
+								class="form-control" th:field="*{material.idMaterial}"
 								disabled="disabled">
 								<option th:each="material : ${materiais}"
 									th:text="${material.descricao}"
