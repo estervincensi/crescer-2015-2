@@ -191,4 +191,10 @@ public class PedidoService {
 		pedidoDAO.save(pedido);
 		
 	}
+
+	public void cancelar(Long idPedido) {
+		Pedido pedido = pedidoDAO.findById(idPedido);
+		pedido.setSituacao(SituacaoPedido.CANCELADO);
+		pedidoDAO.save(pedido);		
+	}
 }

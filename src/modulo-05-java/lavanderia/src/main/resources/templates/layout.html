@@ -31,11 +31,11 @@
 					<li class="inline-block"><a href="/produto"
 						style="color: #fff;">Lista de Produtos</a></li>
 					<li class="inline-block">
-					<li class="inline-block"><a href="/produto/novo"
+					<li class="inline-block" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a href="/produto/novo"
 						style="color: #fff;">Cadastrar Produto</a></li>
 					<li class="inline-block"><a href="/pedido"
 						style="color: #fff;">Lista de Pedidos</a></li>
-					<li class="inline-block"><a href="/pedido/incluir"
+					<li class="inline-block" ><a href="/pedido/incluir"
 						style="color: #fff;">Cadastrar Pedidos</a></li>
 					<form name="form" th:action="@{/logout}" action="/logout"
 						method="POST" sec:authorize="isAuthenticated()">

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -83,8 +84,23 @@ public class PedidoController {
 	}
 	
 	@RequestMapping(path="/retirar",method = RequestMethod.POST)
-	public ModelAndView retirar(Long idPedido){
+	public ModelAndView retirar(Long idPedido,RedirectAttributes redirectAttributes){
 		pedidoService.retirar(idPedido);
+		redirectAttributes.addFlashAttribute("mensagem","Pedido retirado com sucesso!");
+		return new ModelAndView("redirect:/pedido");
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(path="/cancelar/{id}",method = RequestMethod.GET)
+	public ModelAndView cancela(@PathVariable("id")Long id){
+		return new ModelAndView("pedido/cancela","pedido",pedidoService.buscarPedidoPorId(id));
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(path="/cancelar",method = RequestMethod.POST)
+	public ModelAndView cancelar(Long idPedido,RedirectAttributes redirectAttributes){
+		pedidoService.cancelar(idPedido);
+		redirectAttributes.addAttribute("mensagem","Pedido cancelado com sucesso!");
 		return new ModelAndView("redirect:/pedido");
 	}
 

@@ -51,6 +51,7 @@
 					<th>Visualizar</th>
 					<th>Retirar Pedido</th>
 					<th>Processar Itens</th>
+					<th th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Cancelar Pedido</th>
 				</tr>
 				<tr th:each="pedido : ${pedidos}">
 					<td th:text="${pedido.idPedido}"><a
@@ -65,6 +66,8 @@
 					<td><a th:if="${pedido.situacao==T(br.com.cwi.crescer.domain.Pedido.SituacaoPedido).PROCESSADO}" th:href="${'/pedido/retirar/' + pedido.idPedido}" class="btn btn-primary">Retirar Pedido</a></td>
 					<td><a th:if="${pedido.situacao==T(br.com.cwi.crescer.domain.Pedido.SituacaoPedido).PROCESSANDO}" th:href="${'/pedido/processar/' + pedido.idPedido}"
 						class="btn btn-primary" style="background-color: #800080;">Processar Itens</a></td>
+					<td th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a th:href="${'/pedido/cancelar/' + pedido.idPedido}"
+						class="btn btn-primary" style="background-color: #800080;">Cancelar Pedido</a></td>
 				</tr>
 			</table>
 		</div>
