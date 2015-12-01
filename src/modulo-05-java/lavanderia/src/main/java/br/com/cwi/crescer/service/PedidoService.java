@@ -83,7 +83,7 @@ public class PedidoService {
 		pedidoDAO.save(entity);
 	}
 
-	public BigDecimal verificarDesconto(Pedido pedido, Item item){
+	private BigDecimal verificarDesconto(Pedido pedido, Item item){
 		BigDecimal desconto8PorCento = new BigDecimal(0.08);
 		BigDecimal desconto4PorCento = new BigDecimal(0.04);
 		BigDecimal desconto4e87PorCento = new BigDecimal(0.0487);
@@ -92,7 +92,6 @@ public class PedidoService {
 		BigDecimal pesoParaDesconto = new BigDecimal(15);
 		
 		BigDecimal pesoTotal = somarPesos(pedido);
-		//pesoTotal = pesoTotal.add(item.getPeso());
 		
 		Calendar c = Calendar.getInstance();
 		c.setTime(pedido.getDataInclusao());
@@ -108,7 +107,7 @@ public class PedidoService {
 		return new BigDecimal(0);
 	}
 	
-	public BigDecimal somarPesos(Pedido pedido){
+	private BigDecimal somarPesos(Pedido pedido){
 		BigDecimal pesos = new BigDecimal(0);
 		for(Item item: pedido.getItens()){
 			pesos = pesos.add(item.getPeso());
@@ -116,7 +115,7 @@ public class PedidoService {
 		return pesos;
 	}
 	
-	public Date atualizarData(Item item, Pedido pedido){
+	private Date atualizarData(Item item, Pedido pedido){
 		Date dataEntrega = pedido.getDataInclusao();
 		Calendar c = Calendar.getInstance();
 		c.setTime(dataEntrega);
@@ -158,7 +157,8 @@ public class PedidoService {
 		pedido = pedidoDAO.save(pedido);
 		return pedido;
 	}
-	public BigDecimal obterValorBrutoAtual(Item item, Pedido pedido){
+	
+	private BigDecimal obterValorBrutoAtual(Item item, Pedido pedido){
 		BigDecimal valorBrutoAtual = pedido.getValorBruto();
 		BigDecimal valorBrutoAtualizado = valorBrutoAtual.add(item.getValorTotal());
 		return valorBrutoAtualizado;

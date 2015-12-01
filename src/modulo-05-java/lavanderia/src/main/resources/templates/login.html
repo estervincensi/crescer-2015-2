@@ -6,16 +6,28 @@
 <title>Login</title>
 </head>
 <body>
-<div layout:fragment="content">
-	<p th:if="${param.logout}" class="alert">Logout feito com sucesso</p>
-		<p th:if="${param.error}" class="alert alert-error">Login incorreto. Tente novamente !</p>
-		<h2>Login</h2>
+
+	<div layout:fragment="content">
+	<div class="row">
+	<div class="col-md-offset-4 col-md-4" >		
+		<h2 class="textoRoxo textoCentralizado">Login</h2>
 		<form name="form" th:action="@{/login}" action="/login" method="POST">
-			<input type="text" name="username" placeholder="Username" />
-			<input type="password" name="password" placeholder="Password" />
-			<input type="submit" id="login" value="Login" class="btn btn-primary" />
+			<div class="form-group">
+			<input type="text" name="username" placeholder="Username" class="form-control"/> 
+			<input type="password" name="password" placeholder="Password" class="form-control"/> 
+			</div>
+			<button	type="submit" id="login" class="btn btn-primary">Login</button>
 		</form>
-</div>
+		<br/>
+		<p th:if="${param.logout}" class="alert alert-success">Logout
+			efetuado com sucesso</p>
+		<p th:if="${param.error}" class="alert alert-danger">Login
+			incorreto. Tente novamente !</p>
+		
+		
+		</div>
+	</div>
+	</div>
 
 </body>
 </html>

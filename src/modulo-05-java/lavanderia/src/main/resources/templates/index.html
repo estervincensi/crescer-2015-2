@@ -4,15 +4,22 @@
 	layout:decorator="layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
+<meta charset="utf-8"/>
 <title>Index</title>
 </head>
 <body>
 	<div layout:fragment="content">
-		<h1 class="textoRoxo textoCentralizado" th:text="${mensagem}">index</h1>
-		<h2 th:text="${#authentication.name}" sec:authorize="isAuthenticated()"></h2> 
+		<div class="row line-height">
+			<div class="text-center col-md-6">
+		<h1 class="textoRoxo displayInline">Olá, </h1>
+		<h1 class="textoRoxo displayInline" th:text="${#authentication.name}" sec:authorize="isAuthenticated()"></h1>
+		<h1 class="textoRoxo displayInline">! Seja bem vindo!</h1> 
+		</div>
+		<img th:src="@{/images/roupa.jpg}" class="imagem"/>
 		
-		<h2 th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Voce e Usuario Admin</h2>
-		<h2 th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}"> Voce e Usuario normal</h2>
+		</div>
+		
+		
 	</div>
 </body>
 </html>

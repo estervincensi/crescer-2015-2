@@ -50,7 +50,7 @@ public class ItemService {
 
 	}
 
-	public Produto obterProduto(ItemDTO itemDTO) {
+	private Produto obterProduto(ItemDTO itemDTO) {
 		Produto produtoBuscar = new Produto();
 		produtoBuscar.setMaterial(new Material());
 		produtoBuscar.setServico(new Servico());
