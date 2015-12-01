@@ -15,7 +15,8 @@
 		<div layout:fragment="content" class="margem-top-min centralizar">
 			<form th:action="@{/itens/manter}" th:object="${item}" method="post">
 				<div class="container-form">
-				
+				<h3 class="textoRoxo" th:if="${mensagem}" th:text="${mensagem}"></h3>
+				<h1 class="textoRoxo textoCentralizado">Adicionar itens</h1>
 					<div class="form-group" th:classappend="${#fields.hasErrors('idPedido')} ? 'has-error'">
 						<input class="form-control" th:field="*{idPedido}" type="hidden" />
 						<span class="help-inline" th:errors="*{idPedido}"></span>

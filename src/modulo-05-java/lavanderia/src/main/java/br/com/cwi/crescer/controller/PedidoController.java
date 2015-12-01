@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -116,7 +117,7 @@ public class PedidoController {
 
 	@RequestMapping(path = "/incluir", method = RequestMethod.POST)
 	public ModelAndView incluir(@Valid @ModelAttribute("pedido") PedidoResumoDTO pedidoResumo, BindingResult result,
-			final RedirectAttributes redirectAttributes) {
+			Model model) {
 
 		if (result.hasErrors()) {
 			return new ModelAndView("pedido/incluir");
@@ -124,7 +125,7 @@ public class PedidoController {
 
 		pedidoService.incluirInicial(pedidoResumo);
 		Long idPedido = pedidoService.retornaUltimoID();
-		redirectAttributes.addFlashAttribute("menssagemFlash", "agora você pode adicionar itens a esse pedido");
+		model.addAttribute("mensagem", "Agora você pode adicionar itens a esse pedido!");
 		ItemDTO itemDTO = new ItemDTO();
 		itemDTO.setIdPedido(idPedido);
 		return new ModelAndView("item/manter", "item", itemDTO);
