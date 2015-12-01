@@ -98,12 +98,15 @@ public class PedidoService {
 		if(c.get(Calendar.DAY_OF_WEEK) == 2 || c.get(Calendar.DAY_OF_WEEK) == 3 || c.get(Calendar.DAY_OF_WEEK) == 4){
 			return pedido.getValorBruto().multiply(desconto8PorCento);
 		}
-		if(c.get(Calendar.DAY_OF_WEEK) == 5 || c.get(Calendar.DAY_OF_WEEK) == 6){
-			return pedido.getValorBruto().multiply(desconto4PorCento);
-		}
+		
 		if(pedido.getValorBruto().compareTo(valorParaDesconto)>0 || pesoTotal.compareTo(pesoParaDesconto)>0){
 			return pedido.getValorBruto().multiply(desconto4e87PorCento);
 		}
+		
+		if(c.get(Calendar.DAY_OF_WEEK) == 5 || c.get(Calendar.DAY_OF_WEEK) == 6){
+			return pedido.getValorBruto().multiply(desconto4PorCento);
+		}
+		
 		return new BigDecimal(0);
 	}
 	
